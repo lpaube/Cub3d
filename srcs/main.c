@@ -6,9 +6,12 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/07 16:09:33 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/07 17:48:05 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "mlx.h"
+
 int worldMap[24][24] =
 {
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -38,5 +41,11 @@ int worldMap[24][24] =
 };
 
 int main(void) {
+	void *mlx;
+	void *mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Cub3d");
+	mlx_loop(mlx);
 	return (0);
 }
