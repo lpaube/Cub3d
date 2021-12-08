@@ -6,7 +6,7 @@
 #    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 14:02:25 by mafortin          #+#    #+#              #
-#    Updated: 2021/12/07 17:46:17 by laube            ###   ########.fr        #
+#    Updated: 2021/12/07 23:29:49 by laube            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ all: 		obj ${NAME}
 
 $(NAME): $(OBJS)
 			@ar rc ${NAME} $(OBJS)
+			@echo "CREATED LIBFT LIBRARY"
 
 $(OBJS_DIR)%.o:%.c
 	@$(CC) $(CFLAGS) -o $@ -c $< 
@@ -60,10 +61,13 @@ obj:
 	@mkdir -p $(OBJS_DIR)
 
 clean:
-					rm -rf ${OBJS}
+					@rm -rf ${OBJS}
+					@echo "CLEANED LIBFT OBJECT FILES"
 
 fclean: 	clean
-					rm -rf $(NAME) $(OBJS_DIR)
+					@rm -rf $(NAME) $(OBJS_DIR)
+					@echo "CLEANED LIBFT LIBRARY"
+
 
 re:			fclean all
 

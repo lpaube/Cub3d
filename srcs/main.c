@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/07 17:48:05 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/07 23:40:06 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int main(void) {
 	void *mlx;
 	void *mlx_win;
 
+        (void)mlx_win;
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Cub3d");
+	mlx_win = mlx_new_window(mlx, 400, 400, "Cub3d");
 	mlx_loop(mlx);
 	return (0);
 }

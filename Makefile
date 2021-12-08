@@ -11,7 +11,7 @@ SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))
 OBJS_PATH =	$(addprefix $(OBJ_DIR)/, $(OBJS))
 
 CC =	gcc
-CFLAGS =	-Wall -Wextra -Werror 
+CFLAGS =	-Wall -Wextra -Werror -g
 INCLS = -Iincludes -Imlx_mac
 LIBS = -Lmlx_mac -lmlx -Llibft -lft -framework OpenGL -framework AppKit
 
@@ -40,5 +40,11 @@ fclean: clean
 	@echo "\033[34;1m CLEANED CUB3D \033[0m"
 
 re: fclean all
+
+#######################################
+
+linux: $(OBJ_DIR) $(OBJS_PATH)
+	@make re --no-print-directory -C ./libft
+	$(CC) $(CFLAGS) srcs/*.c -Imlx_linux -Lmlx_linux -Llibft -lft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
 
 .PHONY: all clean fclean re
