@@ -6,11 +6,16 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/07 17:48:05 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/07 18:59:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "mlx.h"
+#include "cub3d.h"
+
+#define WIN_WIDTH 1000
+#define WIN_HEIGTH 600
 
 int worldMap[24][24] =
 {
@@ -40,12 +45,52 @@ int worldMap[24][24] =
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-int main(void) {
-	void *mlx;
-	void *mlx_win;
+int map_width = 24;
+int map_height = 24;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Cub3d");
-	mlx_loop(mlx);
+t_mlx mlx_inst_init(void)
+{
+	t_mlx mlx_inst;
+
+	mlx_inst.mlx = mlx_init();
+	mlx_inst.win = mlx_new_window(mlx_inst.mlx, WIN_WIDTH, WIN_HEIGTH, "Cub3d");
+	mlx_inst.img = mlx_new_image(mlx_inst.mlx, WIN_WIDTH, WIN_HEIGTH);
+	mlx_inst.addr = mlx_get_data_addr(mlx_inst.img, &mlx_inst.bits_per_pixel,
+			&mlx_inst.line_len, &mlx_inst.endian);
+	return (mlx_inst);
+}
+
+void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color)
+{
+	char *pxl;
+
+	pxl = mlx_inst->addr + (y * mlx_inst->line_len) + (x * (mlx_inst->bits_per_pixel / 8));
+	*(unsigned int*)pxl = color;
+}
+
+void draw_square(t_mlx *mlx_inst, int x, int y, int sq_size)
+{
+	int	j;
+	int	i;
+
+	j = -1;
+	while (++j < sq_size)
+	{
+		i = -1;
+		while (++i < sq_size)
+		{
+			my_pixel_put(mlx_inst, x + i, y + j, 0xFF0000);
+		}
+	}
+}
+
+int main(void)
+{
+	t_mlx mlx_inst;
+
+	mlx_inst = mlx_inst_init();
+	draw_square(&mlx_inst, 10, 10, 50);
+	mlx_put_image_to_window(mlx_inst.mlx, mlx_inst.win, mlx_inst.img, 0, 0);
+	mlx_loop(mlx_inst.mlx);
 	return (0);
 }
