@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/08 00:19:24 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/08 13:54:16 by laube            ###   ########.fr       */
 /*   Updated: 2021/12/07 18:59:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -69,20 +69,45 @@ void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color)
 	*(unsigned int*)pxl = color;
 }
 
-void draw_square(t_mlx *mlx_inst, int x, int y, int sq_size)
+void draw_rect(t_mlx *mlx_inst, t_rect rect)
 {
 	int	j;
 	int	i;
 
 	j = -1;
-	while (++j < sq_size)
+	while (++j < rect.heigth)
 	{
 		i = -1;
-		while (++i < sq_size)
+		while (++i < rect.width)
 		{
-			my_pixel_put(mlx_inst, x + i, y + j, 0xFF0000);
+			if ((rect.x + i < WIN_WIDTH && rect.x + i >= 0) && (rect.y + j < WIN_HEIGTH && rect.y + j >= 0))
+				my_pixel_put(mlx_inst, rect.x + i, rect.y + j, rect.color);
 		}
 	}
+}
+
+void draw_line(t_mlx *mlx_inst, t_line line)
+{
+	
+}
+
+/*
+void draw_circle(t_mlx *mlx_inst, t_circle circle)
+{
+	
+}
+*/
+
+void	testing_shapes(t_mlx *mlx_inst)
+{
+	t_rect rect;
+
+	rect.x = 10;
+	rect.y = 10;
+	rect.width = 100;
+	rect.heigth = 50;
+	rect.color = 0x00FF00;
+	draw_rect(mlx_inst, rect);
 }
 
 int main(void)
@@ -90,7 +115,7 @@ int main(void)
 	t_mlx mlx_inst;
 
 	mlx_inst = mlx_inst_init();
-	draw_square(&mlx_inst, 10, 10, 50);
+	testing_shapes(&mlx_inst);
 	mlx_put_image_to_window(mlx_inst.mlx, mlx_inst.win, mlx_inst.img, 0, 0);
 	mlx_loop(mlx_inst.mlx);
 	return (0);
