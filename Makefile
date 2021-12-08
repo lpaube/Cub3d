@@ -45,6 +45,6 @@ re: fclean all
 
 linux: $(OBJ_DIR) $(OBJS_PATH)
 	@make re --no-print-directory -C ./libft
-	$(CC) $(CFLAGS) srcs/*.c -Imlx_linux -Lmlx_linux -Llibft -lft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
+	$(CC) $(CFLAGS) srcs/*.c -Imlx_linux -Iincludes -Lmlx_linux -Llibft -lft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
 
 .PHONY: all clean fclean re
