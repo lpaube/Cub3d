@@ -1,2 +1,2 @@
-![](https://github.com/lpaube/Cub3d/blob/main/img/59dyk2tvg2i51.png)
+![](https://github.com/lpaube/Cub3d/blob/main/img/cubed.png)
 # Cub3d
