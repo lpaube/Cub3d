@@ -6,12 +6,14 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/08 13:54:16 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/09 16:51:53 by laube            ###   ########.fr       */
 /*   Updated: 2021/12/07 18:59:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "mlx.h"
 #include "cub3d.h"
 
@@ -86,28 +88,73 @@ void draw_rect(t_mlx *mlx_inst, t_rect rect)
 	}
 }
 
+// Using DDA algorithm
 void draw_line(t_mlx *mlx_inst, t_line line)
 {
-	
+	int		i;
+	int		steps;
+	float	xinc;
+	float	yinc;
+
+	steps = abs(line.x2 - line.x1);
+	if (abs(line.y2 - line.y1) > abs(line.x2 - line.x1))
+		steps = abs(line.y2 - line.y1);
+	xinc = (line.x2 - line.x1) / steps;
+	yinc = (line.y2 - line.y1) / steps;
+	i = -1;
+	while (++i < steps)
+	{
+		my_pixel_put(mlx_inst, line.x1, line.y1, line.color);
+		line.x1 = round(line.x1 + xinc);
+		line.y1 = round(line.y1 + yinc);
+	}
 }
 
-/*
 void draw_circle(t_mlx *mlx_inst, t_circle circle)
 {
-	
+	float	x;
+	float	y;
+	int		j;
+
+	x = -1;
+	while (++x < circle.radius)
+	{
+		y = sqrt(pow(circle.radius, 2) - pow(x, 2));
+		j = y + 1;
+		while (--j >= -y)
+		{
+			my_pixel_put(mlx_inst, circle.mid_x + x, round(circle.mid_y) + j, circle.color);
+			my_pixel_put(mlx_inst, circle.mid_x - x, round(circle.mid_y) + j, circle.color);
+		}
+	}
 }
-*/
 
 void	testing_shapes(t_mlx *mlx_inst)
 {
+	/*
 	t_rect rect;
-
 	rect.x = 10;
 	rect.y = 10;
 	rect.width = 100;
 	rect.heigth = 50;
 	rect.color = 0x00FF00;
 	draw_rect(mlx_inst, rect);
+
+	t_line line;
+	line.x1 = 0;
+	line.y1 = 300;
+	line.x2 = 300;
+	line.y2 = 0;
+	line.color = 0xFF0000;
+	draw_line(mlx_inst, line);
+
+	t_circle circle;
+	circle.mid_x = 0;
+	circle.mid_y = 0;
+	circle.radius = 10;
+	circle.color = 0x00FFFF;
+	draw_circle(mlx_inst, circle);
+	*/
 }
 
 int main(void)

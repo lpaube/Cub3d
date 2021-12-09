@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/08 13:53:26 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/09 15:47:38 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_rect
 // x and y represent the center of the circle
 typedef struct	s_circle
 {
-	int	x;
-	int	y;
+	int	mid_x;
+	int	mid_y;
 	int radius;
 	int color;
 }	t_circle;
