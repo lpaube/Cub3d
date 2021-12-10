@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/09 23:45:29 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/09 23:46:11 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_player
 {
     int pos_x;
     int pos_y;
-}
+} t_player;
 
 typedef struct s_line
 {
