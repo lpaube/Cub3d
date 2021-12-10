@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/09 17:43:14 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/09 23:23:08 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_line
 	int	color;
 } t_line;
 
-// x and y represent the top-left corner ofthe square
+// x and y represent the top-left corner of the rect
 typedef struct s_rect
 {
 	int	x;
