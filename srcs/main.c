@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/09 23:35:48 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/09 23:40:15 by laube            ###   ########.fr       */
 /*   Updated: 2021/12/07 18:59:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -169,7 +169,6 @@ void	draw_map(t_mlx *mlx_inst)
                 circle.color = 0x00FF00;
                 draw_circle(mlx_inst, circle);
             }
-
             else
             {
                 rect.color = 0xFFFFFF;
