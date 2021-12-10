@@ -6,9 +6,18 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/10 11:57:15 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/10 13:17:06 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CUB3D_H
+# define CUB3D_H
+
+#ifdef _LINUX
+#include "key_codes_linux.h"
+#else
+#include "key_codes_mac.h"
+#endif
 
 typedef struct s_mlx
 {
@@ -77,3 +86,5 @@ typedef struct	s_circle
     int radius;
     int color;
 }	t_circle;
+
+#endif

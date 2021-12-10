@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/10 11:59:15 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/10 13:24:10 by laube            ###   ########.fr       */
 /*   Updated: 2021/12/07 18:59:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -202,6 +202,27 @@ void	draw_map(t_mlx *mlx_inst)
     }
 }
 
+int destroy_notify(int keycode, t_cub2d *cub2d)
+{
+    (void)keycode;
+    (void)cub2d;
+    return (0);
+}
+
+int key_press(int keycode, t_cub2d *cub2d)
+{
+    (void)keycode;
+    (void)cub2d;
+    return (0);
+}
+
+int hook_handler(t_cub2d *cub2d)
+{
+    mlx_hook(cub2d->mlx_inst.win, 2, 0, key_press, cub2d);
+    mlx_hook(cub2d->mlx_inst.win, 17, 0, destroy_notify, cub2d);
+    return (0);
+}
+
 int main(void)
 {
         t_cub2d cub2d;
@@ -209,7 +230,7 @@ int main(void)
 	cub2d.mlx_inst = mlx_inst_init();
 	draw_map(&cub2d.mlx_inst);
 	mlx_put_image_to_window(cub2d.mlx_inst.mlx, cub2d.mlx_inst.win, cub2d.mlx_inst.img, 0, 0);
-        mlx_key_hook(cub2d.mlx_inst.win, hook_handler, &cub2d);
+        hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
 	return (0);
 }
