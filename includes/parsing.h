@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbline_file.c                                   :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 18:50:40 by mafortin          #+#    #+#             */
-/*   Updated: 2021/12/10 15:57:17 by mafortin         ###   ########.fr       */
+/*   Created: 2021/12/10 11:36:21 by mafortin          #+#    #+#             */
+/*   Updated: 2021/12/10 15:51:42 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdbool.h>
 
-int	ft_nbline_file(int fd)
+typedef struct s_map
 {
-	int		count;
-	char	buf;
-	int		ret;
+	char	**map;
+	char	**texture;
+	char	*ceiling;
+	char	*floor;
+	char	orientation;
+	int		map_width;
+	int		map_height;
+	int		player_x;
+	int		player_y;
+}	t_map;
 
-	ret = 1;
-	count = 0;
-	while (ret > 0)
-	{
-		ret = read(fd, &buf, 1);
-		if (ret < 0)
-		{
-			close(fd);
-			return (-1);
-		}
-		if (buf == '\n')
-			count++;
-	}
-	close (fd);
-	return (count);
-}
+bool	cb_parsing_main(char *file, t_map *map_info);

@@ -1,36 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbline_file.c                                   :+:      :+:    :+:   */
+/*   cb_map_parsing_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 18:50:40 by mafortin          #+#    #+#             */
-/*   Updated: 2021/12/10 15:57:17 by mafortin         ###   ########.fr       */
+/*   Created: 2021/12/10 15:13:11 by mafortin          #+#    #+#             */
+/*   Updated: 2021/12/10 15:15:12 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/parsing.h"
 
-int	ft_nbline_file(int fd)
-{
-	int		count;
-	char	buf;
-	int		ret;
-
-	ret = 1;
-	count = 0;
-	while (ret > 0)
-	{
-		ret = read(fd, &buf, 1);
-		if (ret < 0)
-		{
-			close(fd);
-			return (-1);
-		}
-		if (buf == '\n')
-			count++;
-	}
-	close (fd);
-	return (count);
-}
