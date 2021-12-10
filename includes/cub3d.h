@@ -6,18 +6,18 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/09 23:44:18 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/09 23:45:29 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // These are the attributes that I need for the 2d part
-typedef struct map_placeholder
+typedef struct s_map_placeholder
 {
     char **map;
     int map_width;
     int map_height;
     char    orientation;
-}
+} t_map_placeholder;
 
 typedef struct s_mlx
 {
