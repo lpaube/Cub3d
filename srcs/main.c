@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/10 13:24:10 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/10 14:39:56 by laube            ###   ########.fr       */
 /*   Updated: 2021/12/07 18:59:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -211,15 +211,23 @@ int destroy_notify(int keycode, t_cub2d *cub2d)
 
 int key_press(int keycode, t_cub2d *cub2d)
 {
-    (void)keycode;
+    printf("keycode: %d\n", keycode);
+    if (keycode == MAIN_ESC)
+        exit(0);
     (void)cub2d;
     return (0);
 }
 
+int click_close(void* param)
+{
+    (void)param;
+    exit(0);
+}
+
 int hook_handler(t_cub2d *cub2d)
 {
-    mlx_hook(cub2d->mlx_inst.win, 2, 0, key_press, cub2d);
-    mlx_hook(cub2d->mlx_inst.win, 17, 0, destroy_notify, cub2d);
+    mlx_hook(cub2d->mlx_inst.win, 2, 1L<<0, key_press, cub2d);
+    mlx_hook(cub2d->mlx_inst.win, 17, 0, click_close, cub2d);
     return (0);
 }
 
