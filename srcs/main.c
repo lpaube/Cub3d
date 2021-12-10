@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/09 23:40:15 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/10 11:59:15 by laube            ###   ########.fr       */
 /*   Updated: 2021/12/07 18:59:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -204,11 +204,12 @@ void	draw_map(t_mlx *mlx_inst)
 
 int main(void)
 {
-	t_mlx mlx_inst;
+        t_cub2d cub2d;
 
-	mlx_inst = mlx_inst_init();
-	draw_map(&mlx_inst);
-	mlx_put_image_to_window(mlx_inst.mlx, mlx_inst.win, mlx_inst.img, 0, 0);
-	mlx_loop(mlx_inst.mlx);
+	cub2d.mlx_inst = mlx_inst_init();
+	draw_map(&cub2d.mlx_inst);
+	mlx_put_image_to_window(cub2d.mlx_inst.mlx, cub2d.mlx_inst.win, cub2d.mlx_inst.img, 0, 0);
+        mlx_key_hook(cub2d.mlx_inst.win, hook_handler, &cub2d);
+	mlx_loop(cub2d.mlx_inst.mlx);
 	return (0);
 }

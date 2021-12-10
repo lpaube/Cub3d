@@ -6,18 +6,9 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/09 23:46:11 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/10 11:57:15 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// These are the attributes that I need for the 2d part
-typedef struct s_map_placeholder
-{
-    char **map;
-    int map_width;
-    int map_height;
-    char    orientation;
-} t_map_placeholder;
 
 typedef struct s_mlx
 {
@@ -32,9 +23,32 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
-    int pos_x;
-    int pos_y;
+    int	mid_x;
+    int	mid_y;
+    int radius;
+    int color;
+    // angle
 } t_player;
+
+typedef struct s_cub2d
+{
+    t_mlx   mlx_inst;
+    t_player    player;
+} t_cub2d;
+
+// These are the attributes that I need for the 2d part
+typedef struct s_map_placeholder
+{
+    char **map;
+    int map_width;
+    int map_height;
+    char    orientation;
+} t_map_placeholder;
+
+typedef struct s_game
+{
+    t_player player;
+} t_game;
 
 typedef struct s_line
 {
