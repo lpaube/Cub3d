@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/10 14:39:56 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/10 14:48:17 by laube            ###   ########.fr       */
 /*   Updated: 2021/12/07 18:59:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -202,11 +202,9 @@ void	draw_map(t_mlx *mlx_inst)
     }
 }
 
-int destroy_notify(int keycode, t_cub2d *cub2d)
+void    player_mvmt(int keycode, t_cub2d *cub2d)
 {
-    (void)keycode;
-    (void)cub2d;
-    return (0);
+    
 }
 
 int key_press(int keycode, t_cub2d *cub2d)
@@ -214,7 +212,8 @@ int key_press(int keycode, t_cub2d *cub2d)
     printf("keycode: %d\n", keycode);
     if (keycode == MAIN_ESC)
         exit(0);
-    (void)cub2d;
+    else if (keycode == MAIN_W || keycode == MAIN_A || keycode == MAIN_S || keycode == MAIN_D)
+        player_mvmt(keycode, cub2d);
     return (0);
 }
 
