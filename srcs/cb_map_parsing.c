@@ -17,15 +17,17 @@
 #include "../libft/libft.h"
 
 //Map file in array of string
-char **cb_get_content(char *file)
+char	**cb_get_content(char *file)
 {
 	char	**line;
-	int		nb_line;
 	int		ret;
 	int		i;
 	int		fd;
-	
-	line = malloc(sizeof(char *) * nb_line + 1);
+
+	i = cb_nbline_file(file);
+	if (i <= 0)
+		return (NULL);
+	line = malloc(sizeof(char *) * i + 1);
 	fd = open(file, O_RDONLY);
 	ret = 1;
 	i = 0;
