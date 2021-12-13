@@ -17,12 +17,14 @@
 #include "../libft/libft.h"
 
 //Map file in array of string
-char **cb_get_content(int fd, char *file, int nb_line)
+char **cb_get_content(char *file)
 {
 	char	**line;
+	int		nb_line;
 	int		ret;
 	int		i;
-
+	int		fd;
+	
 	line = malloc(sizeof(char *) * nb_line + 1);
 	fd = open(file, O_RDONLY);
 	ret = 1;
@@ -44,24 +46,10 @@ char **cb_get_content(int fd, char *file, int nb_line)
 
 bool	cb_parsing_main(char *file, t_map *map_info)
 {
-	int		fd;
 	char	**content;
-	int		nb_line;
 
 	(void)map_info;
-	fd = open(file, O_RDONLY);
-	if (fd <= 0)
-	{
-		ft_putstr_fd("Error\nMap file\n", 2);
-		return (false);
-	}
-	nb_line = ft_nbline_file(fd);
-	if (nb_line == -1)
-	{
-		ft_putstr_fd("Error\nMap formating\n", 2);
-		return (false);
-	}
-	content = cb_get_content(fd, file, nb_line);
+	content = cb_get_content(file);
 	if (!content)
 		return (false);
 	return (true);

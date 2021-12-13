@@ -26,3 +26,4 @@ typedef struct s_map
 }	t_map;
 
 bool	cb_parsing_main(char *file, t_map *map_info);
+int		cb_nbline_file(char *file);
