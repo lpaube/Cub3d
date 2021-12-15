@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/10 14:48:17 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/14 15:48:36 by laube            ###   ########.fr       */
 /*   Updated: 2021/12/07 18:59:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -163,11 +163,11 @@ void	draw_map(t_mlx *mlx_inst)
             }
             else if (map[j][i] == 'N')
             {
-                circle.mid_x = 20 * i + 10;
-                circle.mid_y = 20 * j + 10;
-                circle.radius = 10;
-                circle.color = 0x00FF00;
-                draw_circle(mlx_inst, circle);
+                //circle.mid_x = 20 * i + 10;
+                //circle.mid_y = 20 * j + 10;
+                //circle.radius = 10;
+                //circle.color = 0x00FF00;
+                //draw_circle(mlx_inst, circle);
             }
             else
             {
@@ -204,12 +204,12 @@ void	draw_map(t_mlx *mlx_inst)
 
 void    player_mvmt(int keycode, t_cub2d *cub2d)
 {
-    
+    (void)keycode;
+	(void)cub2d;
 }
 
 int key_press(int keycode, t_cub2d *cub2d)
 {
-    printf("keycode: %d\n", keycode);
     if (keycode == MAIN_ESC)
         exit(0);
     else if (keycode == MAIN_W || keycode == MAIN_A || keycode == MAIN_S || keycode == MAIN_D)
@@ -232,12 +232,12 @@ int hook_handler(t_cub2d *cub2d)
 
 int main(void)
 {
-        t_cub2d cub2d;
+	t_cub2d cub2d;
 
 	cub2d.mlx_inst = mlx_inst_init();
 	draw_map(&cub2d.mlx_inst);
 	mlx_put_image_to_window(cub2d.mlx_inst.mlx, cub2d.mlx_inst.win, cub2d.mlx_inst.img, 0, 0);
-        hook_handler(&cub2d);
+	hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
 	return (0);
 }

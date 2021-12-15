@@ -6,7 +6,7 @@
 /*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/10 13:17:06 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/14 15:47:03 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@ typedef struct s_mlx
     int	endian;
 }	t_mlx;
 
-typedef struct s_player
-{
-    int	mid_x;
-    int	mid_y;
-    int radius;
-    int color;
-    // angle
-} t_player;
 
 typedef struct s_cub2d
 {
@@ -86,5 +78,11 @@ typedef struct	s_circle
     int radius;
     int color;
 }	t_circle;
+
+typedef struct s_player
+{
+	t_circle circle;
+    // angle
+} t_player;
 
 #endif
