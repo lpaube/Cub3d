@@ -68,7 +68,7 @@ t_player init_player(t_mlx *mlx_inst) //Will later take map struct as argument
     return (player);
 }
 
-t_mlx mlx_inst_init() // Will later take the map as argument
+t_mlx mlx_inst_init(t_cub2d *cub2d) // Will later take the map as argument
 {
     t_mlx mlx_inst;
 
@@ -77,7 +77,7 @@ t_mlx mlx_inst_init() // Will later take the map as argument
     mlx_inst.img = mlx_new_image(mlx_inst.mlx, WIN_WIDTH, WIN_HEIGTH);
     mlx_inst.addr = mlx_get_data_addr(mlx_inst.img, &mlx_inst.bits_per_pixel,
             &mlx_inst.line_len, &mlx_inst.endian);
-    mlx_inst.player = init_player(&mlx_inst);// will send the map with the player coordinates later
+    cub2d->player = init_player(&mlx_inst);// will send the map with the player coordinates later
     return (mlx_inst);
 }
 
@@ -153,7 +153,7 @@ void    draw_player(t_mlx *mlx_inst, t_player player)
 }
 
 
-void	draw_map(t_mlx *mlx_inst)
+void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
 {
     t_rect	rect;
     t_line      line;
@@ -187,7 +187,7 @@ void	draw_map(t_mlx *mlx_inst)
             else if (map[j][i] == 'N' || map[j][i] == 'S' || 
                     map[j][i] == 'E' || map[j][i] == 'O')
             {
-                draw_player(mlx_inst, mlx_inst->player);
+	    	continue ;
             }
             else
             {
@@ -220,12 +220,31 @@ void	draw_map(t_mlx *mlx_inst)
         line.color = 0xFF0000;
         draw_line(mlx_inst, line);
     }
+
+    draw_player(mlx_inst, cub2d->player);
 }
 
 void    player_mvmt(int keycode, t_cub2d *cub2d)
 {
     (void)keycode;
     (void)cub2d;
+
+    if (keycode == MAIN_W)
+    {
+	cub2d->player.circle.mid_y--;
+    }
+    if (keycode == MAIN_S)
+    {
+	cub2d->player.circle.mid_y++;
+    }
+    if (keycode == MAIN_A)
+    {
+	cub2d->player.circle.mid_x--;
+    }
+    if (keycode == MAIN_D)
+    {
+	cub2d->player.circle.mid_x++;
+    }
 }
 
 int key_press(int keycode, t_cub2d *cub2d)
@@ -234,6 +253,8 @@ int key_press(int keycode, t_cub2d *cub2d)
         exit(0);
     else if (keycode == MAIN_W || keycode == MAIN_A || keycode == MAIN_S || keycode == MAIN_D)
         player_mvmt(keycode, cub2d);
+    draw_cub2d(cub2d, &cub2d->mlx_inst);
+    mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
     return (0);
 }
 
@@ -254,8 +275,8 @@ void handle_2d(void)
 {
     t_cub2d cub2d;
 
-    cub2d.mlx_inst = mlx_inst_init();
-    draw_map(&cub2d.mlx_inst);
+    cub2d.mlx_inst = mlx_inst_init(&cub2d);
+    draw_cub2d(&cub2d, &cub2d.mlx_inst);
     mlx_put_image_to_window(cub2d.mlx_inst.mlx, cub2d.mlx_inst.win, cub2d.mlx_inst.img, 0, 0);
     hook_handler(&cub2d);
     mlx_loop(cub2d.mlx_inst.mlx);

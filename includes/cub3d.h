@@ -43,7 +43,6 @@ typedef struct s_mlx
     int bits_per_pixel;
     int	line_len;
     int	endian;
-    t_player  player;
 }	t_mlx;
 
 typedef struct s_cub2d
