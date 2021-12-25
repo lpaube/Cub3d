@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/15 13:36:47 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/24 19:21:07 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+#include "cub3d.h"
 
-int main(void) {
-	//Call your parse_map function here
-	parse_2d();
+int main(void)
+{
+    handle_2d();
+    return (0);
 }
