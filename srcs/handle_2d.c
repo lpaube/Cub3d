@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2021/12/24 19:16:42 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/24 19:57:17 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,26 @@ char map[24][24] = {
 
 int map_width = 24;
 int map_height = 24;
+int player_x = 8;
+int player_y = 11;
+char    player_orien = 'N';
 
-t_mlx mlx_inst_init(void)
+t_player init_player(t_mlx *mlx_inst) //Will later take map struct as argument
+{
+    t_player    player;
+    t_circle      circle;
+
+    (void)mlx_inst;
+    circle.mid_x = 20 * player_x + 10;
+    circle.mid_y = 20 * player_y + 10;
+    circle.radius = 10;
+    circle.color = 0x00FF00;
+    player.circle = circle;
+    player.orien = player_orien;
+    return (player);
+}
+
+t_mlx mlx_inst_init() // Will later take the map as argument
 {
     t_mlx mlx_inst;
 
@@ -59,6 +77,7 @@ t_mlx mlx_inst_init(void)
     mlx_inst.img = mlx_new_image(mlx_inst.mlx, WIN_WIDTH, WIN_HEIGTH);
     mlx_inst.addr = mlx_get_data_addr(mlx_inst.img, &mlx_inst.bits_per_pixel,
             &mlx_inst.line_len, &mlx_inst.endian);
+    mlx_inst.player = init_player(&mlx_inst);// will send the map with the player coordinates later
     return (mlx_inst);
 }
 
@@ -128,11 +147,16 @@ void draw_circle(t_mlx *mlx_inst, t_circle circle)
     }
 }
 
+void    draw_player(t_mlx *mlx_inst, t_player player)
+{
+    draw_circle(mlx_inst, player.circle);
+}
+
+
 void	draw_map(t_mlx *mlx_inst)
 {
     t_rect	rect;
-    t_line  line;
-    //   t_circle    circle;
+    t_line      line;
     int i;
     int j;
 
@@ -160,13 +184,10 @@ void	draw_map(t_mlx *mlx_inst)
                 rect.color = 0x0000FF;
                 draw_rect(mlx_inst, rect);
             }
-            else if (map[j][i] == 'N')
+            else if (map[j][i] == 'N' || map[j][i] == 'S' || 
+                    map[j][i] == 'E' || map[j][i] == 'O')
             {
-                //circle.mid_x = 20 * i + 10;
-                //circle.mid_y = 20 * j + 10;
-                //circle.radius = 10;
-                //circle.color = 0x00FF00;
-                //draw_circle(mlx_inst, circle);
+                draw_player(mlx_inst, mlx_inst->player);
             }
             else
             {

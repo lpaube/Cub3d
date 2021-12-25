@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/24 19:18:06 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/24 19:55:37 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,6 @@
 #else
 #include "key_codes_mac.h"
 #endif
-
-typedef struct s_mlx
-{
-    void *mlx;
-    void *win;
-    void *img;
-    char *addr;
-    int bits_per_pixel;
-    int	line_len;
-    int	endian;
-}	t_mlx;
 
 // x and y represent the center of the circle
 typedef struct	s_circle
@@ -42,8 +31,20 @@ typedef struct	s_circle
 typedef struct s_player
 {
 	t_circle circle;
-    // angle
+        char    orien;
 } t_player;
+
+typedef struct s_mlx
+{
+    void *mlx;
+    void *win;
+    void *img;
+    char *addr;
+    int bits_per_pixel;
+    int	line_len;
+    int	endian;
+    t_player  player;
+}	t_mlx;
 
 typedef struct s_cub2d
 {

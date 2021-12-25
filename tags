@@ -3,16 +3,16 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.8	//
-ARROW_DOWN	includes/key_codes_linux.h	/^# define ARROW_DOWN	/;"	d
-ARROW_DOWN	includes/key_codes_mac.h	/^# define ARROW_DOWN	/;"	d
-ARROW_LEFT	includes/key_codes_linux.h	/^# define ARROW_LEFT	/;"	d
-ARROW_LEFT	includes/key_codes_mac.h	/^# define ARROW_LEFT	/;"	d
-ARROW_RIGHT	includes/key_codes_linux.h	/^# define ARROW_RIGHT	/;"	d
-ARROW_RIGHT	includes/key_codes_mac.h	/^# define ARROW_RIGHT	/;"	d
-ARROW_UP	includes/key_codes_linux.h	/^# define ARROW_UP	/;"	d
-ARROW_UP	includes/key_codes_mac.h	/^# define ARROW_UP	/;"	d
-BUFFER_SIZE	libft/get_next_line.h	/^#  define BUFFER_SIZE /;"	d
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ARROW_DOWN	includes/key_codes_linux.h	21;"	d
+ARROW_DOWN	includes/key_codes_mac.h	25;"	d
+ARROW_LEFT	includes/key_codes_linux.h	22;"	d
+ARROW_LEFT	includes/key_codes_mac.h	26;"	d
+ARROW_RIGHT	includes/key_codes_linux.h	23;"	d
+ARROW_RIGHT	includes/key_codes_mac.h	27;"	d
+ARROW_UP	includes/key_codes_linux.h	20;"	d
+ARROW_UP	includes/key_codes_mac.h	24;"	d
+BUFFER_SIZE	libft/get_next_line.h	24;"	d
 CC	Makefile	/^CC =	gcc$/;"	m
 CC	libft/Makefile	/^CC 		= gcc$/;"	m
 CC	mlx_linux/Makefile.mk	/^CC	= gcc$/;"	m
@@ -21,80 +21,80 @@ CFLAGS	Makefile	/^CFLAGS =	-Wall -Wextra -Werror -g$/;"	m
 CFLAGS	libft/Makefile	/^CFLAGS 	= -Wall -Wextra -Werror -g$/;"	m
 CFLAGS	mlx_linux/Makefile.mk	/^CFLAGS	= -O3 -I$(INC)$/;"	m
 CFLAGS	mlx_linux/test/Makefile.mk	/^CFLAGS= -I$(INC) -O3 -I.. -g$/;"	m
-CUB3D_H	includes/cub3d.h	/^# define CUB3D_H$/;"	d
-ENV_DISPLAY	mlx_linux/mlx_int.h	/^# define ENV_DISPLAY /;"	d
-ERR_NO_TRUECOLOR	mlx_linux/mlx_int.h	/^# define ERR_NO_TRUECOLOR /;"	d
-FONT_HEIGHT	mlx_mac/mlx_int.h	/^#define	FONT_HEIGHT	/;"	d
-FONT_WIDTH	mlx_mac/mlx_int.h	/^#define FONT_WIDTH	/;"	d
-GET_NEXT_LINE_H	libft/get_next_line.h	/^# define GET_NEXT_LINE_H$/;"	d
+CUB3D_H	includes/cub3d.h	14;"	d
+ENV_DISPLAY	mlx_linux/mlx_int.h	43;"	d
+ERR_NO_TRUECOLOR	mlx_linux/mlx_int.h	45;"	d
+FONT_HEIGHT	mlx_mac/mlx_int.h	15;"	d
+FONT_WIDTH	mlx_mac/mlx_int.h	14;"	d
+GET_NEXT_LINE_H	libft/get_next_line.h	14;"	d
 HEADER	libft/Makefile	/^HEADER	= libft.h$/;"	m
-IM1_SX	mlx_linux/test/main.c	/^#define	IM1_SX	/;"	d	file:
-IM1_SY	mlx_linux/test/main.c	/^#define	IM1_SY	/;"	d	file:
-IM3_SX	mlx_linux/test/main.c	/^#define	IM3_SX	/;"	d	file:
-IM3_SY	mlx_linux/test/main.c	/^#define	IM3_SY	/;"	d	file:
+IM1_SX	mlx_linux/test/main.c	7;"	d	file:
+IM1_SY	mlx_linux/test/main.c	8;"	d	file:
+IM3_SX	mlx_linux/test/main.c	9;"	d	file:
+IM3_SY	mlx_linux/test/main.c	10;"	d	file:
 INC	mlx_linux/Makefile.mk	/^INC	=%%%%$/;"	m
 INC	mlx_linux/test/Makefile.mk	/^INC=%%%%$/;"	m
 INCLIB	mlx_linux/test/Makefile.mk	/^INCLIB=$(INC)\/..\/lib$/;"	m
 INCLS	Makefile	/^INCLS = -Iincludes -Imlx_mac$/;"	m
 INCL_DIR	Makefile	/^INCL_DIR =	includes$/;"	m
-KEY_CODES_LINUX_H	includes/key_codes_linux.h	/^# define KEY_CODES_LINUX_H$/;"	d
-KEY_CODES_MAC_H	includes/key_codes_mac.h	/^# define KEY_CODES_MAC_H$/;"	d
+KEY_CODES_LINUX_H	includes/key_codes_linux.h	14;"	d
+KEY_CODES_MAC_H	includes/key_codes_mac.h	14;"	d
 LFLAGS	mlx_linux/test/Makefile.mk	/^LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm$/;"	m
-LIBFT_H	libft/libft.h	/^# define LIBFT_H$/;"	d
+LIBFT_H	libft/libft.h	14;"	d
 LIBS	Makefile	/^LIBS = -Lmlx_mac -lmlx -Llibft -lft -framework OpenGL -framework AppKit$/;"	m
-LOCALHOST	mlx_linux/mlx_int.h	/^# define LOCALHOST /;"	d
-MAIN_0	includes/key_codes_mac.h	/^# define MAIN_0	/;"	d
-MAIN_1	includes/key_codes_mac.h	/^# define MAIN_1	/;"	d
-MAIN_2	includes/key_codes_mac.h	/^# define MAIN_2	/;"	d
-MAIN_3	includes/key_codes_mac.h	/^# define MAIN_3	/;"	d
-MAIN_4	includes/key_codes_mac.h	/^# define MAIN_4	/;"	d
-MAIN_5	includes/key_codes_mac.h	/^# define MAIN_5	/;"	d
-MAIN_6	includes/key_codes_mac.h	/^# define MAIN_6	/;"	d
-MAIN_7	includes/key_codes_mac.h	/^# define MAIN_7	/;"	d
-MAIN_8	includes/key_codes_mac.h	/^# define MAIN_8	/;"	d
-MAIN_9	includes/key_codes_mac.h	/^# define MAIN_9	/;"	d
-MAIN_A	includes/key_codes_linux.h	/^# define MAIN_A	/;"	d
-MAIN_A	includes/key_codes_mac.h	/^# define MAIN_A	/;"	d
-MAIN_B	includes/key_codes_linux.h	/^# define MAIN_B	/;"	d
-MAIN_B	includes/key_codes_mac.h	/^# define MAIN_B	/;"	d
-MAIN_D	includes/key_codes_linux.h	/^# define MAIN_D	/;"	d
-MAIN_D	includes/key_codes_mac.h	/^# define MAIN_D	/;"	d
-MAIN_ESC	includes/key_codes_linux.h	/^# define MAIN_ESC	/;"	d
-MAIN_ESC	includes/key_codes_mac.h	/^# define MAIN_ESC	/;"	d
-MAIN_I	includes/key_codes_linux.h	/^# define MAIN_I	/;"	d
-MAIN_I	includes/key_codes_mac.h	/^# define MAIN_I	/;"	d
-MAIN_LESS	includes/key_codes_linux.h	/^# define MAIN_LESS	/;"	d
-MAIN_LESS	includes/key_codes_mac.h	/^# define MAIN_LESS	/;"	d
-MAIN_MINUS	includes/key_codes_mac.h	/^# define MAIN_MINUS	/;"	d
-MAIN_MORE	includes/key_codes_linux.h	/^# define MAIN_MORE	/;"	d
-MAIN_MORE	includes/key_codes_mac.h	/^# define MAIN_MORE	/;"	d
-MAIN_P	includes/key_codes_linux.h	/^# define MAIN_P	/;"	d
-MAIN_P	includes/key_codes_mac.h	/^# define MAIN_P	/;"	d
-MAIN_PLUS	includes/key_codes_mac.h	/^# define MAIN_PLUS	/;"	d
-MAIN_S	includes/key_codes_linux.h	/^# define MAIN_S	/;"	d
-MAIN_S	includes/key_codes_mac.h	/^# define MAIN_S	/;"	d
-MAIN_W	includes/key_codes_linux.h	/^# define MAIN_W	/;"	d
-MAIN_W	includes/key_codes_mac.h	/^# define MAIN_W	/;"	d
-MAX_EVENT	mlx_mac/mlx_int.h	/^#define	MAX_EVENT	/;"	d
-MAX_PIXEL_NB	mlx_mac/mlx_int.h	/^#define MAX_PIXEL_NB	/;"	d
-MLX_H	mlx_linux/mlx.h	/^#define	MLX_H$/;"	d
-MLX_H	mlx_mac/mlx.h	/^#define	MLX_H$/;"	d
-MLX_INT_H	mlx_linux/mlx_int.h	/^# define MLX_INT_H$/;"	d
-MLX_MAX_EVENT	mlx_linux/mlx_int.h	/^# define MLX_MAX_EVENT /;"	d
-MLX_TYPE_SHM	mlx_linux/mlx_int.h	/^# define MLX_TYPE_SHM /;"	d
-MLX_TYPE_SHM_PIXMAP	mlx_linux/mlx_int.h	/^# define MLX_TYPE_SHM_PIXMAP /;"	d
-MLX_TYPE_XIMAGE	mlx_linux/mlx_int.h	/^# define MLX_TYPE_XIMAGE /;"	d
-MOUSE_LEFT_BUTTON	includes/key_codes_linux.h	/^# define MOUSE_LEFT_BUTTON	/;"	d
-MOUSE_LEFT_BUTTON	includes/key_codes_mac.h	/^# define MOUSE_LEFT_BUTTON	/;"	d
-MOUSE_RIGHT_BUTTON	includes/key_codes_linux.h	/^# define MOUSE_RIGHT_BUTTON	/;"	d
-MOUSE_RIGHT_BUTTON	includes/key_codes_mac.h	/^# define MOUSE_RIGHT_BUTTON	/;"	d
-MOUSE_SCROLL_DOWN	includes/key_codes_linux.h	/^# define MOUSE_SCROLL_DOWN	/;"	d
-MOUSE_SCROLL_DOWN	includes/key_codes_mac.h	/^# define MOUSE_SCROLL_DOWN	/;"	d
-MOUSE_SCROLL_LEFT	includes/key_codes_mac.h	/^# define MOUSE_SCROLL_LEFT	/;"	d
-MOUSE_SCROLL_RIGHT	includes/key_codes_mac.h	/^# define MOUSE_SCROLL_RIGHT	/;"	d
-MOUSE_SCROLL_UP	includes/key_codes_linux.h	/^# define MOUSE_SCROLL_UP	/;"	d
-MOUSE_SCROLL_UP	includes/key_codes_mac.h	/^# define MOUSE_SCROLL_UP	/;"	d
-MOUSE_THIRD_BUTTON	includes/key_codes_mac.h	/^# define MOUSE_THIRD_BUTTON	/;"	d
+LOCALHOST	mlx_linux/mlx_int.h	44;"	d
+MAIN_0	includes/key_codes_mac.h	38;"	d
+MAIN_1	includes/key_codes_mac.h	39;"	d
+MAIN_2	includes/key_codes_mac.h	40;"	d
+MAIN_3	includes/key_codes_mac.h	41;"	d
+MAIN_4	includes/key_codes_mac.h	42;"	d
+MAIN_5	includes/key_codes_mac.h	43;"	d
+MAIN_6	includes/key_codes_mac.h	44;"	d
+MAIN_7	includes/key_codes_mac.h	45;"	d
+MAIN_8	includes/key_codes_mac.h	46;"	d
+MAIN_9	includes/key_codes_mac.h	47;"	d
+MAIN_A	includes/key_codes_linux.h	28;"	d
+MAIN_A	includes/key_codes_mac.h	33;"	d
+MAIN_B	includes/key_codes_linux.h	31;"	d
+MAIN_B	includes/key_codes_mac.h	36;"	d
+MAIN_D	includes/key_codes_linux.h	30;"	d
+MAIN_D	includes/key_codes_mac.h	35;"	d
+MAIN_ESC	includes/key_codes_linux.h	24;"	d
+MAIN_ESC	includes/key_codes_mac.h	29;"	d
+MAIN_I	includes/key_codes_linux.h	25;"	d
+MAIN_I	includes/key_codes_mac.h	30;"	d
+MAIN_LESS	includes/key_codes_linux.h	32;"	d
+MAIN_LESS	includes/key_codes_mac.h	50;"	d
+MAIN_MINUS	includes/key_codes_mac.h	49;"	d
+MAIN_MORE	includes/key_codes_linux.h	33;"	d
+MAIN_MORE	includes/key_codes_mac.h	51;"	d
+MAIN_P	includes/key_codes_linux.h	26;"	d
+MAIN_P	includes/key_codes_mac.h	31;"	d
+MAIN_PLUS	includes/key_codes_mac.h	48;"	d
+MAIN_S	includes/key_codes_linux.h	29;"	d
+MAIN_S	includes/key_codes_mac.h	34;"	d
+MAIN_W	includes/key_codes_linux.h	27;"	d
+MAIN_W	includes/key_codes_mac.h	32;"	d
+MAX_EVENT	mlx_mac/mlx_int.h	10;"	d
+MAX_PIXEL_NB	mlx_mac/mlx_int.h	11;"	d
+MLX_H	mlx_linux/mlx.h	32;"	d
+MLX_H	mlx_mac/mlx.h	47;"	d
+MLX_INT_H	mlx_linux/mlx_int.h	19;"	d
+MLX_MAX_EVENT	mlx_linux/mlx_int.h	40;"	d
+MLX_TYPE_SHM	mlx_linux/mlx_int.h	37;"	d
+MLX_TYPE_SHM_PIXMAP	mlx_linux/mlx_int.h	36;"	d
+MLX_TYPE_XIMAGE	mlx_linux/mlx_int.h	38;"	d
+MOUSE_LEFT_BUTTON	includes/key_codes_linux.h	16;"	d
+MOUSE_LEFT_BUTTON	includes/key_codes_mac.h	16;"	d
+MOUSE_RIGHT_BUTTON	includes/key_codes_linux.h	17;"	d
+MOUSE_RIGHT_BUTTON	includes/key_codes_mac.h	17;"	d
+MOUSE_SCROLL_DOWN	includes/key_codes_linux.h	19;"	d
+MOUSE_SCROLL_DOWN	includes/key_codes_mac.h	20;"	d
+MOUSE_SCROLL_LEFT	includes/key_codes_mac.h	21;"	d
+MOUSE_SCROLL_RIGHT	includes/key_codes_mac.h	22;"	d
+MOUSE_SCROLL_UP	includes/key_codes_linux.h	18;"	d
+MOUSE_SCROLL_UP	includes/key_codes_mac.h	19;"	d
+MOUSE_THIRD_BUTTON	includes/key_codes_mac.h	18;"	d
 NAME	Makefile	/^NAME =	cub3d$/;"	m
 NAME	libft/Makefile	/^NAME 	= libft.a$/;"	m
 NAME	mlx_linux/Makefile.mk	/^NAME		= libmlx.a$/;"	m
@@ -112,25 +112,25 @@ OBJS_FILES	libft/Makefile	/^OBJS_FILES	= $(SRCS_FILES:.c=.o)$/;"	m
 OBJS_PATH	Makefile	/^OBJS_PATH =	$(addprefix $(OBJ_DIR)\/, $(OBJS))$/;"	m
 OBJ_DIR	Makefile	/^OBJ_DIR =	objs$/;"	m
 OBJ_DIR	mlx_linux/Makefile.mk	/^OBJ_DIR = obj$/;"	m
-RETURN	mlx_linux/mlx_xpm.c	/^#define	RETURN	/;"	d	file:
-RETURN	mlx_mac/mlx_xpm.c	/^#define	RETURN	/;"	d	file:
+RETURN	mlx_linux/mlx_xpm.c	17;"	d	file:
+RETURN	mlx_mac/mlx_xpm.c	30;"	d	file:
 SRC	mlx_linux/Makefile.mk	/^SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \\$/;"	m
 SRC	mlx_linux/test/Makefile.mk	/^SRC = main.c$/;"	m
 SRC	mlx_mac/Makefile	/^SRC= mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c$/;"	m
-SRCS	Makefile	/^SRCS =	main.c$/;"	m
+SRCS	Makefile	/^SRCS =	main.c handle_2d.c$/;"	m
 SRCS	libft/Makefile	/^SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_FILES))$/;"	m
 SRCS_DIR	Makefile	/^SRCS_DIR =	srcs$/;"	m
 SRCS_FILES	libft/Makefile	/^SRCS_FILES 	= 	ft_isalnum.c ft_isdigit.c ft_memccpy.c ft_memcpy.c ft_putchar_fd.c\\$/;"	m
 SRCS_PATH	Makefile	/^SRCS_PATH = $(addprefix $(SRCS_DIR)\/, $(SRCS))$/;"	m
 UNAME	mlx_linux/test/Makefile.mk	/^UNAME := $(shell uname)$/;"	m
-UNIQ_BPP	mlx_mac/mlx_int.h	/^#define UNIQ_BPP	/;"	d
+UNIQ_BPP	mlx_mac/mlx_int.h	12;"	d
 VPATH	libft/Makefile	/^VPATH		= $(SRCS_DIR)$/;"	m
-WARN_SHM_ATTACH	mlx_linux/mlx_int.h	/^# define WARN_SHM_ATTACH /;"	d
-WIN1_SX	mlx_linux/test/main.c	/^#define	WIN1_SX	/;"	d	file:
-WIN1_SY	mlx_linux/test/main.c	/^#define	WIN1_SY	/;"	d	file:
-WIN_HEIGTH	srcs/main.c	/^#define WIN_HEIGTH /;"	d	file:
-WIN_WIDTH	srcs/main.c	/^#define WIN_WIDTH /;"	d	file:
-X_ShmAttach	mlx_linux/mlx_new_image.c	/^#define	X_ShmAttach	/;"	d	file:
+WARN_SHM_ATTACH	mlx_linux/mlx_int.h	46;"	d
+WIN1_SX	mlx_linux/test/main.c	5;"	d	file:
+WIN1_SY	mlx_linux/test/main.c	6;"	d	file:
+WIN_HEIGTH	srcs/handle_2d.c	20;"	d	file:
+WIN_WIDTH	srcs/handle_2d.c	19;"	d	file:
+X_ShmAttach	mlx_linux/mlx_new_image.c	20;"	d	file:
 addr	includes/cub3d.h	/^    char *addr;$/;"	m	struct:s_mlx
 appid	mlx_mac/mlx_int.h	/^  void			*appid;$/;"	m	struct:mlx_ptr_s
 at_exit	mlx_linux/test/run_tests.sh	/^at_exit() {$/;"	f
@@ -144,7 +144,7 @@ buffer	mlx_mac/mlx_int.h	/^  char			*buffer;$/;"	m	struct:mlx_img_list_s
 bytes_per_pixel	mlx_mac/font.c	/^  unsigned int 	 bytes_per_pixel; \/* 2:RGB16, 3:RGB, 4:RGBA *\/ $/;"	m	struct:__anon1	file:
 circle	includes/cub3d.h	/^	t_circle circle;$/;"	m	struct:s_player
 clean	mlx_linux/configure	/^clean(){$/;"	f
-click_close	srcs/main.c	/^int click_close(void* param)$/;"	f
+click_close	srcs/handle_2d.c	/^int click_close(void* param)$/;"	f
 cmap	mlx_linux/mlx_int.h	/^	Colormap	cmap;$/;"	m	struct:s_xvar
 col	mlx_linux/mlx_int.h	/^	int		col;$/;"	m	struct:s_xpm_col
 col	mlx_mac/mlx_xpm.c	/^  int           col;$/;"	m	struct:s_xpm_col	file:
@@ -166,10 +166,10 @@ depth	mlx_linux/mlx_int.h	/^	int			depth;$/;"	m	struct:s_xvar
 display	mlx_linux/mlx_int.h	/^	Display		*display;$/;"	m	struct:s_xvar
 display_log	mlx_mac/mlx_shaders.c	/^void display_log(GLuint object, void (*param_func)(), void (*getlog_func)())$/;"	f
 do_flush	mlx_linux/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar
-draw_circle	srcs/main.c	/^void draw_circle(t_mlx *mlx_inst, t_circle circle)$/;"	f
-draw_line	srcs/main.c	/^void draw_line(t_mlx *mlx_inst, t_line line)$/;"	f
-draw_map	srcs/main.c	/^void	draw_map(t_mlx *mlx_inst)$/;"	f
-draw_rect	srcs/main.c	/^void draw_rect(t_mlx *mlx_inst, t_rect rect)$/;"	f
+draw_circle	srcs/handle_2d.c	/^void draw_circle(t_mlx *mlx_inst, t_circle circle)$/;"	f
+draw_line	srcs/handle_2d.c	/^void draw_line(t_mlx *mlx_inst, t_line line)$/;"	f
+draw_map	srcs/handle_2d.c	/^void	draw_map(t_mlx *mlx_inst)$/;"	f
+draw_rect	srcs/handle_2d.c	/^void draw_rect(t_mlx *mlx_inst, t_rect rect)$/;"	f
 end_loop	mlx_linux/mlx_int.h	/^	int 		end_loop;$/;"	m	struct:s_xvar
 endian	includes/cub3d.h	/^    int	endian;$/;"	m	struct:s_mlx
 endian1	mlx_linux/test/main.c	/^int	endian1;$/;"	v
@@ -285,12 +285,13 @@ gnl_line	libft/get_next_line.c	/^static int	gnl_line(char **save, char **line)$/
 gnl_loop	libft/get_next_line.c	/^int	gnl_loop(int ret, int fd, char *buf, char **save)$/;"	f
 gnl_nl_chr	libft/get_next_line.c	/^int	gnl_nl_chr(const char *str)$/;"	f
 gnl_return	libft/get_next_line.c	/^int	gnl_return(char **save, char **line, int ret, int fd)$/;"	f
+handle_2d	srcs/handle_2d.c	/^void handle_2d(void)$/;"	f
 height	mlx_linux/mlx_int.h	/^	int				height;$/;"	m	struct:s_img
 height	mlx_mac/font.c	/^  unsigned int 	 height;$/;"	m	struct:__anon1	file:
 height	mlx_mac/mlx_int.h	/^  int			height;$/;"	m	struct:mlx_img_list_s
 heigth	includes/cub3d.h	/^    int	heigth;$/;"	m	struct:s_rect
 hook	mlx_linux/mlx_int.h	/^	int		(*hook)();$/;"	m	struct:s_event_list
-hook_handler	srcs/main.c	/^int hook_handler(t_cub2d *cub2d)$/;"	f
+hook_handler	srcs/handle_2d.c	/^int hook_handler(t_cub2d *cub2d)$/;"	f
 hooks	mlx_linux/mlx_int.h	/^	t_event_list		hooks[MLX_MAX_EVENT];$/;"	m	struct:s_win_list
 im1	mlx_linux/test/main.c	/^void    *im1;$/;"	v
 im2	mlx_linux/test/main.c	/^void	*im2;$/;"	v
@@ -306,7 +307,7 @@ img_list	mlx_mac/mlx_int.h	/^  mlx_img_ctx_t		*img_list;$/;"	m	struct:mlx_win_li
 img_list	mlx_mac/mlx_int.h	/^  mlx_img_list_t	*img_list;$/;"	m	struct:mlx_ptr_s
 key_hook	mlx_linux/mlx_int.h	/^	int					(*key_hook)();$/;"	m	struct:s_win_list
 key_param	mlx_linux/mlx_int.h	/^	void				*key_param;$/;"	m	struct:s_win_list
-key_press	srcs/main.c	/^int key_press(int keycode, t_cub2d *cub2d)$/;"	f
+key_press	srcs/handle_2d.c	/^int key_press(int keycode, t_cub2d *cub2d)$/;"	f
 key_win1	mlx_linux/test/main.c	/^int	key_win1(int key,void *p)$/;"	f
 key_win2	mlx_linux/test/main.c	/^int	key_win2(int key,void *p)$/;"	f
 key_win3	mlx_linux/test/main.c	/^int	key_win3(int key,void *p)$/;"	f
@@ -344,11 +345,11 @@ main	mlx_linux/test/run_tests.sh	/^main(){$/;"	f
 main	srcs/main.c	/^int main(void)$/;"	f
 main_loop_active	mlx_mac/mlx_int.h	/^  int			main_loop_active;$/;"	m	struct:mlx_ptr_s
 map	includes/cub3d.h	/^    char **map;$/;"	m	struct:s_map_placeholder
-map	srcs/main.c	/^char map[24][24] = {$/;"	v
+map	srcs/handle_2d.c	/^char map[24][24] = {$/;"	v
 map_height	includes/cub3d.h	/^    int map_height;$/;"	m	struct:s_map_placeholder
-map_height	srcs/main.c	/^int map_height = 24;$/;"	v
+map_height	srcs/handle_2d.c	/^int map_height = 24;$/;"	v
 map_width	includes/cub3d.h	/^    int map_width;$/;"	m	struct:s_map_placeholder
-map_width	srcs/main.c	/^int map_width = 24;$/;"	v
+map_width	srcs/handle_2d.c	/^int map_width = 24;$/;"	v
 mask	mlx_linux/mlx_int.h	/^	int		mask;$/;"	m	struct:s_event_list
 mid_x	includes/cub3d.h	/^    int	mid_x;$/;"	m	struct:s_circle
 mid_y	includes/cub3d.h	/^    int	mid_y;$/;"	m	struct:s_circle
@@ -378,7 +379,7 @@ mlx_img_list_s	mlx_mac/mlx_int.h	/^typedef struct	mlx_img_list_s$/;"	s
 mlx_img_list_t	mlx_mac/mlx_int.h	/^} mlx_img_list_t;$/;"	t	typeref:struct:mlx_img_list_s
 mlx_init	mlx_linux/mlx_init.c	/^void	*mlx_init()$/;"	f
 mlx_inst	includes/cub3d.h	/^    t_mlx   mlx_inst;$/;"	m	struct:s_cub2d
-mlx_inst_init	srcs/main.c	/^t_mlx mlx_inst_init(void)$/;"	f
+mlx_inst_init	srcs/handle_2d.c	/^t_mlx mlx_inst_init(void)$/;"	f
 mlx_int_anti_resize_win	mlx_linux/mlx_int_anti_resize_win.c	/^int	mlx_int_anti_resize_win(t_xvar *xvar,Window win,int w,int h)$/;"	f
 mlx_int_deal_shm	mlx_linux/mlx_init.c	/^int		mlx_int_deal_shm(t_xvar *xvar)$/;"	f
 mlx_int_do_nothing	mlx_linux/mlx_int_do_nothing.c	/^int	mlx_int_do_nothing(void *param)$/;"	f
@@ -455,7 +456,7 @@ mouse_param	mlx_linux/mlx_int.h	/^	void				*mouse_param;$/;"	m	struct:s_win_list
 mouse_win1	mlx_linux/test/main.c	/^int	mouse_win1(int button,int x,int y, void *p)$/;"	f
 mouse_win2	mlx_linux/test/main.c	/^int	mouse_win2(int button,int x,int y, void *p)$/;"	f
 mouse_win3	mlx_linux/test/main.c	/^int	mouse_win3(int x,int y, void *p)$/;"	f
-my_pixel_put	srcs/main.c	/^void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color)$/;"	f
+my_pixel_put	srcs/handle_2d.c	/^void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color)$/;"	f
 name	mlx_linux/mlx_int.h	/^	char	*name;$/;"	m	struct:s_col_name
 name	mlx_linux/mlx_int.h	/^	int		name;$/;"	m	struct:s_xpm_col
 name	mlx_mac/mlx_xpm.c	/^  char  *name;$/;"	m	struct:s_col_name	file:
@@ -477,7 +478,7 @@ pixel_vshader	mlx_mac/mlx_int.h	/^  GLuint	pixel_vshader;$/;"	m	struct:glsl_info
 pixmgt	mlx_mac/mlx_int.h	/^  int			pixmgt;$/;"	m	struct:mlx_win_list_s
 player	includes/cub3d.h	/^    t_player    player;$/;"	m	struct:s_cub2d
 player	includes/cub3d.h	/^    t_player player;$/;"	m	struct:s_game
-player_mvmt	srcs/main.c	/^void    player_mvmt(int keycode, t_cub2d *cub2d)$/;"	f
+player_mvmt	srcs/handle_2d.c	/^void    player_mvmt(int keycode, t_cub2d *cub2d)$/;"	f
 private_cmap	mlx_linux/mlx_int.h	/^	int			private_cmap;$/;"	m	struct:s_xvar
 pshm_format	mlx_linux/mlx_int.h	/^	int			pshm_format;$/;"	m	struct:s_xvar
 radius	includes/cub3d.h	/^    int radius;$/;"	m	struct:s_circle
