@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/14 15:47:03 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/18 12:31:39 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ typedef struct s_mlx
     int	endian;
 }	t_mlx;
 
+// x and y represent the center of the circle
+typedef struct	s_circle
+{
+    int	mid_x;
+    int	mid_y;
+    int radius;
+    int color;
+}	t_circle;
+
+typedef struct s_player
+{
+	t_circle circle;
+    // angle
+} t_player;
 
 typedef struct s_cub2d
 {
@@ -70,19 +84,5 @@ typedef struct s_rect
     int	color;
 }	t_rect;
 
-// x and y represent the center of the circle
-typedef struct	s_circle
-{
-    int	mid_x;
-    int	mid_y;
-    int radius;
-    int color;
-}	t_circle;
-
-typedef struct s_player
-{
-	t_circle circle;
-    // angle
-} t_player;
 
 #endif

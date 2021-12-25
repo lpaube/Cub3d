@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <marvin@42quebec.com>                +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/14 15:48:36 by laube            ###   ########.fr       */
-/*   Updated: 2021/12/07 18:59:55 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/18 12:31:57 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <math.h>
 #include <stdio.h>
@@ -133,7 +133,7 @@ void	draw_map(t_mlx *mlx_inst)
 {
     t_rect	rect;
     t_line  line;
-    t_circle    circle;
+ //   t_circle    circle;
     int i;
     int j;
 
