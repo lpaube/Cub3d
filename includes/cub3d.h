@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/18 12:31:39 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/24 19:18:06 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ typedef struct s_rect
     int	color;
 }	t_rect;
 
+void    handle_2d(void);
 
 #endif
