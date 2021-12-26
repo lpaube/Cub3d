@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/24 19:55:37 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/26 17:03:21 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ typedef struct s_player
 {
 	t_circle circle;
         char    orien;
+        //Direction vector
+        int angle;
+        int dir_x;
+        int dir_y;
+        //Camera plane vectors
+        int r_plane_x;
+        int r_plane_y;
+        int l_plane_x;
+        int l_plane_y;
 } t_player;
 
 typedef struct s_mlx

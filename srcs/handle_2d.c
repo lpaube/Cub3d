@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2021/12/24 19:57:17 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/26 17:39:37 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,44 @@ int player_x = 8;
 int player_y = 11;
 char    player_orien = 'N';
 
+double  rad(int deg)
+{
+    return deg * (M_PI / 180);
+}
+
+void    update_vectors(t_player *player)
+{
+    double x;
+    double y;
+
+    x = 50 * cos(rad(player->angle));
+    y = -(50 * sin(rad(player->angle)));
+    player->dir_x = x;
+    player->dir_y = y;
+    printf("angle: %d | dir_x: %d | dir_y %d | x: %f | y: %f\n", player->angle, player->dir_x, player->dir_y, x, y);
+}
+
+void    init_vectors(t_player *player)
+{
+    if (player->orien == 'N')
+    {
+        player->angle = 90;
+    }
+    if (player->orien == 'S')
+    {
+        player->angle = 270;
+    }
+    if (player->orien == 'E')
+    {
+        player->angle = 0;
+    }
+    if (player->orien == 'O')
+    {
+        player->angle = 180;
+    }
+    update_vectors(player);
+}
+
 t_player init_player(t_mlx *mlx_inst) //Will later take map struct as argument
 {
     t_player    player;
@@ -65,6 +103,7 @@ t_player init_player(t_mlx *mlx_inst) //Will later take map struct as argument
     circle.color = 0x00FF00;
     player.circle = circle;
     player.orien = player_orien;
+    init_vectors(&player);
     return (player);
 }
 
@@ -109,22 +148,21 @@ void draw_rect(t_mlx *mlx_inst, t_rect rect)
 // Using DDA algorithm
 void draw_line(t_mlx *mlx_inst, t_line line)
 {
-    int		i;
-    int		steps;
-    float	xinc;
-    float	yinc;
+    int	    i;
+    int	    steps;
+    float   xinc;
+    float   yinc;
 
     steps = abs(line.x2 - line.x1);
     if (abs(line.y2 - line.y1) > abs(line.x2 - line.x1))
         steps = abs(line.y2 - line.y1);
-    xinc = (line.x2 - line.x1) / steps;
-    yinc = (line.y2 - line.y1) / steps;
+    xinc = (line.x2 - line.x1) / (float)steps;
+    yinc = (line.y2 - line.y1) / (float)steps;
     i = -1;
     while (++i < steps)
     {
-        my_pixel_put(mlx_inst, line.x1, line.y1, line.color);
-        line.x1 = round(line.x1 + xinc);
-        line.y1 = round(line.y1 + yinc);
+        my_pixel_put(mlx_inst, round(line.x1 + (i * xinc)), 
+                round(line.y1 + (i * yinc)), line.color);
     }
 }
 
@@ -147,9 +185,22 @@ void draw_circle(t_mlx *mlx_inst, t_circle circle)
     }
 }
 
+void    draw_direction(t_mlx *mlx_inst, t_player player)
+{
+    t_line  line;
+
+    line.x1 = player.circle.mid_x;
+    line.y1 = player.circle.mid_y;
+    line.x2 = player.circle.mid_x + player.dir_x;
+    line.y2 = player.circle.mid_y + player.dir_y;
+    line.color = 0x003300;
+    draw_line(mlx_inst, line);
+}
+
 void    draw_player(t_mlx *mlx_inst, t_player player)
 {
     draw_circle(mlx_inst, player.circle);
+    draw_direction(mlx_inst, player);
 }
 
 
@@ -226,9 +277,6 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
 
 void    player_mvmt(int keycode, t_cub2d *cub2d)
 {
-    (void)keycode;
-    (void)cub2d;
-
     if (keycode == MAIN_W)
     {
 	cub2d->player.circle.mid_y--;
@@ -239,11 +287,19 @@ void    player_mvmt(int keycode, t_cub2d *cub2d)
     }
     if (keycode == MAIN_A)
     {
-	cub2d->player.circle.mid_x--;
+	cub2d->player.angle++;
     }
     if (keycode == MAIN_D)
     {
-	cub2d->player.circle.mid_x++;
+	cub2d->player.angle--;
+    }
+    if (cub2d->player.angle >= 360)
+    {
+        cub2d->player.angle = 0;
+    }
+    if (cub2d->player.angle < 0)
+    {
+        cub2d->player.angle = 359;
     }
 }
 
@@ -252,7 +308,10 @@ int key_press(int keycode, t_cub2d *cub2d)
     if (keycode == MAIN_ESC)
         exit(0);
     else if (keycode == MAIN_W || keycode == MAIN_A || keycode == MAIN_S || keycode == MAIN_D)
+    {
         player_mvmt(keycode, cub2d);
+        update_vectors(&cub2d->player);
+    }
     draw_cub2d(cub2d, &cub2d->mlx_inst);
     mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
     return (0);
