@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2021/12/26 22:49:15 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/26 23:26:23 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void    draw_direction(t_mlx *mlx_inst, t_player player)
     line.y1 = player.circle.mid_y;
     line.x2 = player.circle.mid_x + player.dir_x * (TILE_SIZE * 50);
     line.y2 = player.circle.mid_y + player.dir_y * (TILE_SIZE * 50);
-    line.color = 0x003300;
+    line.color = 0xFFFFFF;
     draw_line(mlx_inst, line);
 }
 
@@ -232,14 +232,14 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
                 rect.color = 0x0000FF;
                 draw_rect(mlx_inst, rect);
             }
-            else if (map[j][i] == 'N' || map[j][i] == 'S' || 
-                    map[j][i] == 'E' || map[j][i] == 'O')
-            {
-	    	continue ;
-            }
+           // else if (map[j][i] == 'N' || map[j][i] == 'S' || 
+           //         map[j][i] == 'E' || map[j][i] == 'O')
+           // {
+	   // 	continue ;
+           // }
             else
             {
-                rect.color = 0xFFFFFF;
+                rect.color = 0x000000;
                 draw_rect(mlx_inst, rect);
             }
         }
@@ -253,7 +253,7 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
         line.x2 = TILE_SIZE * map_width;
         line.y1 = TILE_SIZE * i;
         line.y2 = TILE_SIZE * i;
-        line.color = 0xFF0000;
+        line.color = 0xAAAAAA;
         draw_line(mlx_inst, line);
     }
 
@@ -265,11 +265,17 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
         line.x2 = TILE_SIZE * i;
         line.y1 = 0;
         line.y2 = TILE_SIZE * map_height;
-        line.color = 0xFF0000;
+        line.color = 0x888888;
         draw_line(mlx_inst, line);
     }
 
     draw_player(mlx_inst, cub2d->player);
+}
+
+void    draw_game_2d(t_cub2d *cub2d)
+{
+    draw_cub2d(cub2d, &cub2d->mlx_inst);
+    mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
 }
 
 void    player_mvmt(int keycode, t_cub2d *cub2d)
@@ -302,6 +308,11 @@ void    player_mvmt(int keycode, t_cub2d *cub2d)
     }
 }
 
+void ray_cast(t_player *player)
+{
+
+}
+
 int key_press(int keycode, t_cub2d *cub2d)
 {
     if (keycode == MAIN_ESC)
@@ -310,9 +321,9 @@ int key_press(int keycode, t_cub2d *cub2d)
     {
         player_mvmt(keycode, cub2d);
         update_vectors(&cub2d->player);
+        ray_cast(&cub2d->player);
     }
-    draw_cub2d(cub2d, &cub2d->mlx_inst);
-    mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
+    draw_game_2d(cub2d);
     return (0);
 }
 
@@ -334,8 +345,7 @@ void handle_2d(void)
     t_cub2d cub2d;
 
     cub2d.mlx_inst = mlx_inst_init(&cub2d);
-    draw_cub2d(&cub2d, &cub2d.mlx_inst);
-    mlx_put_image_to_window(cub2d.mlx_inst.mlx, cub2d.mlx_inst.win, cub2d.mlx_inst.img, 0, 0);
+    draw_game_2d(&cub2d);
     hook_handler(&cub2d);
     mlx_loop(cub2d.mlx_inst.mlx);
 }
