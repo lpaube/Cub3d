@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2021/12/26 21:03:38 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/26 22:49:15 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "mlx.h"
 #include "cub3d.h"
 
+#define TILE_SIZE 20
 #define WIN_WIDTH 1000
 #define WIN_HEIGTH 600
 
@@ -91,9 +92,9 @@ t_player init_player(t_mlx *mlx_inst) //Will later take map struct as argument
     t_circle      circle;
 
     (void)mlx_inst;
-    circle.mid_x = 20 * player_x + 10;
-    circle.mid_y = 20 * player_y + 10;
-    circle.radius = 10;
+    circle.mid_x = (TILE_SIZE * player_x) + (TILE_SIZE / 2);
+    circle.mid_y = (TILE_SIZE * player_y) + (TILE_SIZE / 2);
+    circle.radius = TILE_SIZE / 4;
     circle.color = 0x00FF00;
     player.circle = circle;
     player.orien = player_orien;
@@ -118,6 +119,9 @@ void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color)
 {
     char *pxl;
 
+    //printf("x: %d | y: %d\n", x, y);
+    if (y >= WIN_HEIGTH || y < 0 || x >= WIN_WIDTH || x < 0)
+        return ;
     pxl = mlx_inst->addr + (y * mlx_inst->line_len) + (x * (mlx_inst->bits_per_pixel / 8));
     *(unsigned int*)pxl = color;
 }
@@ -185,8 +189,8 @@ void    draw_direction(t_mlx *mlx_inst, t_player player)
 
     line.x1 = player.circle.mid_x;
     line.y1 = player.circle.mid_y;
-    line.x2 = player.circle.mid_x + player.dir_x * 50;
-    line.y2 = player.circle.mid_y + player.dir_y * 50;
+    line.x2 = player.circle.mid_x + player.dir_x * (TILE_SIZE * 50);
+    line.y2 = player.circle.mid_y + player.dir_y * (TILE_SIZE * 50);
     line.color = 0x003300;
     draw_line(mlx_inst, line);
 }
@@ -196,7 +200,6 @@ void    draw_player(t_mlx *mlx_inst, t_player player)
     draw_direction(mlx_inst, player);
     draw_circle(mlx_inst, player.circle);
 }
-
 
 void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
 {
@@ -208,8 +211,8 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
     // Map background
     rect.x = 0;
     rect.y = 0;
-    rect.width = 20 * map_width;
-    rect.heigth = 20 * map_height;
+    rect.width = TILE_SIZE * map_width;
+    rect.heigth = TILE_SIZE * map_height;
     rect.color = 0xFFFFFF;
     draw_rect(mlx_inst, rect);
 
@@ -220,10 +223,10 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
         i = -1;
         while (++i < map_width)
         {
-            rect.x = 20 * i;
-            rect.y = 20 * j;
-            rect.width = 20;
-            rect.heigth = 20;
+            rect.x = TILE_SIZE * i;
+            rect.y = TILE_SIZE * j;
+            rect.width = TILE_SIZE;
+            rect.heigth = TILE_SIZE;
             if (map[j][i] == '1')
             {
                 rect.color = 0x0000FF;
@@ -247,9 +250,9 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
     while (++i <= map_height)
     {
         line.x1 = 0;
-        line.x2 = 20 * map_width;
-        line.y1 = 20 * i;
-        line.y2 = 20 * i;
+        line.x2 = TILE_SIZE * map_width;
+        line.y1 = TILE_SIZE * i;
+        line.y2 = TILE_SIZE * i;
         line.color = 0xFF0000;
         draw_line(mlx_inst, line);
     }
@@ -258,10 +261,10 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
     i = -1;
     while (++i <= map_width)
     {
-        line.x1 = 20 * i;
-        line.x2 = 20 * i;
+        line.x1 = TILE_SIZE * i;
+        line.x2 = TILE_SIZE * i;
         line.y1 = 0;
-        line.y2 = 20 * map_height;
+        line.y2 = TILE_SIZE * map_height;
         line.color = 0xFF0000;
         draw_line(mlx_inst, line);
     }
