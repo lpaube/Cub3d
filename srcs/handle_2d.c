@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2021/12/26 17:39:37 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/26 21:03:38 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,8 @@ double  rad(int deg)
 
 void    update_vectors(t_player *player)
 {
-    double x;
-    double y;
-
-    x = 50 * cos(rad(player->angle));
-    y = -(50 * sin(rad(player->angle)));
-    player->dir_x = x;
-    player->dir_y = y;
-    printf("angle: %d | dir_x: %d | dir_y %d | x: %f | y: %f\n", player->angle, player->dir_x, player->dir_y, x, y);
+    player->dir_x = 1 * cos(rad(player->angle));
+    player->dir_y = -(1 * sin(rad(player->angle)));
 }
 
 void    init_vectors(t_player *player)
@@ -191,16 +185,16 @@ void    draw_direction(t_mlx *mlx_inst, t_player player)
 
     line.x1 = player.circle.mid_x;
     line.y1 = player.circle.mid_y;
-    line.x2 = player.circle.mid_x + player.dir_x;
-    line.y2 = player.circle.mid_y + player.dir_y;
+    line.x2 = player.circle.mid_x + player.dir_x * 50;
+    line.y2 = player.circle.mid_y + player.dir_y * 50;
     line.color = 0x003300;
     draw_line(mlx_inst, line);
 }
 
 void    draw_player(t_mlx *mlx_inst, t_player player)
 {
-    draw_circle(mlx_inst, player.circle);
     draw_direction(mlx_inst, player);
+    draw_circle(mlx_inst, player.circle);
 }
 
 
@@ -279,19 +273,21 @@ void    player_mvmt(int keycode, t_cub2d *cub2d)
 {
     if (keycode == MAIN_W)
     {
-	cub2d->player.circle.mid_y--;
+	cub2d->player.circle.mid_x += 2 * cub2d->player.dir_x;
+	cub2d->player.circle.mid_y += 2 * cub2d->player.dir_y;
     }
     if (keycode == MAIN_S)
     {
-	cub2d->player.circle.mid_y++;
+	cub2d->player.circle.mid_x -= 2 * cub2d->player.dir_x;
+	cub2d->player.circle.mid_y -= 2 * cub2d->player.dir_y;
     }
     if (keycode == MAIN_A)
     {
-	cub2d->player.angle++;
+	cub2d->player.angle += 2;
     }
     if (keycode == MAIN_D)
     {
-	cub2d->player.angle--;
+	cub2d->player.angle -= 2;
     }
     if (cub2d->player.angle >= 360)
     {

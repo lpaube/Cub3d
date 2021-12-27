@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/26 17:03:21 by laube            ###   ########.fr       */
+/*   Updated: 2021/12/26 21:03:19 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 // x and y represent the center of the circle
 typedef struct	s_circle
 {
-    int	mid_x;
-    int	mid_y;
+    double	mid_x;
+    double	mid_y;
     int radius;
     int color;
 }	t_circle;
@@ -34,8 +34,8 @@ typedef struct s_player
         char    orien;
         //Direction vector
         int angle;
-        int dir_x;
-        int dir_y;
+        double dir_x;
+        double dir_y;
         //Camera plane vectors
         int r_plane_x;
         int r_plane_y;
