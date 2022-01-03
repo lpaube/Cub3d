@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/02 23:07:07 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/03 00:22:27 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,13 +249,13 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
         //scanf("%c", &test);
         if (side_x < side_y)
         {
-            side_x += delta_x;
+            side_x += delta_x * TILE_SIZE;
             map_x += step_x;
             side = 0;
         }
         else
         {
-            side_y += delta_y;
+            side_y += delta_y * TILE_SIZE;
             map_y += step_y;
             side = 1;
         }
