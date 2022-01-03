@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2021/12/26 23:26:23 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/02 23:07:07 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,17 @@ int player_x = 8;
 int player_y = 11;
 char    player_orien = 'N';
 
-double  rad(int deg)
+double  deg_to_rad(int deg)
 {
     return deg * (M_PI / 180);
 }
 
 void    update_vectors(t_player *player)
 {
-    player->dir_x = 1 * cos(rad(player->angle));
-    player->dir_y = -(1 * sin(rad(player->angle)));
+    player->dir_x = 1 * cos(deg_to_rad(player->angle));
+    player->dir_y = -(1 * sin(deg_to_rad(player->angle)));
+    player->tile_x = player->circle.mid_x / TILE_SIZE;
+    player->tile_y = player->circle.mid_y / TILE_SIZE;
 }
 
 void    init_vectors(t_player *player)
@@ -201,6 +203,75 @@ void    draw_player(t_mlx *mlx_inst, t_player player)
     draw_circle(mlx_inst, player.circle);
 }
 
+void ray_cast(t_cub2d *cub2d, t_player *player)
+{
+    double  delta_x;
+    double  delta_y;
+    double  side_x;
+    double  side_y;
+    int hit;
+    int side;
+    int step_x;
+    int step_y;
+    int map_x;
+    int map_y;
+    int counter = 0;
+
+    map_x = player->tile_x;
+    map_y = player->tile_y;
+    printf("player->dir_x: %f\n", player->dir_x);
+    delta_x = fabs(1 / player->dir_x);
+    delta_y = fabs(1 / player->dir_y);
+    hit = 0;
+    if (player->dir_x < 0)
+    {
+        step_x = -1;
+        side_x = (player->circle.mid_x - (map_x * TILE_SIZE)) * delta_x;
+    }
+    else
+    {
+        step_x = 1;
+        side_x = ((map_x + 1) * TILE_SIZE - player->circle.mid_x) * delta_x;
+    }
+    if (player->dir_y < 0)
+    {
+        step_y = -1;
+        side_y = (player->circle.mid_y - (map_y * TILE_SIZE)) * delta_y;
+    }
+    else
+    {
+        step_y = 1;
+        side_y = ((player->tile_y + 1) * TILE_SIZE - player->circle.mid_y) * delta_y;
+    }
+    //char test = 'c';
+    while (hit == 0)
+    {
+        //scanf("%c", &test);
+        if (side_x < side_y)
+        {
+            side_x += delta_x;
+            map_x += step_x;
+            side = 0;
+        }
+        else
+        {
+            side_y += delta_y;
+            map_y += step_y;
+            side = 1;
+        }
+        if (map[map_y][map_x] == '1')
+        {
+            //printf("map_x: %d | map_y: %d\n", map_x, map_y);
+            t_rect square = {.x = map_x * TILE_SIZE, .y = map_y * TILE_SIZE, .width = TILE_SIZE, .heigth = TILE_SIZE, .color = 0xFF0000};
+            draw_rect(&cub2d->mlx_inst, square);
+            hit = 1;
+        }
+        //printf("count: %d | side_x: %f | side_y: %f | delta_x: %f | delta_y: %f | step_x: %d\n", counter, side_x, side_y, delta_x, delta_y, step_x);
+        counter++;
+    }
+    (void)side;
+}
+
 void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
 {
     t_rect	rect;
@@ -270,6 +341,7 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
     }
 
     draw_player(mlx_inst, cub2d->player);
+    ray_cast(cub2d, &cub2d->player);
 }
 
 void    draw_game_2d(t_cub2d *cub2d)
@@ -308,10 +380,6 @@ void    player_mvmt(int keycode, t_cub2d *cub2d)
     }
 }
 
-void ray_cast(t_player *player)
-{
-
-}
 
 int key_press(int keycode, t_cub2d *cub2d)
 {
@@ -321,7 +389,7 @@ int key_press(int keycode, t_cub2d *cub2d)
     {
         player_mvmt(keycode, cub2d);
         update_vectors(&cub2d->player);
-        ray_cast(&cub2d->player);
+        //ray_cast(cub2d, &cub2d->player);
     }
     draw_game_2d(cub2d);
     return (0);
