@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2021/12/24 19:18:06 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/02 18:58:52 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,33 @@
 #include "key_codes_mac.h"
 #endif
 
+// x and y represent the center of the circle
+typedef struct	s_circle
+{
+    double	mid_x;
+    double	mid_y;
+    int radius;
+    int color;
+}	t_circle;
+
+typedef struct s_player
+{
+	t_circle circle;
+        char    orien;
+        //Tile position
+        int tile_x;
+        int tile_y;
+        //Direction vector
+        int angle;
+        double dir_x;
+        double dir_y;
+        //Camera plane vectors
+        int r_plane_x;
+        int r_plane_y;
+        int l_plane_x;
+        int l_plane_y;
+} t_player;
+
 typedef struct s_mlx
 {
     void *mlx;
@@ -29,21 +56,6 @@ typedef struct s_mlx
     int	line_len;
     int	endian;
 }	t_mlx;
-
-// x and y represent the center of the circle
-typedef struct	s_circle
-{
-    int	mid_x;
-    int	mid_y;
-    int radius;
-    int color;
-}	t_circle;
-
-typedef struct s_player
-{
-	t_circle circle;
-    // angle
-} t_player;
 
 typedef struct s_cub2d
 {
