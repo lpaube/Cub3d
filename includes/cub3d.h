@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/02 18:58:52 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/05 17:09:53 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,25 @@ typedef struct s_mlx
     int	endian;
 }	t_mlx;
 
+typedef struct s_raycast
+{
+    int side;
+    double  dist_x;
+    double  dist_y;
+    double  len;
+    double  delta_x;
+    double  delta_y;
+    int step_x;
+    int step_y;
+    int map_x;
+    int map_y;
+}   t_raycast;
+
 typedef struct s_cub2d
 {
     t_mlx   mlx_inst;
     t_player    player;
+    t_raycast   raycast;
 } t_cub2d;
 
 // These are the attributes that I need for the 2d part
