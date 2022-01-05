@@ -1,4 +1,5 @@
 objs
 cub3d
-.*.swp
+*.swp
+*.swo
 .vscode
