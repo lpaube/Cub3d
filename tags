@@ -164,15 +164,20 @@ data2	mlx_linux/test/main.c	/^char	*data2;$/;"	v
 data3	mlx_linux/test/main.c	/^char	*data3;$/;"	v
 data4	mlx_linux/test/main.c	/^char	*data4;$/;"	v
 decrgb	mlx_linux/mlx_int.h	/^	int			decrgb[6];$/;"	m	struct:s_xvar
+deg_to_rad	srcs/handle_2d.c	/^double  deg_to_rad(int deg)$/;"	f
+delta_x	includes/cub3d.h	/^    double  delta_x;$/;"	m	struct:s_raycast
+delta_y	includes/cub3d.h	/^    double  delta_y;$/;"	m	struct:s_raycast
 depth	mlx_linux/mlx_int.h	/^	int			depth;$/;"	m	struct:s_xvar
 dir_x	includes/cub3d.h	/^        double dir_x;$/;"	m	struct:s_player
 dir_y	includes/cub3d.h	/^        double dir_y;$/;"	m	struct:s_player
 display	mlx_linux/mlx_int.h	/^	Display		*display;$/;"	m	struct:s_xvar
 display_log	mlx_mac/mlx_shaders.c	/^void display_log(GLuint object, void (*param_func)(), void (*getlog_func)())$/;"	f
+dist_x	includes/cub3d.h	/^    double  dist_x;$/;"	m	struct:s_raycast
+dist_y	includes/cub3d.h	/^    double  dist_y;$/;"	m	struct:s_raycast
 do_flush	mlx_linux/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar
 draw_circle	srcs/handle_2d.c	/^void draw_circle(t_mlx *mlx_inst, t_circle circle)$/;"	f
 draw_cub2d	srcs/handle_2d.c	/^void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)$/;"	f
-draw_direction	srcs/handle_2d.c	/^void    draw_direction(t_mlx *mlx_inst, t_player player)$/;"	f
+draw_direction	srcs/handle_2d.c	/^void    draw_direction(t_cub2d *cub2d, t_raycast raycast)$/;"	f
 draw_game_2d	srcs/handle_2d.c	/^void    draw_game_2d(t_cub2d *cub2d)$/;"	f
 draw_line	srcs/handle_2d.c	/^void draw_line(t_mlx *mlx_inst, t_line line)$/;"	f
 draw_player	srcs/handle_2d.c	/^void    draw_player(t_mlx *mlx_inst, t_player player)$/;"	f
@@ -361,6 +366,8 @@ map_height	includes/cub3d.h	/^    int map_height;$/;"	m	struct:s_map_placeholder
 map_height	srcs/handle_2d.c	/^int map_height = 24;$/;"	v
 map_width	includes/cub3d.h	/^    int map_width;$/;"	m	struct:s_map_placeholder
 map_width	srcs/handle_2d.c	/^int map_width = 24;$/;"	v
+map_x	includes/cub3d.h	/^    int map_x;$/;"	m	struct:s_raycast
+map_y	includes/cub3d.h	/^    int map_y;$/;"	m	struct:s_raycast
 mask	mlx_linux/mlx_int.h	/^	int		mask;$/;"	m	struct:s_event_list
 mid_x	includes/cub3d.h	/^    double	mid_x;$/;"	m	struct:s_circle
 mid_y	includes/cub3d.h	/^    double	mid_y;$/;"	m	struct:s_circle
@@ -491,16 +498,16 @@ pixmgt	mlx_mac/mlx_int.h	/^  int			pixmgt;$/;"	m	struct:mlx_win_list_s
 player	includes/cub3d.h	/^    t_player    player;$/;"	m	struct:s_cub2d
 player	includes/cub3d.h	/^    t_player player;$/;"	m	struct:s_game
 player_mvmt	srcs/handle_2d.c	/^void    player_mvmt(int keycode, t_cub2d *cub2d)$/;"	f
-player_orien	srcs/handle_2d.c	/^char    player_orien = 'N';$/;"	v
-player_x	srcs/handle_2d.c	/^int player_x = 8;$/;"	v
+player_orien	srcs/handle_2d.c	/^char    player_orien = 'E';$/;"	v
+player_x	srcs/handle_2d.c	/^int player_x = 22;$/;"	v
 player_y	srcs/handle_2d.c	/^int player_y = 11;$/;"	v
 private_cmap	mlx_linux/mlx_int.h	/^	int			private_cmap;$/;"	m	struct:s_xvar
 pshm_format	mlx_linux/mlx_int.h	/^	int			pshm_format;$/;"	m	struct:s_xvar
 r_plane_x	includes/cub3d.h	/^        int r_plane_x;$/;"	m	struct:s_player
 r_plane_y	includes/cub3d.h	/^        int r_plane_y;$/;"	m	struct:s_player
-rad	srcs/handle_2d.c	/^double  rad(int deg)$/;"	f
 radius	includes/cub3d.h	/^    int radius;$/;"	m	struct:s_circle
-ray_cast	srcs/handle_2d.c	/^void ray_cast(t_player *player)$/;"	f
+ray_cast	srcs/handle_2d.c	/^void ray_cast(t_cub2d *cub2d, t_player *player)$/;"	f
+raycast	includes/cub3d.h	/^    t_raycast   raycast;$/;"	m	struct:s_cub2d
 root	mlx_linux/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar
 s_circle	includes/cub3d.h	/^typedef struct	s_circle$/;"	s
 s_col_name	mlx_linux/mlx_int.h	/^struct	s_col_name$/;"	s
@@ -514,6 +521,7 @@ s_list	libft/libft.h	/^typedef struct s_list$/;"	s
 s_map_placeholder	includes/cub3d.h	/^typedef struct s_map_placeholder$/;"	s
 s_mlx	includes/cub3d.h	/^typedef struct s_mlx$/;"	s
 s_player	includes/cub3d.h	/^typedef struct s_player$/;"	s
+s_raycast	includes/cub3d.h	/^typedef struct s_raycast$/;"	s
 s_rect	includes/cub3d.h	/^typedef struct s_rect$/;"	s
 s_win_list	mlx_linux/mlx_int.h	/^typedef struct	s_win_list$/;"	s
 s_xpm_col	mlx_linux/mlx_int.h	/^typedef	struct	s_xpm_col$/;"	s
@@ -524,6 +532,7 @@ screen	mlx_linux/mlx_int.h	/^	int			screen;$/;"	m	struct:s_xvar
 shm	mlx_linux/mlx_int.h	/^	XShmSegmentInfo	shm;$/;"	m	struct:s_img
 shm_att_pb	mlx_linux/mlx_new_image.c	/^int	shm_att_pb(Display *d,XErrorEvent *ev)$/;"	f
 show_help	mlx_linux/configure	/^show_help(){$/;"	f
+side	includes/cub3d.h	/^    int side;$/;"	m	struct:s_raycast
 sigint_handler	mlx_linux/test/run_tests.sh	/^sigint_handler(){$/;"	f
 size_line	mlx_linux/mlx_int.h	/^	int				size_line;$/;"	m	struct:s_img
 sl1	mlx_linux/test/main.c	/^int	sl1;$/;"	v
@@ -531,6 +540,8 @@ sl2	mlx_linux/test/main.c	/^int	sl2;$/;"	v
 sl3	mlx_linux/test/main.c	/^int	sl3;$/;"	v
 sl4	mlx_linux/test/main.c	/^int	sl4;$/;"	v
 sort_tab	libft/ft_sort_strtab.c	/^char	**sort_tab(char **new_tab, int tab_size)$/;"	f
+step_x	includes/cub3d.h	/^    int step_x;$/;"	m	struct:s_raycast
+step_y	includes/cub3d.h	/^    int step_y;$/;"	m	struct:s_raycast
 strlcpy_is_not_posix	mlx_linux/mlx_xpm.c	/^unsigned int	strlcpy_is_not_posix(char *dest, char *src, unsigned int size)$/;"	f
 t_circle	includes/cub3d.h	/^}	t_circle;$/;"	t	typeref:struct:s_circle
 t_cub2d	includes/cub3d.h	/^} t_cub2d;$/;"	t	typeref:struct:s_cub2d
@@ -542,6 +553,7 @@ t_list	libft/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
 t_map_placeholder	includes/cub3d.h	/^} t_map_placeholder;$/;"	t	typeref:struct:s_map_placeholder
 t_mlx	includes/cub3d.h	/^}	t_mlx;$/;"	t	typeref:struct:s_mlx
 t_player	includes/cub3d.h	/^} t_player;$/;"	t	typeref:struct:s_player
+t_raycast	includes/cub3d.h	/^}   t_raycast;$/;"	t	typeref:struct:s_raycast
 t_rect	includes/cub3d.h	/^}	t_rect;$/;"	t	typeref:struct:s_rect
 t_win_list	mlx_linux/mlx_int.h	/^}				t_win_list;$/;"	t	typeref:struct:s_win_list
 t_xpm_col	mlx_linux/mlx_int.h	/^}				t_xpm_col;$/;"	t	typeref:struct:s_xpm_col
@@ -549,6 +561,8 @@ t_xpm_col	mlx_mac/mlx_xpm.c	/^} t_xpm_col;$/;"	t	typeref:struct:s_xpm_col	file:
 t_xvar	mlx_linux/mlx_int.h	/^}				t_xvar;$/;"	t	typeref:struct:s_xvar
 test_default_main	mlx_linux/test/run_tests.sh	/^test_default_main(){$/;"	f
 texture	mlx_mac/mlx_int.h	/^  GLuint		texture;$/;"	m	struct:mlx_img_ctx_s
+tile_x	includes/cub3d.h	/^        int tile_x;$/;"	m	struct:s_player
+tile_y	includes/cub3d.h	/^        int tile_y;$/;"	m	struct:s_player
 type	mlx_linux/mlx_int.h	/^	int				type;$/;"	m	struct:s_img
 update_vectors	srcs/handle_2d.c	/^void    update_vectors(t_player *player)$/;"	f
 use_xshm	mlx_linux/mlx_int.h	/^	int			use_xshm;$/;"	m	struct:s_xvar
