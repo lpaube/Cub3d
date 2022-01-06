@@ -6,14 +6,18 @@
 #    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 14:02:25 by mafortin          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2021/12/10 15:56:31 by mafortin         ###   ########.fr        #
+=======
+#    Updated: 2021/12/10 13:38:52 by laube            ###   ########.fr        #
+>>>>>>> main
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= libft.a
 
 CC 		= gcc
-CFLAGS 	= -Wall -Wextra -Werror
+CFLAGS 	= -Wall -Wextra -Werror -g
 
 OBJS_DIR	= objs/
 
@@ -50,7 +54,6 @@ all: 		obj ${NAME}
 
 $(NAME): $(OBJS)
 			@ar rc ${NAME} $(OBJS)
-			@echo "CREATED LIBFT LIBRARY"
 
 $(OBJS_DIR)%.o:%.c
 	@$(CC) $(CFLAGS) -o $@ -c $< 
@@ -63,11 +66,9 @@ obj:
 
 clean:
 					@rm -rf ${OBJS}
-					@echo "CLEANED LIBFT OBJECT FILES"
 
 fclean: 	clean
 					@rm -rf $(NAME) $(OBJS_DIR)
-					@echo "CLEANED LIBFT LIBRARY"
 
 
 re:			fclean all

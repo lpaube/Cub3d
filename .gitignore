@@ -1,0 +1,5 @@
+objs
+cub3d
+*.swp
+*.swo
+.vscode

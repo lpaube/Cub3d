@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/12/10 15:56:46 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:44:14 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,21 @@ char	**cb_get_content(char *file)
 	return (line);
 }
 
-bool	cb_parsing_main(char *file, t_map *map_info)
+//Parsing map file with argv[1]
+bool	cb_parsing_main(int argc, char **argv, t_map *map_info)
 {
 	char	**content;
 
-	(void)map_info;
-	content = cb_get_content(file);
-	if (!content)
+	if (argc != 2)
+	{
+		free(map_info);
 		return (false);
+	}
+	content = cb_get_content(argv[1]);
+	if (!content)
+	{
+		free(map_info);
+		return (false);
+	}
 	return (true);
 }

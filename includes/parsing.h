@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:36:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/12/10 15:51:42 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/06 15:37:39 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ typedef struct s_map
 	int		player_y;
 }	t_map;
 
-bool	cb_parsing_main(char *file, t_map *map_info);
+bool	cb_parsing_main(int argc, char **argv, t_map *map_info);
 int		cb_nbline_file(char *file);
