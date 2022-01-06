@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/05 17:14:14 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/06 16:30:41 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,6 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
     cub2d->raycast.map_y = player->tile_y;
     cub2d->raycast.delta_x = fabs(1 / player->dir_x);
     cub2d->raycast.delta_y = fabs(1 / player->dir_y);
-
     hit = 0;
     if (player->dir_x < 0)
     {
@@ -343,6 +342,7 @@ void    draw_game_2d(t_cub2d *cub2d)
 {
     ray_cast(cub2d, &cub2d->player);
     draw_cub2d(cub2d, &cub2d->mlx_inst);
+    //mlx_string_put(&cub2d->mlx_inst.mlx, &cub2d->mlx_inst.win, 0, 0, 0xFF00FF, "Test");
     mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
 }
 

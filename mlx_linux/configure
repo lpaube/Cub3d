@@ -10,7 +10,7 @@ LIGHT_CYAN="\e[96m"
 
 logging(){
 	local type=$1; shift
-	printf "${LIGHT_CYAN}${BOLD}configure${RESET} [%b] : %b\n" "$type" "$*"
+	#printf "${LIGHT_CYAN}${BOLD}configure${RESET} [%b] : %b\n" "$type" "$*"
 }
 log_info(){
 	logging "${LIGHT_GREEN}info${RESET}" "$@"
@@ -75,9 +75,9 @@ EOF
 
 clean(){
 	log_info 'Execute "make clean" from "makefile.gen"'
-	make -f Makefile.gen clean 			
+	make -s -f Makefile.gen clean 			
 	log_info 'Execute "make clean" from "test/makefile.gen"'
-	make -f Makefile.gen -C test/ --no-print-directory clean
+	make -s -f Makefile.gen -C test/ --no-print-directory clean
 }
 
 parse_args(){
@@ -113,9 +113,9 @@ main(){
 		cat test/Makefile.mk | grep -v %%%% >> test/Makefile.gen
 
 	log_info 'Execute "make all" from file "makefile.gen"'
-		make -f Makefile.gen all
+		make -s -f Makefile.gen all 2> /dev/null
 	log_info 'Execute "make all" from file "test/makefile.gen"'
-		(cd test ; make -f Makefile.gen all )
+		(cd test ; make -s -f Makefile.gen all 2> /dev/null)
 }
 
 main "$@"
