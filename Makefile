@@ -4,7 +4,7 @@ SRCS_DIR =	srcs
 INCL_DIR =	includes
 OBJ_DIR =	objs
 
-SRCS =	main.c handle_2d.c
+SRCS =	main.c handle_2d.c cb_map_parsing.c cb_map_parsing_utils.c
 OBJS =	$(SRCS:.c=.o)
 
 SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))
@@ -19,8 +19,7 @@ LIBS = -Lmlx_mac -lmlx -Llibft -lft -framework OpenGL -framework AppKit
 ifeq ($(shell uname), Linux)
 $(NAME): $(OBJ_DIR) $(OBJS_PATH)
 	@echo "\n\tCOMPILING FOR LINUX\n======================================="
-	@make re --no-print-directory -C ./libft
-	$(CC) $(CFLAGS) -D _LINUX=yes srcs/*.c -Imlx_linux -Iincludes -Lmlx_linux -Llibft -lft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
+	$(CC) $(CFLAGS) -D _LINUX=yes srcs/*.c -Imlx_linux -Iincludes -Lmlx_linux -Llibft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
 	@echo "\\n\033[32;1m CUB3D HAS BEEN GENERATED \033[0m \\n"
 
 #Compiling for MacOS
@@ -52,5 +51,8 @@ fclean: clean
 	@echo "\033[34;1m CLEANED CUB3D \033[0m"
 
 re: fclean all
+
+#######################################
+
 
 .PHONY: all clean fclean re

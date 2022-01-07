@@ -6,11 +6,12 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 15:13:11 by mafortin          #+#    #+#             */
-/*   Updated: 2021/12/10 15:15:12 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/06 17:00:53 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
+#include "../libft/libft.h"
 #include <fcntl.h>
 
 int	cb_nbline_file(char *file)
