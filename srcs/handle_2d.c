@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/05 17:14:14 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/07 13:45:41 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "mlx.h"
 #include "cub3d.h"
+#include "../libft/libft.h"
 
 #define TILE_SIZE 20
 #define WIN_WIDTH 1000
@@ -39,8 +40,8 @@ char map[24][24] = {
     {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
     {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
     {'1','0','0','1','1','1','1','1','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
-    {'1','0','0','1','0','0','0','0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
-    {'1','0','0','0','0','0','1','0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
+    {'1','0','0','1','0','0','0','0','1','0','0','0','1','0','0','0','0','0','0','0','0','0','0','1'},
+    {'1','0','0','0','0','0','1','0','1','0','0','1','0','0','0','0','0','0','0','0','0','0','0','1'},
     {'1','0','0','1','0','0','0','0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
     {'1','0','0','1','1','1','1','1','1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
     {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
@@ -52,7 +53,14 @@ int map_width = 24;
 int map_height = 24;
 int player_x = 22;
 int player_y = 11;
-char    player_orien = 'E';
+char    player_orien = 'W';
+
+double fov = 66;
+double planeX;
+double planeY;
+double cameraX;
+double rayDirX;
+double rayDirY;
 
 double  deg_to_rad(int deg)
 {
@@ -61,8 +69,11 @@ double  deg_to_rad(int deg)
 
 void    update_vectors(t_player *player)
 {
+    planeX = tan(deg_to_rad(fov) / 2) * cos(deg_to_rad(player->angle - 90));
+    planeY = tan(deg_to_rad(fov) / 2) * -sin(deg_to_rad(player->angle - 90));
     player->dir_x = 1 * cos(deg_to_rad(player->angle));
     player->dir_y = -(1 * sin(deg_to_rad(player->angle)));
+
     player->tile_x = player->circle.mid_x / TILE_SIZE;
     player->tile_y = player->circle.mid_y / TILE_SIZE;
 }
@@ -81,7 +92,7 @@ void    init_vectors(t_player *player)
     {
         player->angle = 0;
     }
-    if (player->orien == 'O')
+    if (player->orien == 'W')
     {
         player->angle = 180;
     }
@@ -185,17 +196,39 @@ void draw_circle(t_mlx *mlx_inst, t_circle circle)
     }
 }
 
-void    draw_direction(t_cub2d *cub2d, t_raycast raycast)
+void    draw_direction(t_cub2d *cub2d)
+{
+    t_line  line;
+    int tmp_x;
+    int tmp_y;
+
+    line.x1 = cub2d->player.circle.mid_x;
+    line.y1 = cub2d->player.circle.mid_y;
+    line.x2 = cub2d->player.circle.mid_x + cub2d->player.dir_x * TILE_SIZE * 2;
+    line.y2 = cub2d->player.circle.mid_y + cub2d->player.dir_y * TILE_SIZE * 2;
+    line.color = 0xFF00FF;
+    draw_line(&cub2d->mlx_inst, line);
+
+    tmp_x = line.x2;
+    tmp_y = line.y2;
+    line.x1 = tmp_x + planeX * TILE_SIZE * 2;
+    line.y1 = tmp_y + planeY * TILE_SIZE * 2;
+    line.x2 = tmp_x - planeX * TILE_SIZE * 2;
+    line.y2 = tmp_y - planeY * TILE_SIZE * 2;
+    line.color = 0x00FFFF;
+    draw_line(&cub2d->mlx_inst, line);
+}
+
+void    draw_rays(t_cub2d *cub2d)
 {
     t_line  line;
 
     line.x1 = cub2d->player.circle.mid_x;
     line.y1 = cub2d->player.circle.mid_y;
-    line.x2 = cub2d->player.circle.mid_x + (cub2d->raycast.len * cub2d->player.dir_x);
-    line.y2 = cub2d->player.circle.mid_y + (cub2d->raycast.len * cub2d->player.dir_y);
+    line.x2 = cub2d->player.circle.mid_x + (cub2d->raycast.len * rayDirX);
+    line.y2 = cub2d->player.circle.mid_y + (cub2d->raycast.len * rayDirY);
     line.color = 0xFFFFFF;
     draw_line(&cub2d->mlx_inst, line);
-    (void)raycast;
 }
 
 void    draw_player(t_mlx *mlx_inst, t_player player)
@@ -206,62 +239,91 @@ void    draw_player(t_mlx *mlx_inst, t_player player)
 void ray_cast(t_cub2d *cub2d, t_player *player)
 {
     int hit;
+    int x;
 
-    cub2d->raycast.map_x = player->tile_x;
-    cub2d->raycast.map_y = player->tile_y;
-    cub2d->raycast.delta_x = fabs(1 / player->dir_x);
-    cub2d->raycast.delta_y = fabs(1 / player->dir_y);
+    x = -1;
+    cub2d->rays = malloc(sizeof(t_rays) * WIN_WIDTH);
+    //while (++x < WIN_WIDTH)
+    for (x = 0; x < WIN_WIDTH; x += 1)
+    {
+        cameraX = 2 * x / ((double)WIN_WIDTH - 1) - 1;
+        rayDirX = player->dir_x + planeX * cameraX;
+        rayDirY = player->dir_y + planeY * cameraX;
 
-    hit = 0;
-    if (player->dir_x < 0)
-    {
-        cub2d->raycast.step_x = -1;
-        cub2d->raycast.dist_x = (player->circle.mid_x - (cub2d->raycast.map_x * TILE_SIZE)) * cub2d->raycast.delta_x;
-    }
-    else
-    {
-        cub2d->raycast.step_x = 1;
-        cub2d->raycast.dist_x = ((cub2d->raycast.map_x + 1) * TILE_SIZE - player->circle.mid_x) * cub2d->raycast.delta_x;
-    }
-    if (player->dir_y < 0)
-    {
-        cub2d->raycast.step_y = -1;
-        cub2d->raycast.dist_y = (player->circle.mid_y - (cub2d->raycast.map_y * TILE_SIZE)) * cub2d->raycast.delta_y;
-    }
-    else
-    {
-        cub2d->raycast.step_y = 1;
-        cub2d->raycast.dist_y = ((player->tile_y + 1) * TILE_SIZE - player->circle.mid_y) * cub2d->raycast.delta_y;
-    }
-    while (hit == 0)
-    {
-        if (cub2d->raycast.dist_x < cub2d->raycast.dist_y)
+        cub2d->raycast.map_x = player->tile_x;
+        cub2d->raycast.map_y = player->tile_y;
+        cub2d->raycast.delta_x = fabs(1 / rayDirX);
+        cub2d->raycast.delta_y = fabs(1 / rayDirY);
+        hit = 0;
+        if (rayDirX < 0)
         {
-            cub2d->raycast.dist_x += cub2d->raycast.delta_x * TILE_SIZE;
-            cub2d->raycast.map_x += cub2d->raycast.step_x;
-            cub2d->raycast.side = 0;
+            cub2d->raycast.step_x = -1;
+            cub2d->raycast.dist_x = (player->circle.mid_x - (cub2d->raycast.map_x * TILE_SIZE)) * cub2d->raycast.delta_x;
         }
         else
         {
-            cub2d->raycast.dist_y += cub2d->raycast.delta_y * TILE_SIZE;
-            cub2d->raycast.map_y += cub2d->raycast.step_y;
-            cub2d->raycast.side = 1;
+            cub2d->raycast.step_x = 1;
+            cub2d->raycast.dist_x = ((cub2d->raycast.map_x + 1) * TILE_SIZE - player->circle.mid_x) * cub2d->raycast.delta_x;
         }
-        if (map[cub2d->raycast.map_y][cub2d->raycast.map_x] == '1')
+        if (rayDirY < 0)
         {
-            hit = 1;
-            if (cub2d->raycast.side == 0)
+            cub2d->raycast.step_y = -1;
+            cub2d->raycast.dist_y = (player->circle.mid_y - (cub2d->raycast.map_y * TILE_SIZE)) * cub2d->raycast.delta_y;
+        }
+        else
+        {
+            cub2d->raycast.step_y = 1;
+            cub2d->raycast.dist_y = ((player->tile_y + 1) * TILE_SIZE - player->circle.mid_y) * cub2d->raycast.delta_y;
+        }
+        while (hit == 0)
+        {
+            if (cub2d->raycast.dist_x < cub2d->raycast.dist_y)
             {
-                cub2d->raycast.dist_x -= cub2d->raycast.delta_x * TILE_SIZE;
-                cub2d->raycast.len = cub2d->raycast.dist_x;
+                cub2d->raycast.dist_x += cub2d->raycast.delta_x * TILE_SIZE;
+                cub2d->raycast.map_x += cub2d->raycast.step_x;
+                cub2d->raycast.side = 0;
             }
-            else if (cub2d->raycast.side == 1)
+            else
             {
-                cub2d->raycast.dist_y -= cub2d->raycast.delta_y * TILE_SIZE;
-                cub2d->raycast.len = cub2d->raycast.dist_y;
+                cub2d->raycast.dist_y += cub2d->raycast.delta_y * TILE_SIZE;
+                cub2d->raycast.map_y += cub2d->raycast.step_y;
+                cub2d->raycast.side = 1;
+            }
+            if (map[cub2d->raycast.map_y][cub2d->raycast.map_x] == '1')
+            {
+                hit = 1;
+                if (cub2d->raycast.side == 0)
+                {
+                    cub2d->raycast.dist_x -= cub2d->raycast.delta_x * TILE_SIZE;
+                    cub2d->raycast.len = cub2d->raycast.dist_x;
+                    cub2d->rays[x].len = cub2d->raycast.dist_x;
+                    if (cub2d->raycast.step_x == 1)
+                        cub2d->rays[x].face = 'W';
+                    else
+                        cub2d->rays[x].face = 'E';
+                }
+                else if (cub2d->raycast.side == 1)
+                {
+                    cub2d->raycast.dist_y -= cub2d->raycast.delta_y * TILE_SIZE;
+                    cub2d->raycast.len = cub2d->raycast.dist_y;
+                    cub2d->rays[x].len = cub2d->raycast.dist_y;
+                    if (cub2d->raycast.step_y == 1)
+                        cub2d->rays[x].face = 'N';
+                    else
+                        cub2d->rays[x].face = 'S';
+                }
             }
         }
+        if ((x + 1) % (WIN_WIDTH / 10) == 0 || x == 0 || x == WIN_WIDTH - 1)
+        {
+            draw_rays(cub2d);
+            //printf("x: %d | rays[x].len: %f | rays[x].face: %c\n", x, cub2d->rays[x].len, cub2d->rays[x].face);
+            //printf("dir_x: %f | dir_y: %f | planeX: %f | planeY: %f | rayDirX: %f | rayDirY: %f | cameraX: %f\n", player->dir_x, player->dir_y, planeX, planeY, rayDirX, rayDirY, cameraX);
+        }
+        t_rect square = {.x = (cub2d->raycast.map_x * TILE_SIZE) + 1, .y = cub2d->raycast.map_y * TILE_SIZE + 1, .width = TILE_SIZE - 1, .heigth = TILE_SIZE - 1, .color = 0xFF0000};
+        draw_rect(&cub2d->mlx_inst, square);
     }
+    //printf("-\n");
 }
 
 void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
@@ -333,30 +395,70 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
     }
 
     draw_player(mlx_inst, cub2d->player);
-    t_rect square = {.x = cub2d->raycast.map_x * TILE_SIZE, .y = cub2d->raycast.map_y * TILE_SIZE, .width = TILE_SIZE, .heigth = TILE_SIZE, .color = 0xFF0000};
-    draw_rect(&cub2d->mlx_inst, square);
-    mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
-    draw_direction(cub2d, cub2d->raycast);
 }
 
-void    draw_game_2d(t_cub2d *cub2d)
+void    put_diagnostics(t_cub2d *cub2d)
 {
-    ray_cast(cub2d, &cub2d->player);
+    // NOT ALLOWED: TO BE REMOVED FOR CORRECTION
+    char buf[100];
+
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 160, 0xFF0000, "Dir angle:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 180, 0xFF0000, "Dir X [cos(Dir angle)]:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 200, 0xFF0000, "Dir Y [-sin(Dir angle)]:");
+
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 240, 0xFFFF00, "Cam angle:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 260, 0xFFFF00, "FOV (deg)");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 280, 0xFFFF00, "Plane X:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 300, 0xFFFF00, "Plane Y:");
+
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 160, 0xFF0000, ft_itoa(cub2d->player.angle));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 180, 0xFF0000, gcvt(cub2d->player.dir_x, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 200, 0xFF0000, gcvt(cub2d->player.dir_y, 5, buf));
+
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 240, 0xFFFF00, ft_itoa(cub2d->player.angle - 90));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 260, 0xFFFF00, ft_itoa(fov));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 280, 0xFFFF00, gcvt(planeX, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 300, 0xFFFF00, gcvt(planeY, 5, buf));
+}
+
+void    game_loop_2d(t_cub2d *cub2d)
+{
     draw_cub2d(cub2d, &cub2d->mlx_inst);
+    ray_cast(cub2d, &cub2d->player);
+    draw_direction(cub2d);
     mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
+    put_diagnostics(cub2d);
+}
+
+int has_collision(t_cub2d *cub2d, int mvmt)
+{
+    int newpos_x;
+    int newpos_y;
+
+    newpos_x = cub2d->player.circle.mid_x + mvmt * cub2d->player.dir_x;
+    newpos_y = cub2d->player.circle.mid_y + mvmt * cub2d->player.dir_y;
+    if (map[newpos_y / TILE_SIZE][newpos_x / TILE_SIZE] != '1')
+        return (0);
+    return (1);
 }
 
 void    player_mvmt(int keycode, t_cub2d *cub2d)
 {
     if (keycode == MAIN_W)
     {
-        cub2d->player.circle.mid_x += 2 * cub2d->player.dir_x;
-        cub2d->player.circle.mid_y += 2 * cub2d->player.dir_y;
+        if (!has_collision(cub2d, 2))
+        {
+            cub2d->player.circle.mid_x += 2 * cub2d->player.dir_x;
+            cub2d->player.circle.mid_y += 2 * cub2d->player.dir_y;
+        }
     }
     if (keycode == MAIN_S)
     {
-        cub2d->player.circle.mid_x -= 2 * cub2d->player.dir_x;
-        cub2d->player.circle.mid_y -= 2 * cub2d->player.dir_y;
+        if (!has_collision(cub2d, -2))
+        {
+            cub2d->player.circle.mid_x -= 2 * cub2d->player.dir_x;
+            cub2d->player.circle.mid_y -= 2 * cub2d->player.dir_y;
+        }
     }
     if (keycode == MAIN_A)
     {
@@ -386,7 +488,7 @@ int key_press(int keycode, t_cub2d *cub2d)
         player_mvmt(keycode, cub2d);
         update_vectors(&cub2d->player);
     }
-    draw_game_2d(cub2d);
+    game_loop_2d(cub2d);
     return (0);
 }
 
@@ -408,7 +510,7 @@ void handle_2d(void)
     t_cub2d cub2d;
 
     cub2d.mlx_inst = mlx_inst_init(&cub2d);
-    draw_game_2d(&cub2d);
+    game_loop_2d(&cub2d);
     hook_handler(&cub2d);
     mlx_loop(cub2d.mlx_inst.mlx);
 }

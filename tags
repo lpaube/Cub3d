@@ -122,15 +122,15 @@ SRCS	libft/Makefile	/^SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_FILES))$/;"	m
 SRCS_DIR	Makefile	/^SRCS_DIR =	srcs$/;"	m
 SRCS_FILES	libft/Makefile	/^SRCS_FILES 	= 	ft_isalnum.c ft_isdigit.c ft_memccpy.c ft_memcpy.c ft_putchar_fd.c\\$/;"	m
 SRCS_PATH	Makefile	/^SRCS_PATH = $(addprefix $(SRCS_DIR)\/, $(SRCS))$/;"	m
-TILE_SIZE	srcs/handle_2d.c	19;"	d	file:
+TILE_SIZE	srcs/handle_2d.c	20;"	d	file:
 UNAME	mlx_linux/test/Makefile.mk	/^UNAME := $(shell uname)$/;"	m
 UNIQ_BPP	mlx_mac/mlx_int.h	12;"	d
 VPATH	libft/Makefile	/^VPATH		= $(SRCS_DIR)$/;"	m
 WARN_SHM_ATTACH	mlx_linux/mlx_int.h	46;"	d
 WIN1_SX	mlx_linux/test/main.c	5;"	d	file:
 WIN1_SY	mlx_linux/test/main.c	6;"	d	file:
-WIN_HEIGTH	srcs/handle_2d.c	21;"	d	file:
-WIN_WIDTH	srcs/handle_2d.c	20;"	d	file:
+WIN_HEIGTH	srcs/handle_2d.c	22;"	d	file:
+WIN_WIDTH	srcs/handle_2d.c	21;"	d	file:
 X_ShmAttach	mlx_linux/mlx_new_image.c	20;"	d	file:
 addr	includes/cub3d.h	/^    char *addr;$/;"	m	struct:s_mlx
 angle	includes/cub3d.h	/^        int angle;$/;"	m	struct:s_player
@@ -144,6 +144,7 @@ bpp3	mlx_linux/test/main.c	/^int	bpp3;$/;"	v
 bpp4	mlx_linux/test/main.c	/^int	bpp4;$/;"	v
 buffer	mlx_mac/mlx_int.h	/^  char			*buffer;$/;"	m	struct:mlx_img_list_s
 bytes_per_pixel	mlx_mac/font.c	/^  unsigned int 	 bytes_per_pixel; \/* 2:RGB16, 3:RGB, 4:RGBA *\/ $/;"	m	struct:__anon1	file:
+cameraX	srcs/handle_2d.c	/^double cameraX;$/;"	v
 circle	includes/cub3d.h	/^	t_circle circle;$/;"	m	struct:s_player
 clean	mlx_linux/configure	/^clean(){$/;"	f
 click_close	srcs/handle_2d.c	/^int click_close(void* param)$/;"	f
@@ -177,10 +178,10 @@ dist_y	includes/cub3d.h	/^    double  dist_y;$/;"	m	struct:s_raycast
 do_flush	mlx_linux/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar
 draw_circle	srcs/handle_2d.c	/^void draw_circle(t_mlx *mlx_inst, t_circle circle)$/;"	f
 draw_cub2d	srcs/handle_2d.c	/^void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)$/;"	f
-draw_direction	srcs/handle_2d.c	/^void    draw_direction(t_cub2d *cub2d, t_raycast raycast)$/;"	f
-draw_game_2d	srcs/handle_2d.c	/^void    draw_game_2d(t_cub2d *cub2d)$/;"	f
+draw_direction	srcs/handle_2d.c	/^void    draw_direction(t_cub2d *cub2d)$/;"	f
 draw_line	srcs/handle_2d.c	/^void draw_line(t_mlx *mlx_inst, t_line line)$/;"	f
 draw_player	srcs/handle_2d.c	/^void    draw_player(t_mlx *mlx_inst, t_player player)$/;"	f
+draw_rays	srcs/handle_2d.c	/^void    draw_rays(t_cub2d *cub2d)$/;"	f
 draw_rect	srcs/handle_2d.c	/^void draw_rect(t_mlx *mlx_inst, t_rect rect)$/;"	f
 end_loop	mlx_linux/mlx_int.h	/^	int 		end_loop;$/;"	m	struct:s_xvar
 endian	includes/cub3d.h	/^    int	endian;$/;"	m	struct:s_mlx
@@ -198,6 +199,7 @@ font_fshader	mlx_mac/mlx_int.h	/^  GLuint	font_fshader;$/;"	m	struct:glsl_info_s
 font_program	mlx_mac/mlx_int.h	/^  GLuint	font_program;$/;"	m	struct:glsl_info_s
 font_vshader	mlx_mac/mlx_int.h	/^  GLuint	font_vshader;$/;"	m	struct:glsl_info_s
 format	mlx_linux/mlx_int.h	/^	int				format;$/;"	m	struct:s_img
+fov	srcs/handle_2d.c	/^double fov = 0.66;$/;"	v
 ft_addline	libft/ft_addline.c	/^char	**ft_addline(char **matrice, char *line)$/;"	f
 ft_append_empty	libft/ft_append_string.c	/^char	*ft_append_empty(char *new_str, char c)$/;"	f
 ft_append_string	libft/ft_append_string.c	/^char	*ft_append_string(char *src, char c)$/;"	f
@@ -285,6 +287,7 @@ ft_utoa	libft/ft_utoa.c	/^char	*ft_utoa(unsigned int n)$/;"	f
 ft_wlen	libft/ft_split.c	/^static size_t	ft_wlen(const char *s, char c)$/;"	f	file:
 ft_wlen	libft/ft_split_rev.c	/^static size_t	ft_wlen(const char *s, char c)$/;"	f	file:
 func_t	mlx_mac/mlx_int.h	/^typedef int (*func_t)();$/;"	t
+game_loop_2d	srcs/handle_2d.c	/^void    game_loop_2d(t_cub2d *cub2d)$/;"	f
 gc	mlx_linux/mlx_int.h	/^	GC					gc;$/;"	m	struct:s_win_list
 gc	mlx_linux/mlx_int.h	/^	GC				gc;$/;"	m	struct:s_img
 gere_mouse	mlx_linux/test/new_win.c	/^int gere_mouse(int x,int y,int button,void*toto)$/;"	f
@@ -327,6 +330,8 @@ key_win2	mlx_linux/test/main.c	/^int	key_win2(int key,void *p)$/;"	f
 key_win3	mlx_linux/test/main.c	/^int	key_win3(int key,void *p)$/;"	f
 l_plane_x	includes/cub3d.h	/^        int l_plane_x;$/;"	m	struct:s_player
 l_plane_y	includes/cub3d.h	/^        int l_plane_y;$/;"	m	struct:s_player
+len	includes/cub3d.h	/^    double  len;$/;"	m	struct:s_raycast
+len	includes/cub3d.h	/^    double  len;$/;"	m	struct:s_rays
 line_len	includes/cub3d.h	/^    int	line_len;$/;"	m	struct:s_mlx
 loc_font_atlassize	mlx_mac/mlx_int.h	/^  GLint		loc_font_atlassize;$/;"	m	struct:glsl_info_s
 loc_font_color	mlx_mac/mlx_int.h	/^  GLint		loc_font_color;$/;"	m	struct:glsl_info_s
@@ -495,26 +500,30 @@ pixel_fshader	mlx_mac/mlx_int.h	/^  GLuint	pixel_fshader;$/;"	m	struct:glsl_info
 pixel_program	mlx_mac/mlx_int.h	/^  GLuint	pixel_program;$/;"	m	struct:glsl_info_s
 pixel_vshader	mlx_mac/mlx_int.h	/^  GLuint	pixel_vshader;$/;"	m	struct:glsl_info_s
 pixmgt	mlx_mac/mlx_int.h	/^  int			pixmgt;$/;"	m	struct:mlx_win_list_s
+planeX	srcs/handle_2d.c	/^double planeX;$/;"	v
+planeY	srcs/handle_2d.c	/^double planeY;$/;"	v
 player	includes/cub3d.h	/^    t_player    player;$/;"	m	struct:s_cub2d
-player	includes/cub3d.h	/^    t_player player;$/;"	m	struct:s_game
 player_mvmt	srcs/handle_2d.c	/^void    player_mvmt(int keycode, t_cub2d *cub2d)$/;"	f
-player_orien	srcs/handle_2d.c	/^char    player_orien = 'E';$/;"	v
+player_orien	srcs/handle_2d.c	/^char    player_orien = 'W';$/;"	v
 player_x	srcs/handle_2d.c	/^int player_x = 22;$/;"	v
 player_y	srcs/handle_2d.c	/^int player_y = 11;$/;"	v
 private_cmap	mlx_linux/mlx_int.h	/^	int			private_cmap;$/;"	m	struct:s_xvar
 pshm_format	mlx_linux/mlx_int.h	/^	int			pshm_format;$/;"	m	struct:s_xvar
+put_diagnostics	srcs/handle_2d.c	/^void    put_diagnostics(t_cub2d *cub2d)$/;"	f
 r_plane_x	includes/cub3d.h	/^        int r_plane_x;$/;"	m	struct:s_player
 r_plane_y	includes/cub3d.h	/^        int r_plane_y;$/;"	m	struct:s_player
 radius	includes/cub3d.h	/^    int radius;$/;"	m	struct:s_circle
+rayDirX	srcs/handle_2d.c	/^double rayDirX;$/;"	v
+rayDirY	srcs/handle_2d.c	/^double rayDirY;$/;"	v
 ray_cast	srcs/handle_2d.c	/^void ray_cast(t_cub2d *cub2d, t_player *player)$/;"	f
 raycast	includes/cub3d.h	/^    t_raycast   raycast;$/;"	m	struct:s_cub2d
+rays	includes/cub3d.h	/^    t_rays      *rays;$/;"	m	struct:s_cub2d
 root	mlx_linux/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar
 s_circle	includes/cub3d.h	/^typedef struct	s_circle$/;"	s
 s_col_name	mlx_linux/mlx_int.h	/^struct	s_col_name$/;"	s
 s_col_name	mlx_mac/mlx_xpm.c	/^struct  s_col_name$/;"	s	file:
 s_cub2d	includes/cub3d.h	/^typedef struct s_cub2d$/;"	s
 s_event_list	mlx_linux/mlx_int.h	/^typedef struct	s_event_list$/;"	s
-s_game	includes/cub3d.h	/^typedef struct s_game$/;"	s
 s_img	mlx_linux/mlx_int.h	/^typedef struct	s_img$/;"	s
 s_line	includes/cub3d.h	/^typedef struct s_line$/;"	s
 s_list	libft/libft.h	/^typedef struct s_list$/;"	s
@@ -522,6 +531,7 @@ s_map_placeholder	includes/cub3d.h	/^typedef struct s_map_placeholder$/;"	s
 s_mlx	includes/cub3d.h	/^typedef struct s_mlx$/;"	s
 s_player	includes/cub3d.h	/^typedef struct s_player$/;"	s
 s_raycast	includes/cub3d.h	/^typedef struct s_raycast$/;"	s
+s_rays	includes/cub3d.h	/^typedef struct s_rays$/;"	s
 s_rect	includes/cub3d.h	/^typedef struct s_rect$/;"	s
 s_win_list	mlx_linux/mlx_int.h	/^typedef struct	s_win_list$/;"	s
 s_xpm_col	mlx_linux/mlx_int.h	/^typedef	struct	s_xpm_col$/;"	s
@@ -546,7 +556,6 @@ strlcpy_is_not_posix	mlx_linux/mlx_xpm.c	/^unsigned int	strlcpy_is_not_posix(cha
 t_circle	includes/cub3d.h	/^}	t_circle;$/;"	t	typeref:struct:s_circle
 t_cub2d	includes/cub3d.h	/^} t_cub2d;$/;"	t	typeref:struct:s_cub2d
 t_event_list	mlx_linux/mlx_int.h	/^}				t_event_list;$/;"	t	typeref:struct:s_event_list
-t_game	includes/cub3d.h	/^} t_game;$/;"	t	typeref:struct:s_game
 t_img	mlx_linux/mlx_int.h	/^}				t_img;$/;"	t	typeref:struct:s_img
 t_line	includes/cub3d.h	/^} t_line;$/;"	t	typeref:struct:s_line
 t_list	libft/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
@@ -554,6 +563,7 @@ t_map_placeholder	includes/cub3d.h	/^} t_map_placeholder;$/;"	t	typeref:struct:s
 t_mlx	includes/cub3d.h	/^}	t_mlx;$/;"	t	typeref:struct:s_mlx
 t_player	includes/cub3d.h	/^} t_player;$/;"	t	typeref:struct:s_player
 t_raycast	includes/cub3d.h	/^}   t_raycast;$/;"	t	typeref:struct:s_raycast
+t_rays	includes/cub3d.h	/^} t_rays;$/;"	t	typeref:struct:s_rays
 t_rect	includes/cub3d.h	/^}	t_rect;$/;"	t	typeref:struct:s_rect
 t_win_list	mlx_linux/mlx_int.h	/^}				t_win_list;$/;"	t	typeref:struct:s_win_list
 t_xpm_col	mlx_linux/mlx_int.h	/^}				t_xpm_col;$/;"	t	typeref:struct:s_xpm_col
