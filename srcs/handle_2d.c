@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/06 23:41:32 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/06 23:55:09 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ double  deg_to_rad(int deg)
 
 void    update_vectors(t_player *player)
 {
+    double tmpPlaneX = planeX;
     player->dir_x = 1 * cos(deg_to_rad(player->angle));
     player->dir_y = -(1 * sin(deg_to_rad(player->angle)));
+
     player->tile_x = player->circle.mid_x / TILE_SIZE;
     player->tile_y = player->circle.mid_y / TILE_SIZE;
 }
@@ -192,7 +194,7 @@ void draw_circle(t_mlx *mlx_inst, t_circle circle)
     }
 }
 
-void    draw_direction(t_cub2d *cub2d, t_raycast raycast)
+void    draw_direction(t_cub2d *cub2d)
 {
     t_line  line;
 
@@ -279,7 +281,7 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
                 }
             }
         }
-        draw_direction(cub2d, cub2d->raycast);
+        draw_direction(cub2d);
         t_rect square = {.x = (cub2d->raycast.map_x * TILE_SIZE) + 1, .y = cub2d->raycast.map_y * TILE_SIZE + 1, .width = TILE_SIZE - 1, .heigth = TILE_SIZE - 1, .color = 0xFF0000};
         draw_rect(&cub2d->mlx_inst, square);
         printf("dir_x: %f | dir_y: %f | planeX: %f | planeY: %f | rayDirX: %f | rayDirY: %f | cameraX: %f\n", player->dir_x, player->dir_y, planeX, planeY, rayDirX, rayDirY, cameraX);
@@ -396,7 +398,7 @@ void    game_loop_2d(t_cub2d *cub2d)
 {
     draw_cub2d(cub2d, &cub2d->mlx_inst);
     ray_cast(cub2d, &cub2d->player);
-    //draw_direction(cub2d, cub2d->raycast);
+    //draw_direction(cub2d);
     mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
     put_diagnostics(cub2d);
 }
