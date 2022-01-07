@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/06 22:23:34 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/07 13:00:13 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_raycast
 typedef struct s_rays
 {
     double  len;
+    char    face;
 } t_rays;
 
 typedef struct s_cub2d
