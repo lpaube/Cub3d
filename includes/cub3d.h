@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/06 20:02:46 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/06 22:23:34 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,17 @@ typedef struct s_raycast
     int map_y;
 }   t_raycast;
 
+typedef struct s_rays
+{
+    double  len;
+} t_rays;
+
 typedef struct s_cub2d
 {
     t_mlx   mlx_inst;
     t_player    player;
     t_raycast   raycast;
+    t_rays      *rays;
 } t_cub2d;
 
 // These are the attributes that I need for the 2d part
@@ -86,11 +92,6 @@ typedef struct s_map_placeholder
     int map_height;
     char    orientation;
 } t_map_placeholder;
-
-typedef struct s_game
-{
-    t_player player;
-} t_game;
 
 typedef struct s_line
 {
