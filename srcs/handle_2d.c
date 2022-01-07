@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/06 23:55:09 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/07 12:30:14 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ int player_x = 22;
 int player_y = 11;
 char    player_orien = 'W';
 
-double planeX = 0;
-double planeY = 0.66;
+double fov = 180;
+double planeX;
+double planeY;
 double cameraX;
 double rayDirX;
 double rayDirY;
@@ -68,7 +69,8 @@ double  deg_to_rad(int deg)
 
 void    update_vectors(t_player *player)
 {
-    double tmpPlaneX = planeX;
+    planeX = (fov / 100) * cos(deg_to_rad(player->angle - 90));
+    planeY = (fov / 100) * -sin(deg_to_rad(player->angle - 90));
     player->dir_x = 1 * cos(deg_to_rad(player->angle));
     player->dir_y = -(1 * sin(deg_to_rad(player->angle)));
 
@@ -197,6 +199,29 @@ void draw_circle(t_mlx *mlx_inst, t_circle circle)
 void    draw_direction(t_cub2d *cub2d)
 {
     t_line  line;
+    int tmp_x;
+    int tmp_y;
+
+    line.x1 = cub2d->player.circle.mid_x;
+    line.y1 = cub2d->player.circle.mid_y;
+    line.x2 = cub2d->player.circle.mid_x + cub2d->player.dir_x * TILE_SIZE * 2;
+    line.y2 = cub2d->player.circle.mid_y + cub2d->player.dir_y * TILE_SIZE * 2;
+    line.color = 0xFF00FF;
+    draw_line(&cub2d->mlx_inst, line);
+
+    tmp_x = line.x2;
+    tmp_y = line.y2;
+    line.x1 = tmp_x + planeX * TILE_SIZE * 2;
+    line.y1 = tmp_y + planeY * TILE_SIZE * 2;
+    line.x2 = tmp_x - planeX * TILE_SIZE * 2;
+    line.y2 = tmp_y - planeY * TILE_SIZE * 2;
+    line.color = 0x00FFFF;
+    draw_line(&cub2d->mlx_inst, line);
+}
+
+void    draw_rays(t_cub2d *cub2d)
+{
+    t_line  line;
 
     line.x1 = cub2d->player.circle.mid_x;
     line.y1 = cub2d->player.circle.mid_y;
@@ -219,9 +244,9 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
     x = -1;
     cub2d->rays = malloc(sizeof(t_rays) * WIN_WIDTH);
     //while (++x < WIN_WIDTH)
-    for (x = 0; x < WIN_WIDTH; x += WIN_WIDTH / 5)
+    for (x = 0; x < WIN_WIDTH; x += 1)
     {
-        cameraX = 2 * x / (double)WIN_WIDTH - 1;
+        cameraX = 2 * x / ((double)WIN_WIDTH - 1) - 1;
         rayDirX = player->dir_x + planeX * cameraX;
         rayDirY = player->dir_y + planeY * cameraX;
 
@@ -281,12 +306,15 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
                 }
             }
         }
-        draw_direction(cub2d);
+        if ((x + 1) % (WIN_WIDTH / 10) == 0 || x == 0 || x == WIN_WIDTH - 1)
+        {
+            draw_rays(cub2d);
+            //printf("dir_x: %f | dir_y: %f | planeX: %f | planeY: %f | rayDirX: %f | rayDirY: %f | cameraX: %f\n", player->dir_x, player->dir_y, planeX, planeY, rayDirX, rayDirY, cameraX);
+        }
         t_rect square = {.x = (cub2d->raycast.map_x * TILE_SIZE) + 1, .y = cub2d->raycast.map_y * TILE_SIZE + 1, .width = TILE_SIZE - 1, .heigth = TILE_SIZE - 1, .color = 0xFF0000};
         draw_rect(&cub2d->mlx_inst, square);
-        printf("dir_x: %f | dir_y: %f | planeX: %f | planeY: %f | rayDirX: %f | rayDirY: %f | cameraX: %f\n", player->dir_x, player->dir_y, planeX, planeY, rayDirX, rayDirY, cameraX);
     }
-    printf("-\n");
+    //printf("-\n");
 }
 
 void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
@@ -365,40 +393,28 @@ void    put_diagnostics(t_cub2d *cub2d)
     // NOT ALLOWED: TO BE REMOVED FOR CORRECTION
     char buf[100];
 
-    /*
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 100, 0xFFFF00, "Delta X:");
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 120, 0xFFFF00, "Delta Y:");
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 140, 0xFFFF00, "Delta X (px):");
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 160, 0xFFFF00, "Delta Y (px):");
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 180, 0xFFFF00, "Dist X:");
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 200, 0xFFFF00, "Dist Y:");
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 220, 0xFFFF00, "Lenght:");
-    */
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 260, 0xFF0000, "Dir angle:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 280, 0xFF0000, "Dir X [cos(Dir angle)]:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 300, 0xFF0000, "Dir Y [-sin(Dir angle)]:");
 
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 260, 0xFF0000, "Angle:");
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 280, 0xFF0000, "Dir X [cos(angle)]:");
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 300, 0xFF0000, "Dir Y [sin(angle)]:");
-
-    /*
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 100, 0xFFFF00, gcvt(cub2d->raycast.delta_x, 5, buf));
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 120, 0xFFFF00, gcvt(cub2d->raycast.delta_y, 5, buf));
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 140, 0xFFFF00, gcvt(cub2d->raycast.delta_x * TILE_SIZE, 5, buf));
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 160, 0xFFFF00, gcvt(cub2d->raycast.delta_y * TILE_SIZE, 5, buf));
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 180, 0xFFFF00, gcvt(cub2d->raycast.dist_x, 5, buf));
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 200, 0xFFFF00, gcvt(cub2d->raycast.dist_y, 5, buf));
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 220, 0xFFFF00, gcvt(cub2d->raycast.len, 5, buf));
-    */
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 340, 0xFF0000, "Cam angle:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 360, 0xFF0000, "Plane X:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 380, 0xFF0000, "Plane Y:");
 
     mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 260, 0xFF0000, ft_itoa(cub2d->player.angle));
     mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 280, 0xFF0000, gcvt(cub2d->player.dir_x, 5, buf));
     mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 300, 0xFF0000, gcvt(cub2d->player.dir_y, 5, buf));
+
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 340, 0xFF0000, ft_itoa(cub2d->player.angle - 90));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 360, 0xFF0000, gcvt(planeX, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 380, 0xFF0000, gcvt(planeY, 5, buf));
 }
 
 void    game_loop_2d(t_cub2d *cub2d)
 {
     draw_cub2d(cub2d, &cub2d->mlx_inst);
     ray_cast(cub2d, &cub2d->player);
-    //draw_direction(cub2d);
+    draw_direction(cub2d);
     mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
     put_diagnostics(cub2d);
 }

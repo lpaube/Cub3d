@@ -159,7 +159,6 @@ color	mlx_mac/mlx_xpm.c	/^  int   color;$/;"	m	struct:s_col_name	file:
 color_map_1	mlx_linux/test/main.c	/^int	color_map_1(void *win,int w,int h)$/;"	f
 color_map_2	mlx_linux/test/main.c	/^int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type)$/;"	f
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
-d_game_loop	srcs/handle_2d.c	/^void    2d_game_loop(t_cub2d *cub2d)$/;"	f
 data	mlx_linux/mlx_int.h	/^	char			*data;$/;"	m	struct:s_img
 data1	mlx_linux/test/main.c	/^char	*data1;$/;"	v
 data2	mlx_linux/test/main.c	/^char	*data2;$/;"	v
@@ -179,9 +178,10 @@ dist_y	includes/cub3d.h	/^    double  dist_y;$/;"	m	struct:s_raycast
 do_flush	mlx_linux/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar
 draw_circle	srcs/handle_2d.c	/^void draw_circle(t_mlx *mlx_inst, t_circle circle)$/;"	f
 draw_cub2d	srcs/handle_2d.c	/^void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)$/;"	f
-draw_direction	srcs/handle_2d.c	/^void    draw_direction(t_cub2d *cub2d, t_raycast raycast)$/;"	f
+draw_direction	srcs/handle_2d.c	/^void    draw_direction(t_cub2d *cub2d)$/;"	f
 draw_line	srcs/handle_2d.c	/^void draw_line(t_mlx *mlx_inst, t_line line)$/;"	f
 draw_player	srcs/handle_2d.c	/^void    draw_player(t_mlx *mlx_inst, t_player player)$/;"	f
+draw_rays	srcs/handle_2d.c	/^void    draw_rays(t_cub2d *cub2d)$/;"	f
 draw_rect	srcs/handle_2d.c	/^void draw_rect(t_mlx *mlx_inst, t_rect rect)$/;"	f
 end_loop	mlx_linux/mlx_int.h	/^	int 		end_loop;$/;"	m	struct:s_xvar
 endian	includes/cub3d.h	/^    int	endian;$/;"	m	struct:s_mlx
@@ -199,6 +199,7 @@ font_fshader	mlx_mac/mlx_int.h	/^  GLuint	font_fshader;$/;"	m	struct:glsl_info_s
 font_program	mlx_mac/mlx_int.h	/^  GLuint	font_program;$/;"	m	struct:glsl_info_s
 font_vshader	mlx_mac/mlx_int.h	/^  GLuint	font_vshader;$/;"	m	struct:glsl_info_s
 format	mlx_linux/mlx_int.h	/^	int				format;$/;"	m	struct:s_img
+fov	srcs/handle_2d.c	/^double fov = 0.66;$/;"	v
 ft_addline	libft/ft_addline.c	/^char	**ft_addline(char **matrice, char *line)$/;"	f
 ft_append_empty	libft/ft_append_string.c	/^char	*ft_append_empty(char *new_str, char c)$/;"	f
 ft_append_string	libft/ft_append_string.c	/^char	*ft_append_string(char *src, char c)$/;"	f
@@ -286,6 +287,7 @@ ft_utoa	libft/ft_utoa.c	/^char	*ft_utoa(unsigned int n)$/;"	f
 ft_wlen	libft/ft_split.c	/^static size_t	ft_wlen(const char *s, char c)$/;"	f	file:
 ft_wlen	libft/ft_split_rev.c	/^static size_t	ft_wlen(const char *s, char c)$/;"	f	file:
 func_t	mlx_mac/mlx_int.h	/^typedef int (*func_t)();$/;"	t
+game_loop_2d	srcs/handle_2d.c	/^void    game_loop_2d(t_cub2d *cub2d)$/;"	f
 gc	mlx_linux/mlx_int.h	/^	GC					gc;$/;"	m	struct:s_win_list
 gc	mlx_linux/mlx_int.h	/^	GC				gc;$/;"	m	struct:s_img
 gere_mouse	mlx_linux/test/new_win.c	/^int gere_mouse(int x,int y,int button,void*toto)$/;"	f
@@ -498,8 +500,8 @@ pixel_fshader	mlx_mac/mlx_int.h	/^  GLuint	pixel_fshader;$/;"	m	struct:glsl_info
 pixel_program	mlx_mac/mlx_int.h	/^  GLuint	pixel_program;$/;"	m	struct:glsl_info_s
 pixel_vshader	mlx_mac/mlx_int.h	/^  GLuint	pixel_vshader;$/;"	m	struct:glsl_info_s
 pixmgt	mlx_mac/mlx_int.h	/^  int			pixmgt;$/;"	m	struct:mlx_win_list_s
-planeX	srcs/handle_2d.c	/^double planeX = 0;$/;"	v
-planeY	srcs/handle_2d.c	/^double planeY = 0.66;$/;"	v
+planeX	srcs/handle_2d.c	/^double planeX;$/;"	v
+planeY	srcs/handle_2d.c	/^double planeY;$/;"	v
 player	includes/cub3d.h	/^    t_player    player;$/;"	m	struct:s_cub2d
 player_mvmt	srcs/handle_2d.c	/^void    player_mvmt(int keycode, t_cub2d *cub2d)$/;"	f
 player_orien	srcs/handle_2d.c	/^char    player_orien = 'W';$/;"	v
