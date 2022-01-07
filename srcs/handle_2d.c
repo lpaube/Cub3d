@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/06 22:47:25 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/06 23:41:32 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void    init_vectors(t_player *player)
     {
         player->angle = 0;
     }
-    if (player->orien == 'O')
+    if (player->orien == 'W')
     {
         player->angle = 180;
     }
@@ -202,7 +202,6 @@ void    draw_direction(t_cub2d *cub2d, t_raycast raycast)
     line.y2 = cub2d->player.circle.mid_y + (cub2d->raycast.len * rayDirY);
     line.color = 0xFFFFFF;
     draw_line(&cub2d->mlx_inst, line);
-    (void)raycast;
 }
 
 void    draw_player(t_mlx *mlx_inst, t_player player)
@@ -217,7 +216,8 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
 
     x = -1;
     cub2d->rays = malloc(sizeof(t_rays) * WIN_WIDTH);
-    while (++x < WIN_WIDTH)
+    //while (++x < WIN_WIDTH)
+    for (x = 0; x < WIN_WIDTH; x += WIN_WIDTH / 5)
     {
         cameraX = 2 * x / (double)WIN_WIDTH - 1;
         rayDirX = player->dir_x + planeX * cameraX;
@@ -228,7 +228,7 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
         cub2d->raycast.delta_x = fabs(1 / rayDirX);
         cub2d->raycast.delta_y = fabs(1 / rayDirY);
         hit = 0;
-        if (player->dir_x < 0)
+        if (rayDirX < 0)
         {
             cub2d->raycast.step_x = -1;
             cub2d->raycast.dist_x = (player->circle.mid_x - (cub2d->raycast.map_x * TILE_SIZE)) * cub2d->raycast.delta_x;
@@ -238,7 +238,7 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
             cub2d->raycast.step_x = 1;
             cub2d->raycast.dist_x = ((cub2d->raycast.map_x + 1) * TILE_SIZE - player->circle.mid_x) * cub2d->raycast.delta_x;
         }
-        if (player->dir_y < 0)
+        if (rayDirY < 0)
         {
             cub2d->raycast.step_y = -1;
             cub2d->raycast.dist_y = (player->circle.mid_y - (cub2d->raycast.map_y * TILE_SIZE)) * cub2d->raycast.delta_y;
@@ -282,7 +282,9 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
         draw_direction(cub2d, cub2d->raycast);
         t_rect square = {.x = (cub2d->raycast.map_x * TILE_SIZE) + 1, .y = cub2d->raycast.map_y * TILE_SIZE + 1, .width = TILE_SIZE - 1, .heigth = TILE_SIZE - 1, .color = 0xFF0000};
         draw_rect(&cub2d->mlx_inst, square);
+        printf("dir_x: %f | dir_y: %f | planeX: %f | planeY: %f | rayDirX: %f | rayDirY: %f | cameraX: %f\n", player->dir_x, player->dir_y, planeX, planeY, rayDirX, rayDirY, cameraX);
     }
+    printf("-\n");
 }
 
 void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
