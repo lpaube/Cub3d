@@ -57,6 +57,7 @@ fclean: clean
 	@echo "- Removed libft lib file"
 	@rm -f $(NAME)
 	@echo "- Removed Cub3d bin file"
+	@echo "\\n\033[34;1m CUB3D HAS BEEN CLEANED \033[0m \\n"
 
 re: fclean all
 

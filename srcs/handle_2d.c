@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/06 16:30:41 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/06 19:57:47 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "mlx.h"
 #include "cub3d.h"
+#include "../libft/libft.h"
 
 #define TILE_SIZE 20
 #define WIN_WIDTH 1000
@@ -334,16 +335,45 @@ void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
     draw_player(mlx_inst, cub2d->player);
     t_rect square = {.x = cub2d->raycast.map_x * TILE_SIZE, .y = cub2d->raycast.map_y * TILE_SIZE, .width = TILE_SIZE, .heigth = TILE_SIZE, .color = 0xFF0000};
     draw_rect(&cub2d->mlx_inst, square);
-    mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
-    draw_direction(cub2d, cub2d->raycast);
+}
+
+void    put_diagnostics(t_cub2d *cub2d)
+{
+    // NOT ALLOWED: TO BE REMOVED FOR CORRECTION
+    char buf[100];
+
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 100, 0xFFFF00, "Delta X:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 120, 0xFFFF00, "Delta Y:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 140, 0xFFFF00, "Delta X (px):");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 160, 0xFFFF00, "Delta Y (px):");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 180, 0xFFFF00, "Dist X:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 200, 0xFFFF00, "Dist Y:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 220, 0xFFFF00, "Lenght:");
+
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 260, 0xFF0000, "Angle:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 280, 0xFF0000, "Dir X [cos(angle)]:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 300, 0xFF0000, "Dir Y [sin(angle)]:");
+
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 100, 0xFFFF00, gcvt(cub2d->raycast.delta_x, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 120, 0xFFFF00, gcvt(cub2d->raycast.delta_y, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 140, 0xFFFF00, gcvt(cub2d->raycast.delta_x * TILE_SIZE, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 160, 0xFFFF00, gcvt(cub2d->raycast.delta_y * TILE_SIZE, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 180, 0xFFFF00, gcvt(cub2d->raycast.dist_x, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 200, 0xFFFF00, gcvt(cub2d->raycast.dist_y, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 220, 0xFFFF00, gcvt(cub2d->raycast.len, 5, buf));
+
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 260, 0xFF0000, ft_itoa(cub2d->player.angle));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 280, 0xFF0000, gcvt(cub2d->player.dir_x, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 300, 0xFF0000, gcvt(cub2d->player.dir_y, 5, buf));
 }
 
 void    draw_game_2d(t_cub2d *cub2d)
 {
     ray_cast(cub2d, &cub2d->player);
     draw_cub2d(cub2d, &cub2d->mlx_inst);
-    //mlx_string_put(&cub2d->mlx_inst.mlx, &cub2d->mlx_inst.win, 0, 0, 0xFF00FF, "Test");
+    draw_direction(cub2d, cub2d->raycast);
     mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, cub2d->mlx_inst.img, 0, 0);
+    put_diagnostics(cub2d);
 }
 
 void    player_mvmt(int keycode, t_cub2d *cub2d)
