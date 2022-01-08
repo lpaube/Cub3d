@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/07 13:00:13 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/07 21:27:36 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 #else
 #include "key_codes_mac.h"
 #endif
+
+#define TILE_SIZE 20
+#define WIN_WIDTH 1000
+#define WIN_HEIGTH 600
+
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "mlx.h"
+#include "../libft/libft.h"
 
 // x and y represent the center of the circle
 typedef struct	s_circle
@@ -40,10 +50,9 @@ typedef struct s_player
         double dir_x;
         double dir_y;
         //Camera plane vectors
-        int r_plane_x;
-        int r_plane_y;
-        int l_plane_x;
-        int l_plane_y;
+        double  plane_x;
+        double  plane_y;
+        double  fov;
 } t_player;
 
 typedef struct s_mlx
@@ -69,6 +78,8 @@ typedef struct s_raycast
     int step_y;
     int map_x;
     int map_y;
+    double  ray_dir_x;
+    double  ray_dir_y;
 }   t_raycast;
 
 typedef struct s_rays

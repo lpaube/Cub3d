@@ -6,20 +6,13 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/07 13:45:41 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/07 21:31:10 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "mlx.h"
 #include "cub3d.h"
-#include "../libft/libft.h"
+#include "raycasting.h"
 
-#define TILE_SIZE 20
-#define WIN_WIDTH 1000
-#define WIN_HEIGTH 600
 
 // MAP STRUCTURE WILL BE PROVIDED BY MAFORTIN
 char map[24][24] = {
@@ -49,18 +42,7 @@ char map[24][24] = {
     {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'}
 };
 
-int map_width = 24;
-int map_height = 24;
-int player_x = 22;
-int player_y = 11;
-char    player_orien = 'W';
-
-double fov = 66;
-double planeX;
-double planeY;
-double cameraX;
-double rayDirX;
-double rayDirY;
+// Will be included in map struct
 
 double  deg_to_rad(int deg)
 {
@@ -69,8 +51,8 @@ double  deg_to_rad(int deg)
 
 void    update_vectors(t_player *player)
 {
-    planeX = tan(deg_to_rad(fov) / 2) * cos(deg_to_rad(player->angle - 90));
-    planeY = tan(deg_to_rad(fov) / 2) * -sin(deg_to_rad(player->angle - 90));
+    player->plane_x = tan(deg_to_rad(player->fov) / 2) * cos(deg_to_rad(player->angle - 90));
+    player->plane_y = tan(deg_to_rad(player->fov) / 2) * -sin(deg_to_rad(player->angle - 90));
     player->dir_x = 1 * cos(deg_to_rad(player->angle));
     player->dir_y = -(1 * sin(deg_to_rad(player->angle)));
 
@@ -78,61 +60,10 @@ void    update_vectors(t_player *player)
     player->tile_y = player->circle.mid_y / TILE_SIZE;
 }
 
-void    init_vectors(t_player *player)
-{
-    if (player->orien == 'N')
-    {
-        player->angle = 90;
-    }
-    if (player->orien == 'S')
-    {
-        player->angle = 270;
-    }
-    if (player->orien == 'E')
-    {
-        player->angle = 0;
-    }
-    if (player->orien == 'W')
-    {
-        player->angle = 180;
-    }
-    update_vectors(player);
-}
-
-t_player init_player(t_mlx *mlx_inst) //Will later take map struct as argument
-{
-    t_player    player;
-    t_circle      circle;
-
-    (void)mlx_inst;
-    circle.mid_x = (TILE_SIZE * player_x) + (TILE_SIZE / 2);
-    circle.mid_y = (TILE_SIZE * player_y) + (TILE_SIZE / 2);
-    circle.radius = TILE_SIZE / 4;
-    circle.color = 0x00FF00;
-    player.circle = circle;
-    player.orien = player_orien;
-    init_vectors(&player);
-    return (player);
-}
-
-t_mlx mlx_inst_init(t_cub2d *cub2d) // Will later take the map as argument
-{
-    t_mlx mlx_inst;
-
-    mlx_inst.mlx = mlx_init();
-    mlx_inst.win = mlx_new_window(mlx_inst.mlx, WIN_WIDTH, WIN_HEIGTH, "Cub3d");
-    mlx_inst.img = mlx_new_image(mlx_inst.mlx, WIN_WIDTH, WIN_HEIGTH);
-    mlx_inst.addr = mlx_get_data_addr(mlx_inst.img, &mlx_inst.bits_per_pixel,
-            &mlx_inst.line_len, &mlx_inst.endian);
-    cub2d->player = init_player(&mlx_inst);// will send the map with the player coordinates later
-    return (mlx_inst);
-}
-
 void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color)
 {
     char *pxl;
 
-    //printf("x: %d | y: %d\n", x, y);
     if (y >= WIN_HEIGTH || y < 0 || x >= WIN_WIDTH || x < 0)
         return ;
     pxl = mlx_inst->addr + (y * mlx_inst->line_len) + (x * (mlx_inst->bits_per_pixel / 8));
@@ -211,10 +142,10 @@ void    draw_direction(t_cub2d *cub2d)
 
     tmp_x = line.x2;
     tmp_y = line.y2;
-    line.x1 = tmp_x + planeX * TILE_SIZE * 2;
-    line.y1 = tmp_y + planeY * TILE_SIZE * 2;
-    line.x2 = tmp_x - planeX * TILE_SIZE * 2;
-    line.y2 = tmp_y - planeY * TILE_SIZE * 2;
+    line.x1 = tmp_x + cub2d->player.plane_x * TILE_SIZE * 2;
+    line.y1 = tmp_y + cub2d->player.plane_y * TILE_SIZE * 2;
+    line.x2 = tmp_x - cub2d->player.plane_x * TILE_SIZE * 2;
+    line.y2 = tmp_y - cub2d->player.plane_y * TILE_SIZE * 2;
     line.color = 0x00FFFF;
     draw_line(&cub2d->mlx_inst, line);
 }
@@ -225,8 +156,8 @@ void    draw_rays(t_cub2d *cub2d)
 
     line.x1 = cub2d->player.circle.mid_x;
     line.y1 = cub2d->player.circle.mid_y;
-    line.x2 = cub2d->player.circle.mid_x + (cub2d->raycast.len * rayDirX);
-    line.y2 = cub2d->player.circle.mid_y + (cub2d->raycast.len * rayDirY);
+    line.x2 = cub2d->player.circle.mid_x + (cub2d->raycast.len * cub2d->raycast.ray_dir_x);
+    line.y2 = cub2d->player.circle.mid_y + (cub2d->raycast.len * cub2d->raycast.ray_dir_y);
     line.color = 0xFFFFFF;
     draw_line(&cub2d->mlx_inst, line);
 }
@@ -240,22 +171,23 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
 {
     int hit;
     int x;
+    double  camera_x;
 
     x = -1;
     cub2d->rays = malloc(sizeof(t_rays) * WIN_WIDTH);
     //while (++x < WIN_WIDTH)
     for (x = 0; x < WIN_WIDTH; x += 1)
     {
-        cameraX = 2 * x / ((double)WIN_WIDTH - 1) - 1;
-        rayDirX = player->dir_x + planeX * cameraX;
-        rayDirY = player->dir_y + planeY * cameraX;
+        camera_x = 2 * x / ((double)WIN_WIDTH - 1) - 1;
+        cub2d->raycast.ray_dir_x = player->dir_x + player->plane_x * camera_x;
+        cub2d->raycast.ray_dir_y = player->dir_y + player->plane_y * camera_x;
 
         cub2d->raycast.map_x = player->tile_x;
         cub2d->raycast.map_y = player->tile_y;
-        cub2d->raycast.delta_x = fabs(1 / rayDirX);
-        cub2d->raycast.delta_y = fabs(1 / rayDirY);
+        cub2d->raycast.delta_x = fabs(1 / cub2d->raycast.ray_dir_x);
+        cub2d->raycast.delta_y = fabs(1 / cub2d->raycast.ray_dir_y);
         hit = 0;
-        if (rayDirX < 0)
+        if (cub2d->raycast.ray_dir_x < 0)
         {
             cub2d->raycast.step_x = -1;
             cub2d->raycast.dist_x = (player->circle.mid_x - (cub2d->raycast.map_x * TILE_SIZE)) * cub2d->raycast.delta_x;
@@ -265,7 +197,7 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
             cub2d->raycast.step_x = 1;
             cub2d->raycast.dist_x = ((cub2d->raycast.map_x + 1) * TILE_SIZE - player->circle.mid_x) * cub2d->raycast.delta_x;
         }
-        if (rayDirY < 0)
+        if (cub2d->raycast.ray_dir_y < 0)
         {
             cub2d->raycast.step_y = -1;
             cub2d->raycast.dist_y = (player->circle.mid_y - (cub2d->raycast.map_y * TILE_SIZE)) * cub2d->raycast.delta_y;
@@ -317,13 +249,10 @@ void ray_cast(t_cub2d *cub2d, t_player *player)
         if ((x + 1) % (WIN_WIDTH / 10) == 0 || x == 0 || x == WIN_WIDTH - 1)
         {
             draw_rays(cub2d);
-            //printf("x: %d | rays[x].len: %f | rays[x].face: %c\n", x, cub2d->rays[x].len, cub2d->rays[x].face);
-            //printf("dir_x: %f | dir_y: %f | planeX: %f | planeY: %f | rayDirX: %f | rayDirY: %f | cameraX: %f\n", player->dir_x, player->dir_y, planeX, planeY, rayDirX, rayDirY, cameraX);
         }
         t_rect square = {.x = (cub2d->raycast.map_x * TILE_SIZE) + 1, .y = cub2d->raycast.map_y * TILE_SIZE + 1, .width = TILE_SIZE - 1, .heigth = TILE_SIZE - 1, .color = 0xFF0000};
         draw_rect(&cub2d->mlx_inst, square);
     }
-    //printf("-\n");
 }
 
 void	draw_cub2d(t_cub2d *cub2d, t_mlx *mlx_inst)
@@ -408,17 +337,17 @@ void    put_diagnostics(t_cub2d *cub2d)
 
     mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 240, 0xFFFF00, "Cam angle:");
     mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 260, 0xFFFF00, "FOV (deg)");
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 280, 0xFFFF00, "Plane X:");
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 300, 0xFFFF00, "Plane Y:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 280, 0xFFFF00, "Plane x:");
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 500, 300, 0xFFFF00, "Plane y:");
 
     mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 160, 0xFF0000, ft_itoa(cub2d->player.angle));
     mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 180, 0xFF0000, gcvt(cub2d->player.dir_x, 5, buf));
     mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 200, 0xFF0000, gcvt(cub2d->player.dir_y, 5, buf));
 
     mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 240, 0xFFFF00, ft_itoa(cub2d->player.angle - 90));
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 260, 0xFFFF00, ft_itoa(fov));
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 280, 0xFFFF00, gcvt(planeX, 5, buf));
-    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 300, 0xFFFF00, gcvt(planeY, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 260, 0xFFFF00, ft_itoa(cub2d->player.fov));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 280, 0xFFFF00, gcvt(cub2d->player.plane_x, 5, buf));
+    mlx_string_put(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win, 650, 300, 0xFFFF00, gcvt(cub2d->player.plane_y, 5, buf));
 }
 
 void    game_loop_2d(t_cub2d *cub2d)
@@ -477,7 +406,6 @@ void    player_mvmt(int keycode, t_cub2d *cub2d)
         cub2d->player.angle = 359;
     }
 }
-
 
 int key_press(int keycode, t_cub2d *cub2d)
 {
