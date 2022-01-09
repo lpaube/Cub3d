@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 22:16:30 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 10:57:04 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,17 @@ int	click_close(void *param)
 	exit(0);
 }
 
+int	mouse_mvmt(int x, int y, t_cub2d *cub2d)
+{
+	cub2d->mouse_x = x;
+	cub2d->mouse_y = y;
+	put_diagnostics(cub2d);
+	return (0);
+}
+
 int	hook_handler(t_cub2d *cub2d)
 {
+	mlx_hook(cub2d->mlx_inst.win, 6, 1L << 6, mouse_mvmt, cub2d);
 	mlx_hook(cub2d->mlx_inst.win, 2, 1L << 0, key_press, cub2d);
 	mlx_hook(cub2d->mlx_inst.win, 17, 0, click_close, cub2d);
 	return (0);

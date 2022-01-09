@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:32:25 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 22:44:41 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 10:04:13 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ void	draw_direction(t_cub2d *cub2d)
 	line.x2 = tmp_x - cub2d->player.plane_x * cub2d->tile_size * 2;
 	line.y2 = tmp_y - cub2d->player.plane_y * cub2d->tile_size * 2;
 	line.color = 0x00FFFF;
-	printf("draw_direction1\n");
 	draw_line(&cub2d->mlx_inst, line);
-	printf("draw_direction2\n");
 }
 
 void	draw_rays(t_cub2d *cub2d, int x)

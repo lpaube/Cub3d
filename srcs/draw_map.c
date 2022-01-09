@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:48:47 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 23:07:37 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 10:03:58 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,12 @@ void	draw_map_grids(t_cub2d *cub2d)
 	while (++i <= map_height)
 	{
 		line.x1 = 0;
-		printf("drawmapgrids0\n");
 		line.x2 = cub2d->tile_size * map_width;
-		printf("drawmapgrids1\n");
 		line.y1 = cub2d->tile_size * i;
-		printf("drawmapgrids2\n");
 		line.y2 = cub2d->tile_size * i;
-		printf("drawmapgrids3\n");
 		line.color = 0xAAAAAA;
 		draw_line(&cub2d->mlx_inst, line);
-		printf("drawmapgrids4\n");
 	}
-	printf("drawmapgrids10\n");
 	i = -1;
 	while (++i <= map_width)
 	{
@@ -88,11 +82,7 @@ void	draw_map_grids(t_cub2d *cub2d)
 
 void	draw_map(t_cub2d *cub2d)
 {
-	printf("drawmap1\n");
 	draw_map_contour(cub2d);
-	printf("drawmap2\n");
 	draw_map_squares(cub2d);
-	printf("drawmap3\n");
 	draw_map_grids(cub2d);
-	printf("drawmap4\n");
 }

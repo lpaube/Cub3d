@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 23:03:54 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 11:10:42 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_player
         //Camera plane vectors
         double  plane_x;
         double  plane_y;
+		double	mvmt;
         double  fov;
 } t_player;
 
@@ -101,6 +102,10 @@ typedef struct s_cub2d
     t_raycast   raycast;
     t_rays      *rays;
 	int		tile_size;
+	int		mouse_x;
+	int		mouse_y;
+	int		prev_mouse_x;
+	int		prev_mouse_y;
 } t_cub2d;
 
 // These are the attributes that I need for the 2d part

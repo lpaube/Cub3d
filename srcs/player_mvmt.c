@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 22:13:07 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 10:12:35 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	has_collision(t_cub2d *cub2d, int mvmt)
 		return (1);
 	if (has_clipping(cub2d, newtile_x, newtile_y))
 	{
-		printf("OUCH!\n");
 		return (1);
 	}
 	return (0);
@@ -51,18 +50,18 @@ void	player_mvmt(int keycode, t_cub2d *cub2d)
 {
 	if (keycode == MAIN_W)
 	{
-		if (!has_collision(cub2d, 2))
+		if (!has_collision(cub2d, cub2d->player.mvmt))
 		{
-			cub2d->player.circle.mid_x += 2 * cub2d->player.dir_x;
-			cub2d->player.circle.mid_y += 2 * cub2d->player.dir_y;
+			cub2d->player.circle.mid_x += cub2d->player.mvmt * cub2d->player.dir_x;
+			cub2d->player.circle.mid_y += cub2d->player.mvmt * cub2d->player.dir_y;
 		}
 	}
 	if (keycode == MAIN_S)
 	{
-		if (!has_collision(cub2d, -2))
+		if (!has_collision(cub2d, -cub2d->player.mvmt))
 		{
-			cub2d->player.circle.mid_x -= 2 * cub2d->player.dir_x;
-			cub2d->player.circle.mid_y -= 2 * cub2d->player.dir_y;
+			cub2d->player.circle.mid_x -= cub2d->player.mvmt * cub2d->player.dir_x;
+			cub2d->player.circle.mid_y -= cub2d->player.mvmt * cub2d->player.dir_y;
 		}
 	}
 	if (keycode == MAIN_A)
