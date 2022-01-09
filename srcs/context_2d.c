@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/09 11:28:54 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 14:50:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,26 @@ void	put_diagnostics(t_cub2d *cub2d)
 
 void	game_loop_2d(t_cub2d *cub2d)
 {
-	draw_map(cub2d);
-	draw_player(&cub2d->mlx_inst, cub2d->player);
+	if (cub2d->debug == 2)
+	{
+		draw_map(cub2d);
+		draw_player(&cub2d->mlx_inst, cub2d->player);
+	}
 	ray_cast(cub2d);
-	draw_direction(cub2d);
-	mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win,
-		cub2d->mlx_inst.img, 0, 0);
-	put_diagnostics(cub2d);
+	if (cub2d->debug == 2)
+	{
+		draw_direction(cub2d);
+		mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win,
+				cub2d->mlx_inst.img, 0, 0);
+		put_diagnostics(cub2d);
+	}
 }
 
-void	context_2d(void)
+void	context_2d(int debug)
 {
 	t_cub2d	cub2d;
 
+	cub2d.debug = debug;
 	cub2d.mlx_inst = mlx_inst_init(&cub2d);
 	cub2d.player = init_player(&cub2d);
 	cub2d.mouse_x = 0;

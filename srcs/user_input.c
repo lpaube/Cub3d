@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/01/09 10:57:04 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 15:01:59 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	mouse_mvmt(int x, int y, t_cub2d *cub2d)
 {
 	cub2d->mouse_x = x;
 	cub2d->mouse_y = y;
-	put_diagnostics(cub2d);
+	if (cub2d->debug == 2)
+		put_diagnostics(cub2d);
 	return (0);
 }
 

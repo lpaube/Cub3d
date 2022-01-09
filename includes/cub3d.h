@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/09 11:10:42 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 15:00:56 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 #include "mlx.h"
 #include "../libft/libft.h"
 
-void	context_2d(void);
+void	context_2d(int debug);
 
 // x and y represent the center of the circle
 typedef struct	s_circle
@@ -106,6 +106,7 @@ typedef struct s_cub2d
 	int		mouse_y;
 	int		prev_mouse_x;
 	int		prev_mouse_y;
+	int		debug;
 } t_cub2d;
 
 // These are the attributes that I need for the 2d part
