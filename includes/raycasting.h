@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:22:04 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 19:57:22 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 20:11:04 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	draw_line(t_mlx *mlx_inst, t_line line);
 void	draw_direction(t_cub2d *cub2d);
 void    draw_rays(t_cub2d *cub2d, int x);
 void	draw_seen_square(t_cub2d *cub2d);
-
-
 void	draw_map(t_cub2d *cub2d);
 void	draw_player(t_mlx *mlx_inst, t_player player);
 
 void    ray_cast(t_cub2d *cub2d);
 int     hook_handler(t_cub2d *cub2d);
 void    game_loop_2d(t_cub2d *cub2d);
+
+void	player_mvmt(int keycode, t_cub2d *cub2d);

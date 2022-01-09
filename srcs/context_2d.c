@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 19:43:25 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 20:40:32 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	put_diagnostics(t_cub2d *cub2d)
 	mlx_string_put(m.mlx, m.win, 500, 260, 0xFFFF00, "FOV (deg)");
 	mlx_string_put(m.mlx, m.win, 500, 280, 0xFFFF00, "Plane x:");
 	mlx_string_put(m.mlx, m.win, 500, 300, 0xFFFF00, "Plane y:");
+	mlx_string_put(m.mlx, m.win, 500, 340, 0xFFFF00, "Tile x:");
+	mlx_string_put(m.mlx, m.win, 500, 360, 0xFFFF00, "Tile y:");
 	mlx_string_put(m.mlx, m.win, 650, 160, 0xFF0000, ft_itoa(p.angle));
 	mlx_string_put(m.mlx, m.win, 650, 180, 0xFF0000, gcvt(p.dir_x, 5, buf));
 	mlx_string_put(m.mlx, m.win, 650, 200, 0xFF0000, gcvt(p.dir_y, 5, buf));
@@ -55,6 +57,8 @@ void	put_diagnostics(t_cub2d *cub2d)
 	mlx_string_put(m.mlx, m.win, 650, 260, 0xFFFF00, ft_itoa(p.fov));
 	mlx_string_put(m.mlx, m.win, 650, 280, 0xFFFF00, gcvt(p.plane_x, 5, buf));
 	mlx_string_put(m.mlx, m.win, 650, 300, 0xFFFF00, gcvt(p.plane_y, 5, buf));
+	mlx_string_put(m.mlx, m.win, 650, 340, 0xFFFF00, ft_itoa(p.tile_x));
+	mlx_string_put(m.mlx, m.win, 650, 360, 0xFFFF00, ft_itoa(p.tile_y));
 }
 
 void	game_loop_2d(t_cub2d *cub2d)
