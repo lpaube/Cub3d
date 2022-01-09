@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 21:09:27 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 21:11:06 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	has_clipping(t_cub2d *cub2d, int newtile_x, int newtile_y)
 	return (0);
 }
 
-int has_collision(t_cub2d *cub2d, int mvmt)
+int	has_collision(t_cub2d *cub2d, int mvmt)
 {
-	int newpos_x;
-	int newpos_y;
+	int	newpos_x;
+	int	newpos_y;
 	int	newtile_x;
 	int	newtile_y;
-	
+
 	newpos_x = cub2d->player.circle.mid_x + mvmt * cub2d->player.dir_x;
 	newpos_y = cub2d->player.circle.mid_y + mvmt * cub2d->player.dir_y;
 	newtile_x = newpos_x / TILE_SIZE;
@@ -47,7 +47,7 @@ int has_collision(t_cub2d *cub2d, int mvmt)
 	return (0);
 }
 
-void    player_mvmt(int keycode, t_cub2d *cub2d)
+void	player_mvmt(int keycode, t_cub2d *cub2d)
 {
 	if (keycode == MAIN_W)
 	{
