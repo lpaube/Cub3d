@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:13:24 by laube             #+#    #+#             */
-/*   Updated: 2022/01/09 11:43:37 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 14:58:04 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_player init_player(t_cub2d *cub2d)
 	t_player	player;
 	t_circle	circle;
 	
-	(void)cub2d;
 	circle.mid_x = (cub2d->tile_size * player_x) + (cub2d->tile_size / 2);
 	circle.mid_y = (cub2d->tile_size * player_y) + (cub2d->tile_size / 2);
 	circle.radius = cub2d->tile_size / 4;
@@ -89,13 +88,10 @@ void	set_win_dimensions(t_cub2d *cub2d, t_mlx *mlx_inst)
 {
 	mlx_inst->win_width = 1280;
 	mlx_inst->win_height = 720;
-	cub2d->tile_size = (mlx_inst->win_width - 200) / map_width;
-	if (mlx_inst->win_height / map_height < cub2d->tile_size)
-	{
-		cub2d->tile_size = mlx_inst->win_height / map_height;
-		mlx_inst->win_width = cub2d->tile_size * map_width + 200;
-	}
 	mlx_inst->game_width = mlx_inst->win_width - 200;
+	cub2d->tile_size = (mlx_inst->game_width) / map_width;
+	if (mlx_inst->win_height / map_height < cub2d->tile_size)
+		cub2d->tile_size = mlx_inst->win_height / map_height;
 }
 
 t_mlx mlx_inst_init(t_cub2d *cub2d)
@@ -108,6 +104,6 @@ t_mlx mlx_inst_init(t_cub2d *cub2d)
 	mlx_inst.win = mlx_new_window(mlx_inst.mlx, mlx_inst.win_width, mlx_inst.win_height, "Cub3d");
 	mlx_inst.img = mlx_new_image(mlx_inst.mlx, mlx_inst.win_width, mlx_inst.win_height);
 	mlx_inst.addr = mlx_get_data_addr(mlx_inst.img, &mlx_inst.bits_per_pixel,
-		&mlx_inst.line_len, &mlx_inst.endian);
+			&mlx_inst.line_len, &mlx_inst.endian);
 	return (mlx_inst);
 }

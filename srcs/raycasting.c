@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 22:31:56 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 14:59:54 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,10 @@ void	ray_cast(t_cub2d *cub2d)
 		}
 		if ((x + 1) % (cub2d->mlx_inst.win_width / 10) == 0 || x == 0 || x == cub2d->mlx_inst.win_width - 1)
 		{
-			draw_rays(cub2d, x);
+			if (cub2d->debug == 2)
+				draw_rays(cub2d, x);
 		}
-		draw_seen_square(cub2d);
+		if (cub2d->debug == 2)
+			draw_seen_square(cub2d);
 	}
 }
