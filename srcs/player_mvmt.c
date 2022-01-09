@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_mvmt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 21:11:06 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 22:13:07 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	has_collision(t_cub2d *cub2d, int mvmt)
 
 	newpos_x = cub2d->player.circle.mid_x + mvmt * cub2d->player.dir_x;
 	newpos_y = cub2d->player.circle.mid_y + mvmt * cub2d->player.dir_y;
-	newtile_x = newpos_x / TILE_SIZE;
-	newtile_y = newpos_y / TILE_SIZE;
+	newtile_x = newpos_x / cub2d->tile_size;
+	newtile_y = newpos_y / cub2d->tile_size;
 	if (map[newtile_y][newtile_x] == '1')
 		return (1);
 	if (has_clipping(cub2d, newtile_x, newtile_y))

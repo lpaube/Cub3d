@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   context_2d.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 21:16:59 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 23:11:10 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double	deg_to_rad(int deg)
 	return (deg * (M_PI / 180));
 }
 
-void	update_vectors(t_player *player)
+void	update_vectors(t_cub2d *cub2d, t_player *player)
 {
 	player->plane_x = tan(deg_to_rad(player->fov) / 2)
 		* cos(deg_to_rad(player->angle - 90));
@@ -26,8 +26,8 @@ void	update_vectors(t_player *player)
 		* -sin(deg_to_rad(player->angle - 90));
 	player->dir_x = 1 * cos(deg_to_rad(player->angle));
 	player->dir_y = -(1 * sin(deg_to_rad(player->angle)));
-	player->tile_x = player->circle.mid_x / TILE_SIZE;
-	player->tile_y = player->circle.mid_y / TILE_SIZE;
+	player->tile_x = player->circle.mid_x / cub2d->tile_size;
+	player->tile_y = player->circle.mid_y / cub2d->tile_size;
 }
 
 void	put_diagnostics(t_cub2d *cub2d)
@@ -63,13 +63,25 @@ void	put_diagnostics(t_cub2d *cub2d)
 
 void	game_loop_2d(t_cub2d *cub2d)
 {
+	printf("hello0\n");
 	draw_map(cub2d);
+	printf("hello1\n");
 	draw_player(&cub2d->mlx_inst, cub2d->player);
+	printf("hello2\n");
 	ray_cast(cub2d);
+	printf("hello3\n");
 	draw_direction(cub2d);
+	printf("hello4\n");
 	mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win,
 		cub2d->mlx_inst.img, 0, 0);
+	printf("hello5\n");
 	put_diagnostics(cub2d);
+}
+
+int	set_tile_size(t_mlx mlx_inst)
+{
+	// Add something here..
+	cub2d.mlx_inst.game_width / map_width;
 }
 
 void	context_2d(void)
@@ -77,7 +89,13 @@ void	context_2d(void)
 	t_cub2d	cub2d;
 
 	cub2d.mlx_inst = mlx_inst_init(&cub2d);
+	printf("test1\n");
+	cub2d.tile_size = set_tile_size(cub2d.mlx_inst);
+	printf("test2\n");
+	cub2d.player = init_player(&cub2d);
+	printf("test3\n");
 	game_loop_2d(&cub2d);
+	printf("test4\n");
 	hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
 }

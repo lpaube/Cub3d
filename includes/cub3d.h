@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 18:24:35 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 23:03:54 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #endif
 
 #define TILE_SIZE 20
-#define WIN_WIDTH 1000
-#define WIN_HEIGTH 600
+#define WIN_WIDTH 1280
+#define WIN_HEIGTH 720
 
 #include <math.h>
 #include <stdio.h>
@@ -66,6 +66,9 @@ typedef struct s_mlx
     int bits_per_pixel;
     int	line_len;
     int	endian;
+	int		win_width;
+	int		win_height;
+	int		game_width;
 }	t_mlx;
 
 typedef struct s_raycast
@@ -97,6 +100,7 @@ typedef struct s_cub2d
     t_player    player;
     t_raycast   raycast;
     t_rays      *rays;
+	int		tile_size;
 } t_cub2d;
 
 // These are the attributes that I need for the 2d part

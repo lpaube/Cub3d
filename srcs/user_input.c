@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 21:14:42 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 22:16:30 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	key_press(int keycode, t_cub2d *cub2d)
 		|| keycode == MAIN_S || keycode == MAIN_D)
 	{
 		player_mvmt(keycode, cub2d);
-		update_vectors(&cub2d->player);
+		update_vectors(cub2d, &cub2d->player);
 	}
 	game_loop_2d(cub2d);
 	return (0);

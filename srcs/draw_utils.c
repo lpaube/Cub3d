@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:31:20 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 15:58:48 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 22:47:57 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color)
 {
 	char	*pxl;
 
-	if (y >= WIN_HEIGTH || y < 0 || x >= WIN_WIDTH || x < 0)
+	if (y >= mlx_inst->win_width || y < 0 || x >= mlx_inst->win_height || x < 0)
 		return ;
 	pxl = mlx_inst->addr + (y * mlx_inst->line_len)
 		+ (x * (mlx_inst->bits_per_pixel / 8));
@@ -35,8 +35,8 @@ void	draw_rect(t_mlx *mlx_inst, t_rect rect)
 		i = -1;
 		while (++i < rect.width)
 		{
-			if ((rect.x + i < WIN_WIDTH && rect.x + i >= 0)
-				&& (rect.y + j < WIN_HEIGTH && rect.y + j >= 0))
+			if ((rect.x + i < mlx_inst->win_width && rect.x + i >= 0)
+				&& (rect.y + j < mlx_inst->win_height && rect.y + j >= 0))
 			{
 				my_pixel_put(mlx_inst, rect.x + i, rect.y + j, rect.color);
 			}

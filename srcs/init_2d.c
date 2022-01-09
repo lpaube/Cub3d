@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_2d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:13:24 by laube             #+#    #+#             */
-/*   Updated: 2022/01/08 21:02:13 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 23:05:27 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,18 @@ t_player init_player(t_cub2d *cub2d)
 	t_circle	circle;
 	
 	(void)cub2d;
-	circle.mid_x = (TILE_SIZE * player_x) + (TILE_SIZE / 2);
-	circle.mid_y = (TILE_SIZE * player_y) + (TILE_SIZE / 2);
-	circle.radius = TILE_SIZE / 4;
+	circle.mid_x = (cub2d->tile_size * player_x) + (cub2d->tile_size / 2);
+	circle.mid_y = (cub2d->tile_size * player_y) + (cub2d->tile_size / 2);
+	circle.radius = cub2d->tile_size / 4;
 	circle.color = 0x00FF00;
 	player.circle = circle;
 	player.orien = player_orien;
 	player.fov = 66;
-	init_vectors(&player);
+	init_vectors(cub2d, &player);
 	return (player);
 }
 
-t_mlx mlx_inst_init(t_cub2d *cub2d) // Will later take the map as argument
-{
-	t_mlx mlx_inst;
-
-	mlx_inst.mlx = mlx_init();
-	mlx_inst.win = mlx_new_window(mlx_inst.mlx, WIN_WIDTH, WIN_HEIGTH, "Cub3d");
-	mlx_inst.img = mlx_new_image(mlx_inst.mlx, WIN_WIDTH, WIN_HEIGTH);
-	mlx_inst.addr = mlx_get_data_addr(mlx_inst.img, &mlx_inst.bits_per_pixel,
-		&mlx_inst.line_len, &mlx_inst.endian);
-	cub2d->player = init_player(cub2d);
-	return (mlx_inst);
-}
-
-void    init_vectors(t_player *player)
+void    init_vectors(t_cub2d *cub2d, t_player *player)
 {
 	if (player->orien == 'N')
 	{
@@ -94,5 +81,22 @@ void    init_vectors(t_player *player)
 	{
 		player->angle = 180;
 	}
-	update_vectors(player);
+	update_vectors(cub2d, player);
+}
+
+t_mlx mlx_inst_init(t_cub2d *cub2d)
+{
+	t_mlx mlx_inst;
+
+	(void)cub2d;
+	mlx_inst.win_width = 1280;
+	mlx_inst.win_height = 720;
+	mlx_inst.game_width = mlx_inst.win_width - 200;
+	mlx_inst.mlx = mlx_init();
+	mlx_inst.win = mlx_new_window(mlx_inst.mlx, mlx_inst.win_width, mlx_inst.win_height, "Cub3d");
+	mlx_inst.img = mlx_new_image(mlx_inst.mlx, mlx_inst.win_width, mlx_inst.win_height);
+	mlx_inst.addr = mlx_get_data_addr(mlx_inst.img, &mlx_inst.bits_per_pixel,
+		&mlx_inst.line_len, &mlx_inst.endian);
+	//cub2d->player = init_player(cub2d);
+	return (mlx_inst);
 }
