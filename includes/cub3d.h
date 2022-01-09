@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/07 21:27:36 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 18:24:35 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 #include <stdlib.h>
 #include "mlx.h"
 #include "../libft/libft.h"
+
+void	context_2d(void);
 
 // x and y represent the center of the circle
 typedef struct	s_circle
@@ -80,6 +82,7 @@ typedef struct s_raycast
     int map_y;
     double  ray_dir_x;
     double  ray_dir_y;
+	double	camera_x;
 }   t_raycast;
 
 typedef struct s_rays
