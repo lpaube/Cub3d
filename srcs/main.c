@@ -6,7 +6,7 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 15:17:16 by laube             #+#    #+#             */
-/*   Updated: 2022/01/09 15:17:18 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 15:21:47 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 	int	debug;
 	int	i;
 
-	(void)argc;
 	debug = 0;
 	if (ft_strcmp(argv[1], "-2d") == 0)
 	{
@@ -26,7 +25,13 @@ int	main(int argc, char **argv)
 		i = 0;
 		while (argv[++i])
 			argv[i] = argv[i + 1];
+		argc--;
 	}
+	// MAFORTIN: ADD YOUR MAP PARSING HERE
+
+
+
+	// MAFORTIN: ADD YOUR MAP PARSING ABOVE
 	context_2d(debug);
 	return (0);
 }
