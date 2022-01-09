@@ -6,14 +6,16 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2021/12/24 19:21:07 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 14:13:53 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/08 20:03:18 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "raycasting.h"
 
-int main(void)
+int	main(void)
 {
-    handle_2d();
-    return (0);
+	context_2d();
+	return (0);
 }

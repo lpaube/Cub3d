@@ -4,7 +4,7 @@ SRCS_DIR =	srcs
 INCL_DIR =	includes
 OBJ_DIR =	objs
 
-SRCS =	main.c handle_2d.c
+SRCS =	main.c context_2d.c
 OBJS =	$(SRCS:.c=.o)
 
 SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))
