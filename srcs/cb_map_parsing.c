@@ -6,13 +6,14 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/06 14:44:14 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:55:47 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "../includes/parsing.h"
 #include "../libft/libft.h"
 
@@ -46,6 +47,26 @@ char	**cb_get_content(char *file)
 	return (line);
 }
 
+//Trim spaces, skip positions, parse map file and validate.
+bool	cb_map_parsing(char **content, t_map *map_info)
+{
+	int	i;
+	int	ret;
+
+	i = 0;
+	while (content[i])
+	{
+		ret = cb_line_type(content[i])
+		if (ret == 1)
+			break ;
+		i++;
+	}
+	if (ret != 1)
+		return (false);
+	return (cb_map_parsing_loop(content, map_info));
+	
+}
+
 //Parsing map file with argv[1]
 bool	cb_parsing_main(int argc, char **argv, t_map *map_info)
 {
@@ -62,5 +83,12 @@ bool	cb_parsing_main(int argc, char **argv, t_map *map_info)
 		free(map_info);
 		return (false);
 	}
+	if (cb_map_parsing(content, map_info) == false)
+	{
+		free(map_info);
+		ft_free_tab(content);
+		return (false);
+	}
+	ft_free_tab(content);
 	return (true);
 }

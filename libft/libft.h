@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:41:40 by mafortin          #+#    #+#             */
-/*   Updated: 2021/12/10 15:56:13 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/07 15:07:30 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ char		*ft_append_string(char *src, char c);
 char		*ft_add_newline(char *str);
 char		*ft_trim_string(char *str, char c);
 int			ft_nbline_file(int fd);
+bool		ft_empty_line(char *string);
 
 #endif
