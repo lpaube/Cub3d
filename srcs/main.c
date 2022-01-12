@@ -5,25 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 15:30:50 by laube             #+#    #+#             */
-/*   Updated: 2022/01/07 12:46:44 by mafortin         ###   ########.fr       */
+/*   Created: 2022/01/09 15:17:16 by laube             #+#    #+#             */
+/*   Updated: 2022/01/12 15:00:41 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "parsing.h"
-#include <stdlib.h>
+#include "../includes/parsing.h"
+#include "raycasting.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
+	int	debug;
+	int	i;
 	t_map *map_info;
-
-	(void)argv;
-	(void)argc;
+	
+	debug = 0;
 	map_info = malloc(sizeof(t_map));
+	if (ft_strcmp(argv[1], "-2d") == 0)
+	{
+		debug = 2;
+		i = 0;
+		while (argv[++i])
+			argv[i] = argv[i + 1];
+		argc--;
+	}
 	if (cb_parsing_main(argc, argv, map_info) == false)
+	{
+		printf("FALSE\n");
 		return (1);
-	handle_2d();
-	free(map_info);
+	}
+	context_2d(debug);
 	return (0);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cb_map_parsing_utils.c                             :+:      :+:    :+:   */
+/*   cb_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 15:13:11 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/10 12:55:14 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/12 15:29:42 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	cb_line_type(char *string)
 	int		i;
 
 	i = 0;
-	while (string[i] == SPACES)
+	while (string[i] == ' ')
 		i++;
 	if (!string[i])
 		return (0);
@@ -55,27 +55,12 @@ int	cb_line_type(char *string)
 	}
 }
 
-//Trim spaces, skip positions, parse map file and validate.
-bool	cb_map_parsing(char **content, t_map *map_info)
+bool	cb_valid_tile(char c)
 {
-	int	i;
-	int	ret;
-
-	i = 0;
-	while (content[i])
-	{
-		ret = cb_line_type(content[i])
-		if (ret == 1)
-			break ;
-		i++;
-	}
-	if (ret != 1)
+	if (c == '\0' || c == '1' || c == 'N' || c == 'S'
+		|| c == 'W' || c == 'W' || c == 'E' || c == 'F'
+			|| c == 'C' || c == '0' || c == ' ')
+		return (true);
+	else
 		return (false);
-	return (cb_map_parsing_loop(content, map_info));
-	
-}
-
-bool	cb_valid_map(t_map *map_info, bool start)
-{
-	
 }

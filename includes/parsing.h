@@ -6,13 +6,15 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:36:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/07 15:35:22 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/12 15:59:48 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#ifndef PARSING_H
+# define PARSING_H
 
-# define SPACES " \n\t\v\f\r"
+#include <stdbool.h>
+#include <stddef.h>
 
 typedef struct s_map
 {
@@ -29,4 +31,12 @@ typedef struct s_map
 
 bool	cb_parsing_main(int argc, char **argv, t_map *map_info);
 int		cb_nbline_file(char *file);
-bool	cb_clear_map(char **content, t_map *map_info);
+bool	cb_map_parsing(char **content, t_map *map_info);
+int		cb_line_type(char *string);
+bool	cb_valid_tile(char c);
+int		cb_map_end(char **content, int start, int j, t_map *map_info);
+char	**cb_add_mapline(t_map *map_info, char *string);
+char	*cb_line_dup(const char *s1, size_t len);
+int		cb_mapwidth(char **content, int i, int depth);
+
+#endif

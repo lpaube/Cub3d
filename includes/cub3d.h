@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/05 17:09:53 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/09 15:00:56 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@
 #else
 #include "key_codes_mac.h"
 #endif
+
+#define TILE_SIZE 20
+#define WIN_WIDTH 1280
+#define WIN_HEIGTH 720
+
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "mlx.h"
+#include "../libft/libft.h"
+
+void	context_2d(int debug);
 
 // x and y represent the center of the circle
 typedef struct	s_circle
@@ -40,10 +52,10 @@ typedef struct s_player
         double dir_x;
         double dir_y;
         //Camera plane vectors
-        int r_plane_x;
-        int r_plane_y;
-        int l_plane_x;
-        int l_plane_y;
+        double  plane_x;
+        double  plane_y;
+		double	mvmt;
+        double  fov;
 } t_player;
 
 typedef struct s_mlx
@@ -55,6 +67,9 @@ typedef struct s_mlx
     int bits_per_pixel;
     int	line_len;
     int	endian;
+	int		win_width;
+	int		win_height;
+	int		game_width;
 }	t_mlx;
 
 typedef struct s_raycast
@@ -69,13 +84,29 @@ typedef struct s_raycast
     int step_y;
     int map_x;
     int map_y;
+    double  ray_dir_x;
+    double  ray_dir_y;
+	double	camera_x;
 }   t_raycast;
+
+typedef struct s_rays
+{
+    double  len;
+    char    face;
+} t_rays;
 
 typedef struct s_cub2d
 {
     t_mlx   mlx_inst;
     t_player    player;
     t_raycast   raycast;
+    t_rays      *rays;
+	int		tile_size;
+	int		mouse_x;
+	int		mouse_y;
+	int		prev_mouse_x;
+	int		prev_mouse_y;
+	int		debug;
 } t_cub2d;
 
 // These are the attributes that I need for the 2d part
@@ -86,11 +117,6 @@ typedef struct s_map_placeholder
     int map_height;
     char    orientation;
 } t_map_placeholder;
-
-typedef struct s_game
-{
-    t_player player;
-} t_game;
 
 typedef struct s_line
 {
