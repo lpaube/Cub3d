@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 15:17:16 by laube             #+#    #+#             */
-/*   Updated: 2022/01/12 15:00:41 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/14 05:16:43 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	}
 	if (cb_parsing_main(argc, argv, map_info) == false)
 	{
-		printf("FALSE\n");
+		printf("Map error\n");
 		return (1);
 	}
 	context_2d(debug);

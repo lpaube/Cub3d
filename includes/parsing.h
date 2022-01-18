@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:36:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/12 15:59:48 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/13 15:45:00 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ int		cb_map_end(char **content, int start, int j, t_map *map_info);
 char	**cb_add_mapline(t_map *map_info, char *string);
 char	*cb_line_dup(const char *s1, size_t len);
 int		cb_mapwidth(char **content, int i, int depth);
+bool	cb_wall_vert(t_map *map_info, int i, int i2, int j);
+bool	cb_wall_hor(t_map *map_info, int i, int j2, int j);
 
 #endif

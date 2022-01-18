@@ -13,23 +13,74 @@ char	*cb_line_dup(const char *s1, size_t len)
 {
 	char	*cpy;
 	size_t	i;
-	size_t	s1_len;
 
 	i = 0;
-	cpy = ft_calloc(sizeof(*s1), len + 1);
-	s1_len = ft_strlen(s1) + 1;
+	cpy = malloc(sizeof(char) * len);
 	if (!cpy)
 		return (0);
-	while (i < len)
+	while (s1[i])
 	{
-		if (i >= s1_len)
-			cpy[i] = ' ';
-		else
-			cpy[i] = s1[i];
+		while(s1[i] == ' ')
+		{
+			cpy[i] = '-';
+			i++;
+		}
+		if (s1[i] == '\0')
+			break ;
+		cpy[i] = s1[i];
 		i++; 
 	}
-	cpy[i] = '\0';
+	while (++i <= len)
+		cpy[i] = '-';
 	return (cpy);
+}
+
+bool	cb_wall_hor(t_map *map_info, int i, int j2, int j)
+{
+	bool	ret;
+
+	ret = false;
+	while (j2 >= 0)
+	{
+		if (map_info->map[i][j2] == '1')
+			ret = true;
+		if (j2 == 0)
+			break ;
+		j2--;
+	}
+	if (ret == false)
+		return (false);
+	while (j < map_info->map_width)
+	{
+		if (map_info->map[i][j] == '1')
+			return (true);
+		j++;
+	}
+	return (false);
+}
+
+bool	cb_wall_vert(t_map *map_info, int i, int i2, int j)
+{
+	bool	ret;
+
+	ret = false;
+	while (i2 >= 0)
+	{
+		if (map_info->map[i2][j] == '1')
+			ret = true;
+		if (i2 == 0)
+			break ;
+		i2--;
+	}
+	if (ret == false)
+		return (false);
+	while (i < map_info->map_height)
+	{
+		if (map_info->map[i][j] == '1')
+			return (true);
+		i++;
+	}
+	return (false);
 }
 
 //Return the index representing the end of the map.
@@ -70,5 +121,6 @@ int	cb_mapwidth(char **content, int i, int depth)
 			len_save = len;
 		i++;
 	}
+	printf("Depth : %i Len : %i Index : %i\n", depth, len_save, i);
 	return (len_save);
 }

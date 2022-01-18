@@ -8,12 +8,10 @@
 #include "../libft/libft.h"
 
 //Map file in array of string
-char	**cb_get_content(char *file)
+char	**cb_get_content(char *file, int fd, char **line)
 {
-	char	**line;
 	int		ret;
 	int		i;
-	int		fd;
 
 	i = cb_nbline_file(file);
 	if (i <= 0)
@@ -44,7 +42,7 @@ bool	cb_parsing_main(int argc, char **argv, t_map *map_info)
 
 	if (argc != 2)
 		return (false);
-	content = cb_get_content(argv[1]);
+	content = cb_get_content(argv[1], 0, NULL);
 	if (!content)
 		return (false);
 	if (cb_map_parsing(content, map_info) == false)
