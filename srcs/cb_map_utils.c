@@ -15,23 +15,18 @@ char	*cb_line_dup(const char *s1, size_t len)
 	size_t	i;
 
 	i = 0;
-	cpy = malloc(sizeof(char) * len);
+	cpy = ft_fill(len, '-');
 	if (!cpy)
 		return (0);
 	while (s1[i])
 	{
 		while(s1[i] == ' ')
-		{
-			cpy[i] = '-';
 			i++;
-		}
 		if (s1[i] == '\0')
 			break ;
 		cpy[i] = s1[i];
 		i++; 
 	}
-	while (++i <= len)
-		cpy[i] = '-';
 	return (cpy);
 }
 
@@ -43,7 +38,12 @@ bool	cb_wall_hor(t_map *map_info, int i, int j2, int j)
 	while (j2 >= 0)
 	{
 		if (map_info->map[i][j2] == '1')
+		{
 			ret = true;
+			break ;
+		}
+		if (map_info->map[i][j2] == '-')
+			return (false);
 		if (j2 == 0)
 			break ;
 		j2--;
@@ -54,6 +54,8 @@ bool	cb_wall_hor(t_map *map_info, int i, int j2, int j)
 	{
 		if (map_info->map[i][j] == '1')
 			return (true);
+		if (map_info->map[i][j] == '-')
+			return (false);
 		j++;
 	}
 	return (false);
@@ -67,7 +69,12 @@ bool	cb_wall_vert(t_map *map_info, int i, int i2, int j)
 	while (i2 >= 0)
 	{
 		if (map_info->map[i2][j] == '1')
+		{
 			ret = true;
+			break ;
+		}
+		if (map_info->map[i2][j] == '-')
+			return (false);
 		if (i2 == 0)
 			break ;
 		i2--;
@@ -78,6 +85,8 @@ bool	cb_wall_vert(t_map *map_info, int i, int i2, int j)
 	{
 		if (map_info->map[i][j] == '1')
 			return (true);
+		if (map_info->map[i][j] == '-')
+			return (false);
 		i++;
 	}
 	return (false);
@@ -121,6 +130,5 @@ int	cb_mapwidth(char **content, int i, int depth)
 			len_save = len;
 		i++;
 	}
-	printf("Depth : %i Len : %i Index : %i\n", depth, len_save, i);
 	return (len_save);
 }

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 15:13:11 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/12 15:29:42 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/25 12:31:58 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	cb_line_type(char *string)
 		i++;
 	if (!string[i])
 		return (0);
-	if (string[i] == '1')
+	if (string[i] == '1' || string[i] == '0')
 		return (1);
 	if (string[i] == 'N' || string[i] == 'S' || string[i] == 'W' || string[i] == 'E')
 		return (2);

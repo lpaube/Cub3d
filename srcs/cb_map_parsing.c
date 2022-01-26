@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/17 16:17:36 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:27:07 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ bool	cb_map_parsing_loop(char **content, t_map *map_info, int i)
 
 	index = 0;
 	map_info->map = ft_calloc(sizeof(char *), map_info->map_height + 1);
-	map_info->map_width = cb_mapwidth(content, i, map_info->map_height);
 	while (index < map_info->map_height)
 	{
 		if (cb_valid_mapline(content[index + i], 0, 0) == -1)
@@ -111,7 +110,7 @@ bool	cb_map_parsing(char **content, t_map *map_info)
 		return (false);
 	ret = cb_map_end(content, i, 0, map_info);
 	map_info->map_height = ret - i;
-	if (ret == -1)
+	if (map_info->map_height < 3)
 		return (false);
 	return (cb_map_parsing_loop(content, map_info, i));
 }
