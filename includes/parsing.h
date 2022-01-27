@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:36:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/13 15:45:00 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/27 14:25:07 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+
+# define DIRECTION "NSEW"
 
 typedef struct s_map
 {

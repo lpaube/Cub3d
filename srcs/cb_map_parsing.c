@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/26 16:27:07 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/27 14:42:57 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,30 @@
 #include <stdio.h>
 #include "../includes/parsing.h"
 #include "../libft/libft.h"
+
+
+bool	cb_playerpos(t_map *map_info, int i, int j, bool done)
+{
+	while (map_info->map[i])
+	{
+		j = 0;
+		while (map_info->map[i][j])
+		{
+			if (ft_strchr(DIRECTION, map_info->map[i][j]) != NULL)
+			{
+				if (done == true)
+					return (false);
+				done = true;
+				map_info->player_y = i;
+				map_info->player_x = j;
+				map_info->orientation = map_info->map[i][j]; 
+			}
+			j++;
+		}
+		i++;
+	}
+	return (done);
+}
 
 //Validate if line countains only characters allowed in a map.
 //" 1, 0, S, W, E, N"
@@ -86,7 +110,7 @@ bool	cb_map_parsing_loop(char **content, t_map *map_info, int i)
 		index++;
 	}
 	ft_print_matrice(map_info->map);
-	if (cb_closedmap(map_info, 0 , 0) == false)//|| cb_playerpos(map_info) == false)
+	if (cb_closedmap(map_info, 0 , 0) == false || cb_playerpos(map_info, 0 , 0 , false) == false)
 		return (false);
 	return (true);
 }
