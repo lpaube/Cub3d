@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:36:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/27 14:25:07 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:29:52 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,22 @@
 
 # define DIRECTION "NSEW"
 
+//Texture:
+//Index 0 = North Texture
+//Index 1 = East Texture
+//Index 2 = South Texture
+//Index 3 = West Texture
 typedef struct s_map
 {
 	char	**map;
 	char	**texture;
-	char	*ceiling;
-	char	*floor;
 	char	orientation;
 	int		map_width;
 	int		map_height;
 	int		player_x;
 	int		player_y;
+	int		*floor;
+	int		*ceilling;
 }	t_map;
 
 bool	cb_parsing_main(int argc, char **argv, t_map *map_info);
