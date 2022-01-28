@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:50:40 by mafortin          #+#    #+#             */
-/*   Updated: 2021/12/10 15:57:17 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:26:20 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int	ft_nbline_file(int fd)
 			count++;
 	}
 	close (fd);
-	return (count);
+	return (count + 1);
 }

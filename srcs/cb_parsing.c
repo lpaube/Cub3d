@@ -7,6 +7,53 @@
 #include "../includes/parsing.h"
 #include "../libft/libft.h"
 
+bool	cb_find_texture(char **content, char *ori, char **texture, int x)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (content[i])
+	{
+		j = 0;
+		while (content[i][j] == ' ')
+			j++;
+		if (ft_strncmp(content[i] + j, ori, 2) == 0)
+		{
+			texture[x] = ft_strdup(content[i] + j + 3);
+			return (true);
+		}
+		i++;
+	}
+	return (false);
+}
+
+bool	cb_texture_parsing(char **content, t_map *map_info)
+{
+	map_info->texture = malloc(sizeof(char *) * 4);
+	if (cb_find_texture(content, "NO", map_info->texture, 0) == false)
+	{
+		//ft_free_tab(map_info->texture);
+		return (false);
+	}
+	if (cb_find_texture(content, "EA", map_info->texture, 1) == false)
+	{
+		//ft_free_tab(map_info->texture);
+		return (false);
+	}
+	if (cb_find_texture(content, "SO", map_info->texture, 2) == false)
+	{
+		//ft_free_tab(map_info->texture);
+		return (false);
+	}
+	if (cb_find_texture(content, "WE", map_info->texture, 3) == false)
+	{
+		//ft_free_tab(map_info->texture);
+		return (false);
+	}
+	return (true);
+}
+
 //Map file in array of string
 char	**cb_get_content(char *file, int fd, char **line)
 {
@@ -16,7 +63,7 @@ char	**cb_get_content(char *file, int fd, char **line)
 	i = cb_nbline_file(file);
 	if (i <= 0)
 		return (NULL);
-	line = malloc(sizeof(char *) * i + 1);
+	line = ft_calloc(sizeof(char *), i + 1);
 	fd = open(file, O_RDONLY);
 	ret = 1;
 	i = 0;
@@ -25,7 +72,6 @@ char	**cb_get_content(char *file, int fd, char **line)
 		ret = get_next_line(fd, line + i);
 		if (ret < 0)
 		{
-			ft_putstr_fd("Error\nMap content corrupted\n", 2);//p-e a changer
 			close (fd);
 			return (NULL);
 		}
@@ -50,6 +96,12 @@ bool	cb_parsing_main(int argc, char **argv, t_map *map_info)
 		ft_free_tab(content);
 		return (false);
 	}
+	if (cb_texture_parsing(content, map_info) == false)
+	{
+		ft_free_tab(content);
+		return (false);
+	}
+	printf("North : %s\nEast : %s\nSouth : %s\nWest : %s\n", map_info->texture[0], map_info->texture[1], map_info->texture[2], map_info->texture[3]);
 	ft_free_tab(content);
 	return (true);
 }

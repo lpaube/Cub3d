@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/27 14:42:57 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:20:17 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ bool	cb_map_parsing_loop(char **content, t_map *map_info, int i)
 		map_info->map[index] = cb_line_dup(content[i + index], map_info->map_width);
 		index++;
 	}
-	ft_print_matrice(map_info->map);
 	if (cb_closedmap(map_info, 0 , 0) == false || cb_playerpos(map_info, 0 , 0 , false) == false)
 		return (false);
 	return (true);

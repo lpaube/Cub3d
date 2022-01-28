@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:36:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/28 13:29:52 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:37:54 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 //Index 1 = East Texture
 //Index 2 = South Texture
 //Index 3 = West Texture
+//Floor and ceilling color:
+//Index 0 = R
+//Index 1 = G
+//Index 2 = B
 typedef struct s_map
 {
 	char	**map;
