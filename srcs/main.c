@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 15:17:16 by laube             #+#    #+#             */
-/*   Updated: 2022/01/14 05:16:43 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/29 00:07:03 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 		printf("Map error\n");
 		return (1);
 	}
-	context_2d(debug);
+	//The info about the rays are in cub2d.
+	context_2d(debug, map_info);
 	return (0);
 }

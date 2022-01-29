@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/01/09 14:59:54 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/29 00:02:34 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void	ray_cast(t_cub2d *cub2d)
 	int		x;
 
 	x = -1;
-	cub2d->rays = malloc(sizeof(t_rays) * cub2d->mlx_inst.win_width);
+	cub2d->ray_num = cub2d->mlx_inst.win_width;
+	cub2d->rays = malloc(sizeof(t_rays) * cub2d->ray_num);
 	while (++x < cub2d->mlx_inst.win_width)
 	{
 		hit = 0;
@@ -107,7 +108,7 @@ void	ray_cast(t_cub2d *cub2d)
 		while (hit == 0)
 		{
 			inc_ray_len(cub2d);
-			if (map[cub2d->raycast.map_y][cub2d->raycast.map_x] == '1')
+			if (cub2d->map.map[cub2d->raycast.map_y][cub2d->raycast.map_x] == '1')
 			{
 				hit = 1;
 				get_ray_side(cub2d, x);

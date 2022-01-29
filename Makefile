@@ -5,7 +5,7 @@ INCL_DIR =	includes
 OBJ_DIR =	objs
 
 SRCS =	main.c context_2d.c cb_parsing.c cb_map_parsing.c cb_parsing_utils.c\
-		cb_map_utils.c
+		cb_map_utils.c show_3d.c
 OBJS =	$(SRCS:.c=.o)
 
 SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))

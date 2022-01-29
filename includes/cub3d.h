@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/09 15:00:56 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/29 00:16:14 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 #include <stdlib.h>
 #include "mlx.h"
 #include "../libft/libft.h"
-
-void	context_2d(int debug);
+#include "parsing.h"
 
 // x and y represent the center of the circle
 typedef struct	s_circle
@@ -97,10 +96,12 @@ typedef struct s_rays
 
 typedef struct s_cub2d
 {
+	t_map	map;
     t_mlx   mlx_inst;
     t_player    player;
     t_raycast   raycast;
     t_rays      *rays;
+	int		ray_num;
 	int		tile_size;
 	int		mouse_x;
 	int		mouse_y;
@@ -137,6 +138,7 @@ typedef struct s_rect
     int	color;
 }	t_rect;
 
+void	context_2d(int debug, t_map *map);
 void    handle_2d(void);
 
 #endif

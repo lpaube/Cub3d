@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/01/09 10:12:35 by laube            ###   ########.fr       */
+/*   Updated: 2022/01/28 23:41:49 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	has_clipping(t_cub2d *cub2d, int newtile_x, int newtile_y)
 
 	tile_y = cub2d->player.tile_y;
 	tile_x = cub2d->player.tile_x;
-	if (map[tile_y][newtile_x]
-			&& map[newtile_y][tile_x] == '1')
+	if (cub2d->map.map[tile_y][newtile_x]
+			&& cub2d->map.map[newtile_y][tile_x] == '1')
 		return (1);
 	return (0);
 }
@@ -37,7 +37,7 @@ int	has_collision(t_cub2d *cub2d, int mvmt)
 	newpos_y = cub2d->player.circle.mid_y + mvmt * cub2d->player.dir_y;
 	newtile_x = newpos_x / cub2d->tile_size;
 	newtile_y = newpos_y / cub2d->tile_size;
-	if (map[newtile_y][newtile_x] == '1')
+	if (cub2d->map.map[newtile_y][newtile_x] == '1')
 		return (1);
 	if (has_clipping(cub2d, newtile_x, newtile_y))
 	{
