@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 13:08:44 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/30 14:23:20 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/30 17:33:58 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ bool	cb_parsing_main(int argc, char **argv, t_map *map_info)
 	if (!content)
 		return (false);
 	if (cb_valid_content(content) == false || cb_map_parsing(content, map_info) == false ||
-		cb_texture_parsing(content, map_info) == false)
+		cb_texture_parsing(content, map_info) == false || cb_color_parsing(content, map_info, 'F') == false ||
+			cb_color_parsing(content, map_info, 'C') == false)
 	{
 		ft_free_tab(content);
 		return (false);
