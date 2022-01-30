@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:36:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/28 13:37:54 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/30 14:11:36 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ char	*cb_line_dup(const char *s1, size_t len);
 int		cb_mapwidth(char **content, int i, int depth);
 bool	cb_wall_vert(t_map *map_info, int i, int i2, int j);
 bool	cb_wall_hor(t_map *map_info, int i, int j2, int j);
+bool	cb_valid_content(char **content);
+bool	cb_texture_parsing(char **content, t_map *map_info);
 
 #endif

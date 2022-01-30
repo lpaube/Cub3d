@@ -1,14 +1,14 @@
 NAME =	cub3d
 
 SRCS_DIR =		srcs
-PARSING_DIR =	srcs/parsing
+PARSING_DIR =	parsing
 INCL_DIR =		includes
 OBJ_DIR =		objs
 
 SRCS =	main.c context_2d.c
 
-PARSING = cb_parsing.c cb_map_parsing.c cb_parsing_utils.c\
-			cb_map_utils.c
+PARSING =	cb_parsing.c cb_map_parsing.c cb_parsing_utils.c\
+			cb_map_utils.c cb_texture_color.c
 
 OBJS =	$(SRCS:.c=.o) $(PARSING:.c=.o)
 
@@ -45,7 +45,7 @@ endif
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c $(PARSING_DIR)/%.c
 	@$(CC) $(CFLAGS) $(INCLS) -c $< -o $@
 
 all: $(NAME)

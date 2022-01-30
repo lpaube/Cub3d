@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 15:13:11 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/28 17:17:01 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/01/30 14:05:47 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ int	cb_nbline_file(char *file)
 	return (nb_line);
 }
 
+//Check if a line start with an invalid identifier (!= 1, 0, N, S, W, E, F or C)
+bool	cb_valid_content(char **content)
+{
+	int	i;
+
+	while (content[i])
+	{
+		if (cb_line_type(content[i]) == 4)
+			return (false);
+		else
+			i++;
+	}
+	return (true);
+}
+
 //Tell if a line contains info about map / pos or color.
 //0 for empty line, 1 for map, 2 for pos, 3 for color and 4 for anything else.
 int	cb_line_type(char *string)
@@ -49,10 +64,7 @@ int	cb_line_type(char *string)
 	if (string[i] == 'F' || string[i] == 'C')
 		return (3);
 	else
-	{
-		ft_putstr_fd("Error\nMap format error\n", 1);
 		return (4);
-	}
 }
 
 bool	cb_valid_tile(char c)
