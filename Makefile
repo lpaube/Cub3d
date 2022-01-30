@@ -1,14 +1,19 @@
 NAME =	cub3d
 
-SRCS_DIR =	srcs
-INCL_DIR =	includes
-OBJ_DIR =	objs
+SRCS_DIR =		srcs
+PARSING_DIR =	srcs/parsing
+INCL_DIR =		includes
+OBJ_DIR =		objs
 
-SRCS =	main.c context_2d.c cb_parsing.c cb_map_parsing.c cb_parsing_utils.c\
-		cb_map_utils.c show_3d.c
-OBJS =	$(SRCS:.c=.o)
+SRCS =	main.c context_2d.c
+
+PARSING = cb_parsing.c cb_map_parsing.c cb_parsing_utils.c\
+			cb_map_utils.c
+
+OBJS =	$(SRCS:.c=.o) $(PARSING:.c=.o)
 
 SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))
+PARSING_PATH = $(addprefix $(PARSING_DIR)/, $(PARSING))
 OBJS_PATH =	$(addprefix $(OBJ_DIR)/, $(OBJS))
 
 CC =	gcc

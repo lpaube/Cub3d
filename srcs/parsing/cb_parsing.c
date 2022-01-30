@@ -1,4 +1,14 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cb_parsing.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/30 13:08:44 by mafortin          #+#    #+#             */
+/*   Updated: 2022/01/30 13:10:00 by mafortin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdbool.h>
@@ -33,7 +43,7 @@ bool	cb_texture_parsing(char **content, t_map *map_info)
 	map_info->texture = malloc(sizeof(char *) * 4);
 	if (cb_find_texture(content, "NO", map_info->texture, 0) == false)
 	{
-		//ft_free_tab(map_info->texture);
+		//ft_free_tab(map_info->texture;
 		return (false);
 	}
 	if (cb_find_texture(content, "EA", map_info->texture, 1) == false)
