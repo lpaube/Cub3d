@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_3d.c                                          :+:      :+:    :+:   */
+/*   ft_number_word.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/29 00:12:02 by laube             #+#    #+#             */
-/*   Updated: 2022/01/30 17:09:31 by mafortin         ###   ########.fr       */
+/*   Created: 2022/01/30 17:40:23 by mafortin          #+#    #+#             */
+/*   Updated: 2022/01/30 17:48:17 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-void	show_3d(t_cub2d *cub2d)
+int	ft_number_word(char *string)
 {
-	int i;
+	int	nb;
+	int	i;
 
-	i = 0;
-	while (i < cub2d->ray_num)
+	nb = 0;
+	if (!string)
+		return (-1);
+	while (string[i])
 	{
-		printf("i: %d | len: %f | face: %c\n", i, cub2d->rays[i].len, cub2d->rays[i].face);
+		if (string[i] != ' ')
+		{
+			nb++;
+			while (string[i] != ' ' && string[i])
+			{	
+				i++;
+				if (!string[i])
+					return(nb);
+			}
+		}
 		i++;
 	}
+	return (nb);
 }

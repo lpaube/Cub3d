@@ -1,4 +1,14 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cb_parsing.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/30 13:08:44 by mafortin          #+#    #+#             */
+/*   Updated: 2022/01/30 17:33:58 by mafortin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdbool.h>
@@ -7,52 +17,6 @@
 #include "../includes/parsing.h"
 #include "../libft/libft.h"
 
-bool	cb_find_texture(char **content, char *ori, char **texture, int x)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (content[i])
-	{
-		j = 0;
-		while (content[i][j] == ' ')
-			j++;
-		if (ft_strncmp(content[i] + j, ori, 2) == 0)
-		{
-			texture[x] = ft_strdup(content[i] + j + 3);
-			return (true);
-		}
-		i++;
-	}
-	return (false);
-}
-
-bool	cb_texture_parsing(char **content, t_map *map_info)
-{
-	map_info->texture = malloc(sizeof(char *) * 4);
-	if (cb_find_texture(content, "NO", map_info->texture, 0) == false)
-	{
-		//ft_free_tab(map_info->texture);
-		return (false);
-	}
-	if (cb_find_texture(content, "EA", map_info->texture, 1) == false)
-	{
-		//ft_free_tab(map_info->texture);
-		return (false);
-	}
-	if (cb_find_texture(content, "SO", map_info->texture, 2) == false)
-	{
-		//ft_free_tab(map_info->texture);
-		return (false);
-	}
-	if (cb_find_texture(content, "WE", map_info->texture, 3) == false)
-	{
-		//ft_free_tab(map_info->texture);
-		return (false);
-	}
-	return (true);
-}
 
 //Map file in array of string
 char	**cb_get_content(char *file, int fd, char **line)
@@ -91,17 +55,13 @@ bool	cb_parsing_main(int argc, char **argv, t_map *map_info)
 	content = cb_get_content(argv[1], 0, NULL);
 	if (!content)
 		return (false);
-	if (cb_map_parsing(content, map_info) == false)
+	if (cb_valid_content(content) == false || cb_map_parsing(content, map_info) == false ||
+		cb_texture_parsing(content, map_info) == false || cb_color_parsing(content, map_info, 'F') == false ||
+			cb_color_parsing(content, map_info, 'C') == false)
 	{
 		ft_free_tab(content);
 		return (false);
 	}
-	if (cb_texture_parsing(content, map_info) == false)
-	{
-		ft_free_tab(content);
-		return (false);
-	}
-	printf("North : %s\nEast : %s\nSouth : %s\nWest : %s\n", map_info->texture[0], map_info->texture[1], map_info->texture[2], map_info->texture[3]);
 	ft_free_tab(content);
 	return (true);
 }
