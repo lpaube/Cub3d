@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/01/29 00:02:34 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/02 17:49:45 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,13 @@ void	get_ray_side(t_cub2d *cub2d, int x)
 		else
 			cub2d->rays[x].face = 'S';
 	}
+	cub2d->rays[x].height = (int)(cub2d->mlx_inst.win_height / cub2d->rays[x].len);
+	cub2d->rays[x].draw_top = -(cub2d->rays[x].height / 2) + (cub2d->mlx_inst.win_height / 2);
+	if (cub2d->rays[x].draw_top < 0)
+		cub2d->rays[x].draw_top = 0;
+	cub2d->rays[x].draw_bottom = (cub2d->rays[x].height / 2) + (cub2d->mlx_inst.win_height / 2);
+	if (cub2d->rays[x].draw_bottom >= cub2d->mlx_inst.win_height)
+		cub2d->rays[x].draw_bottom = cub2d->mlx_inst.win_height - 1;
 }
 
 void	ray_cast(t_cub2d *cub2d)

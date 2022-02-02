@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/01/29 00:16:14 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/02 17:44:57 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ typedef struct s_raycast
 typedef struct s_rays
 {
     double  len;
+	int		height;
+	int		draw_top;
+	int		draw_bottom;
     char    face;
 } t_rays;
 
