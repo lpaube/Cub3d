@@ -29,6 +29,25 @@ int	cb_valid_mapline(char *string, int i, int start)
 	return (0);
 }
 
+//Check if a line start with an invalid identifier (!= 1, 0, N, S, W, E, F or C)
+bool	cb_valid_content(char **content)
+{
+	int	i;
+
+	i = 0;
+	while (content[i])
+	{
+		if (cb_line_type(content[i]) == 4)
+		{
+			printf("Error\nMap file: Invalid entry\n");
+			return (false);
+		}
+		else
+			i++;
+	}
+	return (true);
+}
+
 //Loop through the map and by the help of cb_check_wall
 //Verify every direction of a position to check if it colides with a wall.
 //If not, return false and end the program.
@@ -44,6 +63,7 @@ bool	cb_closedmap(t_map *map_info, int i, int j)
 				if (cb_wall_vert(map_info, i, i, j) == false
 					|| cb_wall_hor(map_info, i, j, j) == false)
 				{
+					printf("Error\nMap: Not closed by walls\n");
 					ft_free_tab(map_info->map);
 					return (false);
 				}

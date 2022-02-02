@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/01 15:30:17 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 16:41:02 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ bool	cb_playerpos(t_map *map_info, int i, int j, bool done)
 			{
 				if (done == true)
 					return (false);
+
 				done = true;
 				map_info->player_y = i;
 				map_info->player_x = j;
@@ -39,7 +40,6 @@ bool	cb_playerpos(t_map *map_info, int i, int j, bool done)
 	}
 	return (done);
 }
-
 
 //Loop through content as soon as we find a 1 as first char.
 //Validate line by line and add string to the map.
@@ -56,14 +56,18 @@ bool	cb_map_parsing_loop(char **content, t_map *map_info, int i)
 		{
 			if (index == 0)
 				ft_free_tab(map_info->map);
+			printf("Error\nMap: Invalid char\n");
 			return (false);
 		}
 		map_info->map[index] = cb_line_dup(content[i + index], map_info->map_width);
 		index++;
 	}
-	if (cb_closedmap(map_info, 0 , 0) == false || cb_playerpos(map_info, 0 , 0 , false) == false)
+	if (cb_playerpos(map_info, 0 , 0 , false) == false)
+	{
+		printf("Error\nMap: player position invalid\n");
 		return (false);
-	return (true);
+	}
+	return (cb_closedmap(map_info, 0, 0));
 }
 
 //Check if the map is the last info of the file. Return -1 if its not.
@@ -131,6 +135,9 @@ bool	cb_map_parsing(char **content, t_map *map_info)
 	ret = cb_map_end(content, i, 0, map_info);
 	map_info->map_height = ret - i;
 	if (map_info->map_height < 3)
+	{
+		printf("Error\nMap: Invalid\n");
 		return (false);
+	}
 	return (cb_map_parsing_loop(content, map_info, i));
 }
