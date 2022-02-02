@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 13:06:44 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/30 13:08:39 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/01 15:29:07 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,30 +100,6 @@ bool	cb_wall_vert(t_map *map_info, int i, int i2, int j)
 		i++;
 	}
 	return (false);
-}
-
-//Return the index representing the end of the map.
-//-1 if an error is encountered.
-int	cb_map_end(char **content, int start, int j, t_map *map_info)
-{
-	int	len;
-
-	map_info->map_width = 0;
-	while (content[start])
-	{
-		j = 0;
-		len = ft_strlen(content[start]);
-		if (len >= map_info->map_width)
-			map_info->map_width = len;
-		while (content[start][j] == ' ')
-			j++;
-		if (cb_valid_tile(content[start][j]) == false)
-			return (-1);
-		if (content[start][j] != '1')
-			break ;
-		start++;
-	}
-	return (start);
 }
 
 //Return the len of the longest string in the map.

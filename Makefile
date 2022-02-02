@@ -7,7 +7,7 @@ OBJ_DIR =		objs
 
 SRCS =	main.c context_2d.c draw_map.c cb_parsing.c cb_map_parsing.c cb_parsing_utils.c\
 			draw_raycasting.c draw_utils.c init_2d.c cb_map_utils.c cb_texture_color.c\
-			player_mvmt.c raycasting.c show_3d.c user_input.c
+			player_mvmt.c raycasting.c show_3d.c user_input.c cb_valid_map.c
 
 PARSING =	cb_parsing.c cb_map_parsing.c cb_parsing_utils.c\
 			cb_map_utils.c cb_texture_color.c

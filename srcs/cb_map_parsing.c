@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/28 17:20:17 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/01 15:30:17 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <stdio.h>
 #include "../includes/parsing.h"
 #include "../libft/libft.h"
-
 
 bool	cb_playerpos(t_map *map_info, int i, int j, bool done)
 {
@@ -41,53 +40,6 @@ bool	cb_playerpos(t_map *map_info, int i, int j, bool done)
 	return (done);
 }
 
-//Validate if line countains only characters allowed in a map.
-//" 1, 0, S, W, E, N"
-//Return -1 if an error is encountered.
-int	cb_valid_mapline(char *string, int i, int start)
-{
-	while (string[i])
-	{
-		while (string[i] == ' ')
-			i++;
-		if (string[i] == '\0')
-			break ;
-		if (string[i] != '1' && string[i] != '0' && string[i] != 'N'
-			&& string[i] != 'S' && string[i] != 'W' && string[i] != 'E')
-				return (-1);
-		start = 1;
-		i++;
-	}
-	if (start == 0 && string[i] != '\0')
-		return (-1);
-	return (0);
-}
-
-//Loop through the map and by the help of cb_check_wall
-//Verify every direction of a position to check if it colides with a wall.
-//If not, return false and end the program.
-bool	cb_closedmap(t_map *map_info, int i, int j)
-{
-	while (map_info->map[i])
-	{
-		j = 0;
-		while (map_info->map[i][j])
-		{
-			if (map_info->map[i][j] != '1' && map_info->map[i][j] != '-')
-			{
-				if (cb_wall_vert(map_info, i, i, j) == false
-					|| cb_wall_hor(map_info, i, j, j) == false)
-				{
-					ft_free_tab(map_info->map);
-					return (false);
-				}
-			}
-			j++;
-		}
-		i++;
-	}
-	return (true);
-}
 
 //Loop through content as soon as we find a 1 as first char.
 //Validate line by line and add string to the map.
@@ -112,6 +64,51 @@ bool	cb_map_parsing_loop(char **content, t_map *map_info, int i)
 	if (cb_closedmap(map_info, 0 , 0) == false || cb_playerpos(map_info, 0 , 0 , false) == false)
 		return (false);
 	return (true);
+}
+
+//Check if the map is the last info of the file. Return -1 if its not.
+int	cb_map_order(char **content, int start)
+{
+	int	j;
+	int	cpy;
+	
+	cpy = start;
+	while (content[start])
+	{
+		j = 0;
+		while (content[start][j])
+		{
+			if (content[start][j] != ' ')
+				return (-1);
+			j++;
+		}
+		start++;
+	}
+	return (cpy);
+}
+
+//Return the index representing the end of the map.
+//-1 if an error is encountered.
+int	cb_map_end(char **content, int start, int j, t_map *map_info)
+{
+	int	len;
+
+	map_info->map_width = 0;
+	while (content[start])
+	{
+		j = 0;
+		len = ft_strlen(content[start]);
+		if (len >= map_info->map_width)
+			map_info->map_width = len;
+		while (content[start][j] == ' ')
+			j++;
+		if (cb_valid_tile(content[start][j]) == false)
+			return (-1);
+		if (content[start][j] != '1')
+			break ;
+		start++;
+	}
+	return (cb_map_order(content, start));
 }
 
 //Trim spaces, skip positions, parse map file and validate.

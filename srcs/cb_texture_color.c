@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 14:10:51 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/30 17:34:50 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 16:10:01 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,29 @@
 
 char	*cb_find_color(char **content, char type)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*save;
 
 	i = 0;
+	save = NULL;
 	while (content[i])
 	{
 		j = 0;
 		while (content[i][j] == ' ')
 			j++;
 		if (content[i][j] == type)
-			return (content[i] + j);
+		{
+			while (content[i][j + 1] == ' ')
+				j++;
+			if (save == NULL)
+				save = content[i] + j;
+			else
+				return (NULL);
+		}
 		i++;
 	}
-	return (NULL);
+	return (save);
 }
 
 bool	cb_valid_colorline(char *string)
@@ -103,17 +112,21 @@ bool	cb_find_texture(char **content, char *ori, char **texture, int x)
 			j++;
 		if (ft_strncmp(content[i] + j, ori, 2) == 0)
 		{
-			texture[x] = ft_strdup(content[i] + j + 3);
-			return (true);
+			if (texture[x] == NULL)
+				texture[x] = ft_strdup(content[i] + j + 3);
+			else
+				return (false);
 		}
 		i++;
 	}
-	return (false);
+	if (texture[x] == NULL)
+		return (false);
+	return (true);
 }
 
 bool	cb_texture_parsing(char **content, t_map *map_info)
 {
-	map_info->texture = malloc(sizeof(char *) * 4);
+	map_info->texture = ft_calloc(sizeof(char *), 4);
 	if (cb_find_texture(content, "NO", map_info->texture, 0) == false)
 	{
 		//ft_free_tab(map_info->texture;

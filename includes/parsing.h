@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:36:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/30 17:05:28 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/01 15:28:36 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ bool	cb_wall_hor(t_map *map_info, int i, int j2, int j);
 bool	cb_valid_content(char **content);
 bool	cb_texture_parsing(char **content, t_map *map_info);
 bool	cb_color_parsing(char **content, t_map *map_info, char type);
+bool	cb_closedmap(t_map *map_info, int i, int j);
+int		cb_valid_mapline(char *string, int i, int start);
 
 #endif
