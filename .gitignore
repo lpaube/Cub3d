@@ -3,3 +3,4 @@ cub3d
 *.swp
 *.swo
 .vscode
+.DS_Store

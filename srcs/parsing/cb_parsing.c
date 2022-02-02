@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 13:08:44 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/30 17:33:58 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 17:34:12 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../includes/parsing.h"
+#include "parsing.h"
 #include "../libft/libft.h"
 
 

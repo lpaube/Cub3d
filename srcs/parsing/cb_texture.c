@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cb_texture_color.c                                 :+:      :+:    :+:   */
+/*   cb_texture.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 14:10:51 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/02 16:39:59 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 17:33:11 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	cb_texture_parsing(char **content, t_map *map_info)
 {
 	bool	ret;
 
-	return = true;
+	ret = true;
 	map_info->texture = ft_calloc(sizeof(char *), 4);
 	if (cb_find_texture(content, "NO", map_info->texture, 0) == false)
 		ret  = false;
