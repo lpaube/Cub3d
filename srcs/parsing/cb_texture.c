@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 14:10:51 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/02 18:45:36 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 22:30:49 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,10 @@ bool	cb_texture_parsing(char **content, t_map *map_info)
 		ret = false;
 	if (ret == false)
 		printf("Error\nTexture\n");
+
+	// FOR TESTING PURPOSES
+	ret = true;
+	// END OF TESTING PURPOSES
+
 	return (ret);
 }
