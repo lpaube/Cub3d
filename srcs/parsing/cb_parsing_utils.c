@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 15:13:11 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/02 16:14:00 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 18:46:02 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	cb_line_type(char *string)
 		return (0);
 	if (string[i] == '1' || string[i] == '0')
 		return (1);
-	if (string[i] == 'N' || string[i] == 'S' || string[i] == 'W' || string[i] == 'E')
+	if (string[i] == 'N' || string[i] == 'S' || string[i] == 'W'
+		|| string[i] == 'E')
 		return (2);
 	if (string[i] == 'F' || string[i] == 'C')
 		return (3);
@@ -56,7 +57,7 @@ bool	cb_valid_tile(char c)
 {
 	if (c == '\0' || c == '1' || c == 'N' || c == 'S'
 		|| c == 'W' || c == 'W' || c == 'E' || c == 'F'
-			|| c == 'C' || c == '0' || c == ' ')
+		|| c == 'C' || c == '0' || c == ' ')
 		return (true);
 	else
 		return (false);

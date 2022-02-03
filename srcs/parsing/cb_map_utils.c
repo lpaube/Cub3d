@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 13:06:44 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/01 15:29:07 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 18:49:46 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,47 @@
 #include <stdio.h>
 #include "../includes/parsing.h"
 #include "../libft/libft.h"
+
+//Validate if line countains only characters allowed in a map.
+//" 1, 0, S, W, E, N"
+//Return -1 if an error is encountered.
+int	cb_valid_mapline(char *string, int i, int start)
+{
+	while (string[i])
+	{
+		while (string[i] == ' ')
+			i++;
+		if (string[i] == '\0')
+			break ;
+		if (string[i] != '1' && string[i] != '0' && string[i] != 'N'
+			&& string[i] != 'S' && string[i] != 'W' && string[i] != 'E')
+			return (-1);
+		start = 1;
+		i++;
+	}
+	if (start == 0 && string[i] != '\0')
+		return (-1);
+	return (0);
+}
+
+//Check if a line start with an invalid identifier (!= 1, 0, N, S, W, E, F or C)
+bool	cb_valid_content(char **content)
+{
+	int	i;
+
+	i = 0;
+	while (content[i])
+	{
+		if (cb_line_type(content[i]) == 4)
+		{
+			printf("Error\nMap file: Invalid entry\n");
+			return (false);
+		}
+		else
+			i++;
+	}
+	return (true);
+}
 
 //Copy map line and add spaces to fill the map up to the len 
 //of the longest string.
@@ -30,76 +71,14 @@ char	*cb_line_dup(const char *s1, size_t len)
 		return (0);
 	while (s1[i])
 	{
-		while(s1[i] == ' ')
+		while (s1[i] == ' ')
 			i++;
 		if (s1[i] == '\0')
 			break ;
 		cpy[i] = s1[i];
-		i++; 
-	}
-	return (cpy);
-}
-
-bool	cb_wall_hor(t_map *map_info, int i, int j2, int j)
-{
-	bool	ret;
-
-	ret = false;
-	while (j2 >= 0)
-	{
-		if (map_info->map[i][j2] == '1')
-		{
-			ret = true;
-			break ;
-		}
-		if (map_info->map[i][j2] == '-')
-			return (false);
-		if (j2 == 0)
-			break ;
-		j2--;
-	}
-	if (ret == false)
-		return (false);
-	while (j < map_info->map_width)
-	{
-		if (map_info->map[i][j] == '1')
-			return (true);
-		if (map_info->map[i][j] == '-')
-			return (false);
-		j++;
-	}
-	return (false);
-}
-
-bool	cb_wall_vert(t_map *map_info, int i, int i2, int j)
-{
-	bool	ret;
-
-	ret = false;
-	while (i2 >= 0)
-	{
-		if (map_info->map[i2][j] == '1')
-		{
-			ret = true;
-			break ;
-		}
-		if (map_info->map[i2][j] == '-')
-			return (false);
-		if (i2 == 0)
-			break ;
-		i2--;
-	}
-	if (ret == false)
-		return (false);
-	while (i < map_info->map_height)
-	{
-		if (map_info->map[i][j] == '1')
-			return (true);
-		if (map_info->map[i][j] == '-')
-			return (false);
 		i++;
 	}
-	return (false);
+	return (cpy);
 }
 
 //Return the len of the longest string in the map.

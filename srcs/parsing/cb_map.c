@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cb_map_parsing.c                                   :+:      :+:    :+:   */
+/*   cb_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/02 16:41:02 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:06:16 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ bool	cb_playerpos(t_map *map_info, int i, int j, bool done)
 			{
 				if (done == true)
 					return (false);
-
 				done = true;
 				map_info->player_y = i;
 				map_info->player_x = j;
-				map_info->orientation = map_info->map[i][j]; 
+				map_info->orientation = map_info->map[i][j];
 			}
 			j++;
 		}
@@ -59,10 +58,11 @@ bool	cb_map_parsing_loop(char **content, t_map *map_info, int i)
 			printf("Error\nMap: Invalid char\n");
 			return (false);
 		}
-		map_info->map[index] = cb_line_dup(content[i + index], map_info->map_width);
+		map_info->map[index] = cb_line_dup(content[i + index],
+				map_info->map_width);
 		index++;
 	}
-	if (cb_playerpos(map_info, 0 , 0 , false) == false)
+	if (cb_playerpos(map_info, 0, 0, false) == false)
 	{
 		printf("Error\nMap: player position invalid\n");
 		return (false);
@@ -75,7 +75,7 @@ int	cb_map_order(char **content, int start)
 {
 	int	j;
 	int	cpy;
-	
+
 	cpy = start;
 	while (content[start])
 	{

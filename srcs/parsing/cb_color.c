@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 16:39:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/02 17:52:41 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:10:10 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 #include <stdio.h>
 #include "../includes/parsing.h"
 #include "../libft/libft.h"
+
+char	*cb_colorloop(char **content, int i, int j, char *save)
+{
+	while (content[i][j + 1] == ' ')
+				j++;
+	if (save == NULL)
+		save = content[i] + j;
+	else
+	{
+		printf("Error\nCeilling or floor color duplicate\n");
+		return (NULL);
+	}
+}
 
 char	*cb_find_color(char **content, char type)
 {
@@ -32,15 +45,9 @@ char	*cb_find_color(char **content, char type)
 			j++;
 		if (content[i][j] == type)
 		{
-			while (content[i][j + 1] == ' ')
-				j++;
+			save = cb_colorloop(content, i, j, save);
 			if (save == NULL)
-				save = content[i] + j;
-			else
-			{
-				printf("Error\nCeilling or floor color duplicate\n");
 				return (NULL);
-			}
 		}
 		i++;
 	}
