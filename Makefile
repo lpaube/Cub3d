@@ -33,7 +33,7 @@ $(NAME): $(OBJ_DIR) $(OBJS_PATH)
 	@echo "- Compiled libft"
 	@make re --no-print-directory -C ./mlx_linux
 	@echo "- Compiled mlx_linux"
-	@$(CC) $(CFLAGS) -D _LINUX=yes srcs/*.c -Imlx_linux -Iincludes -Lmlx_linux -Llibft -lft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
+	@$(CC) $(CFLAGS) -D _LINUX=yes srcs/*.c srcs/parsing/*.c -Imlx_linux -Iincludes -Lmlx_linux -Llibft -lft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
 	@echo "- Compiled Cub3d obj files"
 	@echo "\\n\033[32;1m CUB3D HAS BEEN GENERATED \033[0m \\n"
 

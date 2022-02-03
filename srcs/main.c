@@ -6,12 +6,12 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 15:17:16 by laube             #+#    #+#             */
-/*   Updated: 2022/02/02 16:24:24 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 22:17:09 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "../includes/parsing.h"
+#include "parsing.h"
 #include "raycasting.h"
 
 int	main(int argc, char **argv)

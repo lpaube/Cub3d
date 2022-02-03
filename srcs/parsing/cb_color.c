@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 16:39:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/02 19:10:10 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/02 21:57:52 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*cb_colorloop(char **content, int i, int j, char *save)
 		printf("Error\nCeilling or floor color duplicate\n");
 		return (NULL);
 	}
+	return (NULL);
 }
 
 char	*cb_find_color(char **content, char type)
