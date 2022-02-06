@@ -6,11 +6,11 @@
 /*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:22:04 by laube             #+#    #+#             */
-/*   Updated: 2022/01/29 00:16:28 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/06 13:33:08 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_mlx   mlx_inst_init(t_cub2d *cub2d);
+t_mlx   mlx_inst_init(void);
 void    init_vectors(t_cub2d *cub2d, t_player *player);
 void    update_vectors(t_cub2d *cub2d, t_player *player);
  

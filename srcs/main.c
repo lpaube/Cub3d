@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 15:17:16 by laube             #+#    #+#             */
-/*   Updated: 2022/02/02 22:17:09 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/06 13:37:35 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@
 
 int	main(int argc, char **argv)
 {
+	t_mlx	mlx_main;
 	int	debug;
 	int	i;
 	t_map *map_info;
+	t_rays	*rays;
+	
 	
 	debug = 0;
+	mlx_main = mlx_inst_init();
 	map_info = malloc(sizeof(t_map));
 	if (ft_strcmp(argv[1], "-2d") == 0)
 	{
@@ -32,7 +36,7 @@ int	main(int argc, char **argv)
 	}
 	if (cb_parsing_main(argc, argv, map_info) == false)
 		return (1);
-	//The info about the rays are in cub2d.
-	context_2d(debug, map_info);
+	rays = context_2d(debug, map_info, mlx_main);
+	(void)rays;
 	return (0);
 }

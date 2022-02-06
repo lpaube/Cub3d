@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/02/02 17:49:45 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/02 23:28:44 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	get_ray_side(t_cub2d *cub2d, int x)
 			cub2d->rays[x].face = 'W';
 		else
 			cub2d->rays[x].face = 'E';
+		cub2d->rays[x].hit_pos = cub2d->player.tile_y + cub2d->rays[x].len * cub2d->raycast.ray_dir_y;
 	}
 	else if (cub2d->raycast.side == 1)
 	{
@@ -89,7 +90,9 @@ void	get_ray_side(t_cub2d *cub2d, int x)
 			cub2d->rays[x].face = 'N';
 		else
 			cub2d->rays[x].face = 'S';
+		cub2d->rays[x].hit_pos = cub2d->player.tile_x + cub2d->rays[x].len * cub2d->raycast.ray_dir_x;
 	}
+	cub2d->rays[x].hit_pos -= floor(cub2d->rays[x].hit_pos);
 	cub2d->rays[x].height = (int)(cub2d->mlx_inst.win_height / cub2d->rays[x].len);
 	cub2d->rays[x].draw_top = -(cub2d->rays[x].height / 2) + (cub2d->mlx_inst.win_height / 2);
 	if (cub2d->rays[x].draw_top < 0)

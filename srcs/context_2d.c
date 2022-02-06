@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/01/29 00:15:41 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/06 13:35:39 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,14 @@ void	game_loop_2d(t_cub2d *cub2d)
 	}
 }
 
-void	context_2d(int debug, t_map *map)
+t_rays	*context_2d(int debug, t_map *map, t_mlx mlx_inst)
 {
 	t_cub2d	cub2d;
 
 	cub2d.map = *map;
 	cub2d.debug = debug;
-	cub2d.mlx_inst = mlx_inst_init(&cub2d);
+	cub2d.mlx_inst = mlx_inst;
+	cub2d.tile_size = 20;
 	cub2d.player = init_player(&cub2d);
 	cub2d.mouse_x = 0;
 	cub2d.mouse_y = 0;
@@ -100,4 +101,5 @@ void	context_2d(int debug, t_map *map)
 	show_3d(&cub2d);
 	hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
+	return (cub2d.rays);
 }

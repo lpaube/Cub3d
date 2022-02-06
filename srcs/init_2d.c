@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:13:24 by laube             #+#    #+#             */
-/*   Updated: 2022/01/28 23:57:39 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/06 13:37:14 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,17 @@ void	set_win_dimensions(t_cub2d *cub2d, t_mlx *mlx_inst)
 		cub2d->tile_size = mlx_inst->win_height / cub2d->map.map_height;
 }
 
-t_mlx mlx_inst_init(t_cub2d *cub2d)
+t_mlx mlx_inst_init(void)
 {
 	t_mlx mlx_inst;
 
-	set_win_dimensions(cub2d, &mlx_inst);
+	mlx_inst.win_width = 1280;
+	mlx_inst.win_height = 720;
+	mlx_inst.game_width = mlx_inst.win_width - 200;
+	//cub2d->tile_size = (mlx_inst->game_width) / cub2d->map.map_width;
+	//if (mlx_inst->win_height / cub2d->map.map_height < cub2d->tile_size)
+	//	cub2d->tile_size = mlx_inst->win_height / cub2d->map.map_height;
+//	set_win_dimensions(cub2d, &mlx_inst);
 	mlx_inst.game_width = mlx_inst.win_width - 200;
 	mlx_inst.mlx = mlx_init();
 	mlx_inst.win = mlx_new_window(mlx_inst.mlx, mlx_inst.win_width, mlx_inst.win_height, "Cub3d");
