@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/02/07 18:13:43 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/07 18:20:31 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	get_hitpos(t_cub2d *cub2d, int x)
 		tmp_map = cub2d->raycast.map_x;
 		printf("xtmp_map: %d | player_tilex: %d\n", tmp_map, cub2d->player.tile_x);
 		distance = cub2d->rays[x].len * cub2d->raycast.ray_dir_x;
-		printf("distance1: %f\n", distance);
+		printf("distance1: %f | offset_x: %f | step_x: %d\n", distance, cub2d->raycast.offset_x, cub2d->raycast.step_x);
 		distance -= cub2d->raycast.offset_x * -cub2d->raycast.step_x;
 		printf("distance2: %f\n", distance);
 		printf("diffx: %d\n", cub2d->player.tile_x - tmp_map);
