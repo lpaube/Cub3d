@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 13:08:44 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/02 22:34:51 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/06 20:58:27 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ bool	cb_parsing_main(int argc, char **argv, t_map *map_info)
 		|| cb_color_parsing(content, map_info, 'C') == false)
 	{
 		ft_free_tab(content);
-		printf("Oh NO!\n");
 
 		//TESTING
 		//return (false);
