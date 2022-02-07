@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 16:39:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/02 21:57:52 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/07 12:22:37 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*cb_colorloop(char **content, int i, int j, char *save)
 		printf("Error\nCeilling or floor color duplicate\n");
 		return (NULL);
 	}
-	return (NULL);
+	return (save);
 }
 
 char	*cb_find_color(char **content, char type)
@@ -81,15 +81,13 @@ bool	cb_color_loop(char **numbers, int *color)
 		if (cb_valid_colorline(numbers[i]) == false)
 		{
 			ft_free_tab(numbers);
-			printf("Error\nInvalid char in ceilling or floor color\n");
-			return (false);
+			return (ft_false("Error\nInvalid char in colors\n", 1));
 		}
 		color[i] = ft_atoi(numbers[i]);
 		if (color[i] < 0 || color[i] > 255)
 		{
 			ft_free_tab(numbers);
-			printf("Error\nInvalid ceilling or floor color\n");
-			return (false);
+			return (ft_false("Error\nInvalid ceilling or floor color\n", 1));
 		}
 		i++;
 	}

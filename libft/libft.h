@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:41:40 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/13 17:31:41 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 12:01:34 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ int			ft_nbline_file(int fd);
 bool		ft_empty_line(char *string);
 int			ft_longest_string(char **matrice);
 char		*ft_fill(int len, char c);
+bool		ft_false(char *error_msg, int fd);
 
 #endif

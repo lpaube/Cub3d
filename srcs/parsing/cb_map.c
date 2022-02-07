@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/02 19:06:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 12:11:56 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,14 @@ bool	cb_map_parsing_loop(char **content, t_map *map_info, int i)
 		{
 			if (index == 0)
 				ft_free_tab(map_info->map);
-			printf("Error\nMap: Invalid char\n");
-			return (false);
+			return (ft_false("Error\nMap: Invalid char\n", 1));
 		}
 		map_info->map[index] = cb_line_dup(content[i + index],
 				map_info->map_width);
 		index++;
 	}
 	if (cb_playerpos(map_info, 0, 0, false) == false)
-	{
-		printf("Error\nMap: player position invalid\n");
-		return (false);
-	}
+		return (ft_false("Error\nMap: player position invalid\n", 1));
 	return (cb_closedmap(map_info, 0, 0));
 }
 
@@ -131,13 +127,10 @@ bool	cb_map_parsing(char **content, t_map *map_info)
 		i++;
 	}
 	if (ret != 1)
-		return (false);
+		return (ft_false("Error\nMap: Invalid\n", 1));
 	ret = cb_map_end(content, i, 0, map_info);
 	map_info->map_height = ret - i;
 	if (map_info->map_height < 3)
-	{
-		printf("Error\nMap: Invalid\n");
-		return (false);
-	}
+		return (ft_false("Error\nMap: Invalid\n", 1));
 	return (cb_map_parsing_loop(content, map_info, i));
 }
