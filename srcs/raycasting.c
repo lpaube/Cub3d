@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/02/02 23:28:44 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/07 17:15:22 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,32 @@ void	dist_offset(t_cub2d *cub2d)
 	if (cub2d->raycast.ray_dir_x < 0)
 	{
 		cub2d->raycast.step_x = -1;
-		cub2d->raycast.dist_x = (cub2d->player.circle.mid_x
-				- (cub2d->raycast.map_x * cub2d->tile_size)) * cub2d->raycast.delta_x;
+	//	cub2d->raycast.dist_x = (cub2d->player.circle.mid_x
+	//			- (cub2d->raycast.map_x * cub2d->tile_size)) * cub2d->raycast.delta_x;
+		cub2d->raycast.offset_x = cub2d->player.circle.mid_x
+				- (cub2d->raycast.map_x * cub2d->tyle_size);
+		cub2d->raycast.dist_x = cub2d->raycast.offset_x * cub2d->raycast.delta_x;
 	}
 	else
 	{
 		cub2d->raycast.step_x = 1;
 		cub2d->raycast.dist_x = ((cub2d->raycast.map_x + 1) * cub2d->tile_size
 				- cub2d->player.circle.mid_x) * cub2d->raycast.delta_x;
+		cub2d->raycast.offset_x = cub2d->raycast.dist_x;
 	}
 	if (cub2d->raycast.ray_dir_y < 0)
 	{
 		cub2d->raycast.step_y = -1;
 		cub2d->raycast.dist_y = (cub2d->player.circle.mid_y
 				- (cub2d->raycast.map_y * cub2d->tile_size)) * cub2d->raycast.delta_y;
+		cub2d->raycast.offset_y = cub2d->raycast.dist_x;
 	}
 	else
 	{
 		cub2d->raycast.step_y = 1;
 		cub2d->raycast.dist_y = ((cub2d->player.tile_y + 1) * cub2d->tile_size
 				- cub2d->player.circle.mid_y) * cub2d->raycast.delta_y;
+		cub2d->raycast.offset_y = cub2d->raycast.dist_x;
 	}
 }
 
@@ -70,6 +76,40 @@ void	inc_ray_len(t_cub2d *cub2d)
 	}
 }
 
+void	get_hitpos(t_cub2d *cub2d, int x)
+{
+	double	distance;
+	int	tmp_map;
+
+	if (cub2d->raycast.side == 0)
+	{
+		tmp_map = cub2d->raycast.map_x;
+		distance = cub2d->rays[x].len * cub2d->raycast.ray_dir_y;
+		distance -= cub2d->raycast.offset_y;
+		while (!(cub2d->player.tile_x - tmp_map <= 1 && cub2d->player.tile_x - tmp_map >= -1))
+		{
+			distance -= cub2d->tile_size;
+			tmp_map -= cub2d->raycast.step_x;
+		}
+	}
+	else
+	{
+		tmp_map = cub2d->raycast.map_y;
+		printf("ytmp_map: %d | player_tiley: %d\n", tmp_map, cub2d->player.tile_y);
+		distance = cub2d->rays[x].len * cub2d->raycast.ray_dir_x;
+		printf("distance1: %f\n", distance);
+		distance -= cub2d->raycast.offset_x;
+		printf("distance2: %f\n", distance);
+		while (!(cub2d->player.tile_y - tmp_map <= 1 && cub2d->player.tile_y - tmp_map >= -1))
+		{
+			distance -= cub2d->tile_size;
+			tmp_map -= cub2d->raycast.step_y;
+		}
+	}
+	printf("x: %d | dist: %f | tile_size: %d\n", x, distance, cub2d->tile_size);
+	cub2d->rays[x].hit_pos = distance;
+}
+
 void	get_ray_side(t_cub2d *cub2d, int x)
 {
 	if (cub2d->raycast.side == 0)
@@ -80,7 +120,7 @@ void	get_ray_side(t_cub2d *cub2d, int x)
 			cub2d->rays[x].face = 'W';
 		else
 			cub2d->rays[x].face = 'E';
-		cub2d->rays[x].hit_pos = cub2d->player.tile_y + cub2d->rays[x].len * cub2d->raycast.ray_dir_y;
+		//cub2d->rays[x].hit_pos = cub2d->rays[x].len * cub2d->raycast.ray_dir_y;
 	}
 	else if (cub2d->raycast.side == 1)
 	{
@@ -90,8 +130,9 @@ void	get_ray_side(t_cub2d *cub2d, int x)
 			cub2d->rays[x].face = 'N';
 		else
 			cub2d->rays[x].face = 'S';
-		cub2d->rays[x].hit_pos = cub2d->player.tile_x + cub2d->rays[x].len * cub2d->raycast.ray_dir_x;
+		//cub2d->rays[x].hit_pos = cub2d->rays[x].len * cub2d->raycast.ray_dir_x;
 	}
+	get_hitpos(cub2d, x);
 	cub2d->rays[x].hit_pos -= floor(cub2d->rays[x].hit_pos);
 	cub2d->rays[x].height = (int)(cub2d->mlx_inst.win_height / cub2d->rays[x].len);
 	cub2d->rays[x].draw_top = -(cub2d->rays[x].height / 2) + (cub2d->mlx_inst.win_height / 2);
@@ -110,7 +151,8 @@ void	ray_cast(t_cub2d *cub2d)
 	x = -1;
 	cub2d->ray_num = cub2d->mlx_inst.win_width;
 	cub2d->rays = malloc(sizeof(t_rays) * cub2d->ray_num);
-	while (++x < cub2d->mlx_inst.win_width)
+	//while (++x < cub2d->mlx_inst.win_width)
+	while (++x == 0)
 	{
 		hit = 0;
 		init_raycast(cub2d, x);

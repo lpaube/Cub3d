@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/02/06 13:35:45 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/07 16:18:25 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct s_raycast
     double  ray_dir_x;
     double  ray_dir_y;
 	double	camera_x;
+	double	offset_x;
+	double	offset_y;
 }   t_raycast;
 
 typedef struct s_rays
