@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_number_word.c                                   :+:      :+:    :+:   */
+/*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 17:40:23 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 15:13:02 by mafortin         ###   ########.fr       */
+/*   Created: 2022/02/07 15:35:08 by mafortin          #+#    #+#             */
+/*   Updated: 2022/02/07 16:44:06 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_number_word(char *string)
-{
-	int	nb;
-	int	i;
+#ifndef GRAPHICS_H
+# define GRAPHICS_H
 
-	nb = 0;
-	if (!string)
-		return (-1);
-	while (string[i])
-	{
-		if (string[i] != ' ')
-		{
-			nb++;
-			while (string[i] != ' ' && string[i])
-			{	
-				i++;
-				if (!string[i])
-					return (nb);
-			}
-		}
-		i++;
-	}
-	return (nb);
-}
+#include <stdbool.h>
+#include <stddef.h>
+
+typedef struct s_graph
+{
+	void	*wall_1;
+	void	*wall_2;
+	void	*wall_3;
+	void	*wall_4;
+	int		rgb_floor;
+	int		rgb_ceilling;
+}	t_graph;
+
+void	background_converter(t_map *map_info, t_graph *screen);
+void	put_background(t_mlx *mlx_inst, t_graph *screen);
+void	show_3d(t_mlx *mlx_inst, t_cub2d *cub2d, t_graph *screen);
+
+#endif

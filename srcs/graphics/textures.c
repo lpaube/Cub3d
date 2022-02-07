@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_number_word.c                                   :+:      :+:    :+:   */
+/*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 17:40:23 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 15:13:02 by mafortin         ###   ########.fr       */
+/*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
+/*   Updated: 2022/02/07 15:54:52 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_number_word(char *string)
-{
-	int	nb;
-	int	i;
+#include "parsing.h"
+#include "cub3d.h"
 
-	nb = 0;
-	if (!string)
-		return (-1);
-	while (string[i])
-	{
-		if (string[i] != ' ')
-		{
-			nb++;
-			while (string[i] != ' ' && string[i])
-			{	
-				i++;
-				if (!string[i])
-					return (nb);
-			}
-		}
-		i++;
-	}
-	return (nb);
+bool	textures_main(t_map *map_info, t_mlx *mlx_inst)
+{
+
+	return (true);
 }

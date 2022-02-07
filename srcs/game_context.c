@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   context_2d.c                                       :+:      :+:    :+:   */
+/*   game_context.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/02/06 13:35:39 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/07 17:56:22 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "raycasting.h"
+#include "graphics.h"
 
 double	deg_to_rad(int deg)
 {
@@ -86,10 +87,14 @@ void	game_loop_2d(t_cub2d *cub2d)
 	}
 }
 
-t_rays	*context_2d(int debug, t_map *map, t_mlx mlx_inst)
+void	game_context(int debug, t_map *map)
 {
 	t_cub2d	cub2d;
+	t_graph	*screen;
+	t_mlx	mlx_inst;
 
+	screen = malloc(sizeof(t_graph));
+	mlx_inst = mlx_inst_init();
 	cub2d.map = *map;
 	cub2d.debug = debug;
 	cub2d.mlx_inst = mlx_inst;
@@ -97,9 +102,9 @@ t_rays	*context_2d(int debug, t_map *map, t_mlx mlx_inst)
 	cub2d.player = init_player(&cub2d);
 	cub2d.mouse_x = 0;
 	cub2d.mouse_y = 0;
+	//background_converter(map, screen);
 	game_loop_2d(&cub2d);
-	show_3d(&cub2d);
+	//show_3d(&mlx_inst, &cub2d, screen);
 	hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
-	return (cub2d.rays);
 }

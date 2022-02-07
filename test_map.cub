@@ -1,10 +1,10 @@
 C 100,20,33
 F 23,44,234
 
-NO test1
-EA test2
-SO test3
-WE test4
+NO textures/1_wall.xpm
+EA textures/2_wall.xpm
+SO textures/3_wall.xpm
+WE textures/4_wall.xpm
 
     11111111111   
     10000000001111

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/02/06 13:35:45 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/07 17:48:51 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,8 @@ typedef struct s_rect
     int	color;
 }	t_rect;
 
-t_rays	*context_2d(int debug, t_map *map, t_mlx mlx_inst);
+void    game_context(int debug, t_map *map);
 void    handle_2d(void);
+void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color);
 
 #endif

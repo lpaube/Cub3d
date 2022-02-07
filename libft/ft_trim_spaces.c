@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 17:38:54 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/30 18:11:40 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:12:44 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 //Before: Hello       World    
 //After :Hello World
 
-int		nb_letter(char *string)
+int	nb_letter(char *string)
 {
 	int	nb;
 	int	i;
@@ -27,7 +27,7 @@ int		nb_letter(char *string)
 		if (string[i] == ' ')
 		{
 			nb++;
-			while(string[i] == ' ')
+			while (string[i] == ' ')
 				i++;
 			if (!string[i])
 				return (nb);
@@ -47,5 +47,4 @@ char	*ft_trim_spaces(char *str)
 	if (nb == 0)
 		return (NULL);
 	new_str = ft_calloc(sizeof(char) * nb);
-	
 }
