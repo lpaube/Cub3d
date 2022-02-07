@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/02/07 17:56:22 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 18:05:42 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void	game_loop_2d(t_cub2d *cub2d)
 void	game_context(int debug, t_map *map)
 {
 	t_cub2d	cub2d;
-	t_graph	*screen;
+	//t_graph	*screen;
 	t_mlx	mlx_inst;
 
-	screen = malloc(sizeof(t_graph));
+	//screen = malloc(sizeof(t_graph));
 	mlx_inst = mlx_inst_init();
 	cub2d.map = *map;
 	cub2d.debug = debug;
