@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/02/07 17:15:22 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/07 18:13:43 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,32 @@ void	dist_offset(t_cub2d *cub2d)
 	//	cub2d->raycast.dist_x = (cub2d->player.circle.mid_x
 	//			- (cub2d->raycast.map_x * cub2d->tile_size)) * cub2d->raycast.delta_x;
 		cub2d->raycast.offset_x = cub2d->player.circle.mid_x
-				- (cub2d->raycast.map_x * cub2d->tyle_size);
+				- (cub2d->raycast.map_x * cub2d->tile_size);
 		cub2d->raycast.dist_x = cub2d->raycast.offset_x * cub2d->raycast.delta_x;
 	}
 	else
 	{
 		cub2d->raycast.step_x = 1;
-		cub2d->raycast.dist_x = ((cub2d->raycast.map_x + 1) * cub2d->tile_size
-				- cub2d->player.circle.mid_x) * cub2d->raycast.delta_x;
-		cub2d->raycast.offset_x = cub2d->raycast.dist_x;
+//		cub2d->raycast.dist_x = ((cub2d->raycast.map_x + 1) * cub2d->tile_size
+//				- cub2d->player.circle.mid_x) * cub2d->raycast.delta_x;
+		cub2d->raycast.offset_x = (cub2d->raycast.map_x + 1) * cub2d->tile_size - cub2d->player.circle.mid_x;
+		cub2d->raycast.dist_x = cub2d->raycast.offset_x * cub2d->raycast.delta_x;
 	}
 	if (cub2d->raycast.ray_dir_y < 0)
 	{
 		cub2d->raycast.step_y = -1;
-		cub2d->raycast.dist_y = (cub2d->player.circle.mid_y
-				- (cub2d->raycast.map_y * cub2d->tile_size)) * cub2d->raycast.delta_y;
-		cub2d->raycast.offset_y = cub2d->raycast.dist_x;
+//		cub2d->raycast.dist_y = (cub2d->player.circle.mid_y
+//				- (cub2d->raycast.map_y * cub2d->tile_size)) * cub2d->raycast.delta_y;
+		cub2d->raycast.offset_y = (cub2d->player.circle.mid_y - (cub2d->raycast.map_y * cub2d->tile_size));
+		cub2d->raycast.dist_y = cub2d->raycast.offset_y * cub2d->raycast.delta_y;
 	}
 	else
 	{
 		cub2d->raycast.step_y = 1;
-		cub2d->raycast.dist_y = ((cub2d->player.tile_y + 1) * cub2d->tile_size
-				- cub2d->player.circle.mid_y) * cub2d->raycast.delta_y;
-		cub2d->raycast.offset_y = cub2d->raycast.dist_x;
+	//	cub2d->raycast.dist_y = ((cub2d->player.tile_y + 1) * cub2d->tile_size
+	//			- cub2d->player.circle.mid_y) * cub2d->raycast.delta_y;
+		cub2d->raycast.offset_y = ((cub2d->player.tile_y + 1) * cub2d->tile_size - cub2d->player.circle.mid_y);
+		cub2d->raycast.dist_y = cub2d->raycast.offset_y * cub2d->raycast.delta_y;
 	}
 }
 
@@ -83,27 +86,29 @@ void	get_hitpos(t_cub2d *cub2d, int x)
 
 	if (cub2d->raycast.side == 0)
 	{
-		tmp_map = cub2d->raycast.map_x;
+		tmp_map = cub2d->raycast.map_y;
 		distance = cub2d->rays[x].len * cub2d->raycast.ray_dir_y;
 		distance -= cub2d->raycast.offset_y;
-		while (!(cub2d->player.tile_x - tmp_map <= 1 && cub2d->player.tile_x - tmp_map >= -1))
-		{
-			distance -= cub2d->tile_size;
-			tmp_map -= cub2d->raycast.step_x;
-		}
-	}
-	else
-	{
-		tmp_map = cub2d->raycast.map_y;
-		printf("ytmp_map: %d | player_tiley: %d\n", tmp_map, cub2d->player.tile_y);
-		distance = cub2d->rays[x].len * cub2d->raycast.ray_dir_x;
-		printf("distance1: %f\n", distance);
-		distance -= cub2d->raycast.offset_x;
-		printf("distance2: %f\n", distance);
 		while (!(cub2d->player.tile_y - tmp_map <= 1 && cub2d->player.tile_y - tmp_map >= -1))
 		{
 			distance -= cub2d->tile_size;
 			tmp_map -= cub2d->raycast.step_y;
+		}
+	}
+	else
+	{
+		tmp_map = cub2d->raycast.map_x;
+		printf("xtmp_map: %d | player_tilex: %d\n", tmp_map, cub2d->player.tile_x);
+		distance = cub2d->rays[x].len * cub2d->raycast.ray_dir_x;
+		printf("distance1: %f\n", distance);
+		distance -= cub2d->raycast.offset_x * -cub2d->raycast.step_x;
+		printf("distance2: %f\n", distance);
+		printf("diffx: %d\n", cub2d->player.tile_x - tmp_map);
+		//while (!(cub2d->player.tile_x - tmp_map <= 1 && cub2d->player.tile_x - tmp_map >= -1))
+		while (cub2d->player.tile_x - tmp_map != 0)
+		{
+			distance -= cub2d->tile_size;
+			tmp_map -= cub2d->raycast.step_x;
 		}
 	}
 	printf("x: %d | dist: %f | tile_size: %d\n", x, distance, cub2d->tile_size);
