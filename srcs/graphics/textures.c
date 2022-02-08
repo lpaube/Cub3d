@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 15:54:52 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 19:36:13 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 
 bool	textures_main(t_map *map_info, t_mlx *mlx_inst)
 {
-
 	return (true);
 }

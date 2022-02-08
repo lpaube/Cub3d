@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:37:58 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 16:43:57 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 19:36:41 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	rgb_converter(int t, int r, int g, int b)
 void	background_converter(t_map *map_info, t_graph *screen)
 {
 	screen->rgb_floor = rgb_converter(0, map_info->floor[0],
-		map_info->floor[1], map_info->floor[2]);
+			map_info->floor[1], map_info->floor[2]);
 	screen->rgb_ceilling = rgb_converter(0, map_info->ceilling[0],
-		map_info->ceilling[1], map_info->ceilling[2]);
+			map_info->ceilling[1], map_info->ceilling[2]);
 }

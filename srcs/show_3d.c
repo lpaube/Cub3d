@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 00:12:02 by laube             #+#    #+#             */
-/*   Updated: 2022/02/07 19:10:23 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 19:37:11 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void	show_3d(t_cub2d *cub2d)
 	//while (i < cub2d->ray_num)
 	//{
 	//	printf("i: %d | height: %d | top: %d | bottom: %d | face: %c | hitpos: %f\n", i, cub2d->rays[i].height, cub2d->rays[i].draw_top, cub2d->rays[i].draw_bottom, cub2d->rays[i].face, cub2d->rays[i].hit_pos);
-	//	i++;
-	//}
+
 }
