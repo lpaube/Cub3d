@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/02/07 17:48:51 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 18:39:25 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #include "mlx.h"
 #include "../libft/libft.h"
 #include "parsing.h"
+#include "graphics.h"
 
 // x and y represent the center of the circle
 typedef struct	s_circle
@@ -105,6 +106,7 @@ typedef struct s_cub2d
     t_player    player;
     t_raycast   raycast;
     t_rays      *rays;
+    t_graph     *screen;
 	int		ray_num;
 	int		tile_size;
 	int		mouse_x;

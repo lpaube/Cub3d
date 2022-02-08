@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:35:08 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 16:44:06 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 18:43:08 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include "cub3d.h"
 
 typedef struct s_graph
 {
@@ -26,8 +27,11 @@ typedef struct s_graph
 	int		rgb_ceilling;
 }	t_graph;
 
+typedef struct	s_cub2d t_cub2d;
+typedef struct	s_mlx	t_mlx;
+
 void	background_converter(t_map *map_info, t_graph *screen);
 void	put_background(t_mlx *mlx_inst, t_graph *screen);
-void	show_3d(t_mlx *mlx_inst, t_cub2d *cub2d, t_graph *screen);
+void	show_3d(t_cub2d *cub2d);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/02/07 18:05:42 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 19:05:11 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ void	game_loop_2d(t_cub2d *cub2d)
 		draw_map(cub2d);
 		draw_player(&cub2d->mlx_inst, cub2d->player);
 	}
+	printf("test:\n");
+	printf("test:\n");
+	printf("test:\n");
 	ray_cast(cub2d);
 	if (cub2d->debug == 2)
 	{
@@ -103,8 +106,9 @@ void	game_context(int debug, t_map *map)
 	cub2d.mouse_x = 0;
 	cub2d.mouse_y = 0;
 	//background_converter(map, screen);
+	//cub2d.screen = screen;
 	game_loop_2d(&cub2d);
-	//show_3d(&mlx_inst, &cub2d, screen);
+	//show_3d(&cub2d);
 	hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
 }

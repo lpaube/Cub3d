@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 14:10:51 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 15:33:20 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 18:13:55 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ bool	cb_texture_parsing(char **content, t_map *map_info)
 
 	ret = true;
 	map_info->texture = ft_calloc(sizeof(char *), 4);
-	if (cb_find_texture(content, "NO", map_info->texture, 0) == false)
+	(void)content;
+	/*if (cb_find_texture(content, "NO", map_info->texture, 0) == false)
 		return (ft_false("Error\nMissing texture\n", 1));
 	if (cb_find_texture(content, "EA", map_info->texture, 1) == false)
 		return (ft_false("Error\nMissing texture\n", 1));
@@ -92,6 +93,6 @@ bool	cb_texture_parsing(char **content, t_map *map_info)
 	if (cb_find_texture(content, "WE", map_info->texture, 3) == false)
 		return (ft_false("Error\nMissing texture\n", 1));
 	if (cb_check_texture(map_info->texture) == false)
-		return (ft_false("Error\nTexture file error\n", 1));
+		return (ft_false("Error\nTexture file error\n", 1));*/
 	return (true);
 }

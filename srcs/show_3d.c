@@ -6,20 +6,20 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 00:12:02 by laube             #+#    #+#             */
-/*   Updated: 2022/02/07 16:46:13 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 18:55:24 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "graphics.h"
 
-void	show_3d(t_mlx *mlx_inst, t_cub2d *cub2d, t_graph *screen)
+void	show_3d(t_cub2d *cub2d)
 {
-	//int i;
 	(void)cub2d;
-	put_background(mlx_inst, screen);
-	mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win,
-				cub2d->mlx_inst.img, 0, 0);
+	//int i;
+	//put_background(&cub2d->mlx_inst, cub2d->screen);
+	//mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win,
+				//cub2d->mlx_inst.img, 0, 0);
 	//i = 0;
 	//while (i < cub2d->ray_num)
 	//{
