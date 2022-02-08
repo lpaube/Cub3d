@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/02/07 19:06:25 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/07 19:11:26 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,6 @@ void	ray_cast(t_cub2d *cub2d)
 	int		hit;
 	int		x;
 
-	printf("test:\n");
-	printf("test:\n");
-	printf("test:\n");
 	x = -1;
 	cub2d->ray_num = cub2d->mlx_inst.win_width;
 	cub2d->rays = malloc(sizeof(t_rays) * cub2d->ray_num);
