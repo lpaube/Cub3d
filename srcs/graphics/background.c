@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:37:58 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 19:36:41 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/09 17:36:37 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cub3d.h"
 #include "graphics.h"
 
+//Put floor and ceilling, spliting the screen into 2 colors.
 void	put_background(t_mlx *mlx_inst, t_graph *screen)
 {
 	int	i;
@@ -40,6 +41,7 @@ int	rgb_converter(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+//convert RGB (Int[3]) to Hexadecimal color code
 void	background_converter(t_map *map_info, t_graph *screen)
 {
 	screen->rgb_floor = rgb_converter(0, map_info->floor[0],
