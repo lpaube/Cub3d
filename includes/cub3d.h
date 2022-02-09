@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/02/07 16:18:25 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/08 19:35:50 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #include "mlx.h"
 #include "../libft/libft.h"
 #include "parsing.h"
+#include "graphics.h"
 
 // x and y represent the center of the circle
 typedef struct	s_circle
@@ -107,6 +108,7 @@ typedef struct s_cub2d
     t_player    player;
     t_raycast   raycast;
     t_rays      *rays;
+    t_graph     *screen;
 	int		ray_num;
 	int		tile_size;
 	int		mouse_x;
@@ -144,7 +146,8 @@ typedef struct s_rect
     int	color;
 }	t_rect;
 
-t_rays	*context_2d(int debug, t_map *map, t_mlx mlx_inst);
+void    game_context(int debug, t_map *map);
 void    handle_2d(void);
+void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color);
 
 #endif

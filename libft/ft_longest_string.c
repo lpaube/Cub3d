@@ -1,4 +1,14 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_longest_string.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/07 15:13:14 by mafortin          #+#    #+#             */
+/*   Updated: 2022/02/07 15:13:27 by mafortin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -9,7 +19,7 @@ int	ft_longest_string(char **matrice)
 	int	len_save;
 	int	i;
 	int	ret;
-	
+
 	i = 1;
 	ret = 0;
 	len_save = ft_strlen(matrice[0]);
@@ -23,5 +33,5 @@ int	ft_longest_string(char **matrice)
 		}
 		i++;
 	}
-	return(ret);
+	return (ret);
 }

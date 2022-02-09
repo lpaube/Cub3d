@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <laube@student.42quebec.com>         +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:22:04 by laube             #+#    #+#             */
-/*   Updated: 2022/02/06 13:33:08 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/07 16:28:50 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,3 @@ void    game_loop_2d(t_cub2d *cub2d);
 void	player_mvmt(int keycode, t_cub2d *cub2d);
 void	put_diagnostics(t_cub2d *cub2d);
 t_player	init_player(t_cub2d *cub2d);
-
-void	show_3d(t_cub2d *cub2d);
