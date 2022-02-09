@@ -13,7 +13,7 @@ SRCS =	main.c game_context.c draw_map.c\
 PARSING =	cb_parsing.c cb_map.c cb_parsing_utils.c\
 			cb_map_utils.c cb_texture.c cb_color.c  cb_valid_map.c
 
-GRAPHICS = background.c
+GRAPHICS = background.c textures.c
 
 OBJS =	$(SRCS:.c=.o) $(PARSING:.c=.o) $(GRAPHICS:.c=.o)
 

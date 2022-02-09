@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 00:12:02 by laube             #+#    #+#             */
-/*   Updated: 2022/02/08 19:35:19 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/09 17:16:17 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	show_3d(t_cub2d *cub2d)
 	(void)cub2d;
 	//int i;
 	put_background(&cub2d->mlx_inst, cub2d->screen);
+	
 	mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win,
 				cub2d->mlx_inst.img, 0, 0);
 	//i = 0;
