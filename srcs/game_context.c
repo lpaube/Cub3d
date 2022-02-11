@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/02/09 16:58:12 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/11 14:14:54 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	game_context(int debug, t_map *map)
 	background_converter(map, screen);
 	if (textures_converter(screen, &mlx_inst, map->texture) == false)
 		return;//BESOIN DE CREE UN MSG D'ERREUR ET D'EXIT ICI
+	printf("OUT : %d\n", screen->wall_n.img_height);
 	cub2d.screen = screen;
 	game_loop_2d(&cub2d);
 	if (debug != 2)
