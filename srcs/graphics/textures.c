@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/11 14:21:18 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/15 11:26:38 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,43 @@ int	get_asset_color(t_texture asset, int x, int y)
 	return (color);
 }
 
-void	put_texture_ray(t_cub2d *cub2d, t_rays ray, t_texture asset, int x)
+void	put_texture_ray(t_cub2d *cub2d, t_rays ray, t_texture asset, int y)
 {
 	int	pixel_skip;
 	int		color;
 
-	pixel_skip = ray.height / 60;
+	pixel_skip = ray.height / asset.img_height;
+	//printf("PixelSkip:%d WIN_HEIGTH:%d\nRay Height:%d Img Height:%d\n", pixel_skip, WIN_HEIGTH, ray.height, asset.img_height);
 	while (pixel_skip < WIN_HEIGTH)
 	{
-		color = get_asset_color(asset, x, pixel_skip);
-		my_pixel_put(&cub2d->mlx_inst, x, pixel_skip, color);
+		//if (pixel_skip > 0)
+		//{
+			//color = get_asset_color(asset, y, pixel_skip);
+			//my_pixel_put(&cub2d->mlx_inst, y, pixel_skip, color);
+		//}
 		pixel_skip += pixel_skip;
 	}
 	(void)ray;
 	(void)cub2d;
 	(void)asset;
-	(void)x;
 	(void)color;
+	(void)y;
+	(void)pixel_skip;
 }
 
 void	put_textures(t_cub2d *cub2d)
 {
-	int	i;
+	int			i;
+	t_texture	asset;
 
 	i = 0;
 	while (i <= cub2d->ray_num)
 	{
-		put_texture_ray(cub2d, cub2d->rays[i], cub2d->screen->wall_n, i);
+		asset = get_face_asset(cub2d->rays[i].face, cub2d->screen);
+		put_texture_ray(cub2d, cub2d->rays[i], asset, i);
+		printf("Ray height:%d  ", cub2d->rays[i].height);
 		i++;
 	}
 	(void)cub2d;
+	(void)asset;
 }
