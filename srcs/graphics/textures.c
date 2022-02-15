@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/15 11:26:38 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/15 11:30:40 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	put_textures(t_cub2d *cub2d)
 	while (i <= cub2d->ray_num)
 	{
 		asset = get_face_asset(cub2d->rays[i].face, cub2d->screen);
-		put_texture_ray(cub2d, cub2d->rays[i], asset, i);
+		//put_texture_ray(cub2d, cub2d->rays[i], asset, i);
 		printf("Ray height:%d  ", cub2d->rays[i].height);
 		i++;
 	}
