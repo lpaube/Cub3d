@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/16 13:59:42 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:08:21 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	put_texture_ray(t_cub2d *cub2d, t_texture asset, int y, double skip)
 	{
 		//if (skip < asset.img_width)
 			//color = get_asset_color(asset, skip, spray);
-		my_pixel_put(&cub2d->mlx_inst, y, start, 0xFF0000);
+		if (start > 0 && start < WIN_HEIGTH)
+			my_pixel_put(&cub2d->mlx_inst, y, start, 0xFF0000);
 		start++;
 		skip += skip;
 	}
@@ -84,12 +85,12 @@ void	put_textures(t_cub2d *cub2d)
 	{
 		asset = get_face_asset(cub2d->rays[y].face, cub2d->screen);
 		skip = asset.img_height / cub2d->rays[y].height;
-		while (skip < asset.img_width)
-		{
+		//while (skip < asset.img_width)
+		//{
 			put_texture_ray(cub2d, asset, y, skip);
 			y++;
 			skip += skip;
-		}
+		//}
 	}
 	(void)cub2d;
 	(void)asset;
