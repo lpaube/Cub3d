@@ -7,12 +7,12 @@
 //Give the vertical pixel where the line of a ray/texture should start.
 int	get_starting_height(t_rays ray)
 {
-	return ((WIN_HEIGTH / 2) - (ray.height / 2));
+	return ((WIN_HEIGTH / 2) - (ray.height + 100 / 2));
 }
 
 int	get_end_height(t_rays ray)
 {
-	return ((WIN_HEIGTH / 2) + (ray.height / 2));
+	return ((WIN_HEIGTH / 2) + (ray.height + 100 / 2));
 }
 
 t_texture get_face_asset(char face, t_graph *screen)
