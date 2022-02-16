@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/02/08 19:47:18 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/16 10:19:53 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	key_press(int keycode, t_cub2d *cub2d)
 		update_vectors(cub2d, &cub2d->player);
 	}
 	game_loop_2d(cub2d);
-	//show_3d(cub2d);
+	show_3d(cub2d);
 	return (0);
 }
 
