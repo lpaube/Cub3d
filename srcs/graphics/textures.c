@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/16 10:15:24 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/16 10:33:18 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	put_textures(t_cub2d *cub2d)
 	while (y < cub2d->ray_num)
 	{
 		asset = get_face_asset(cub2d->rays[y].face, cub2d->screen);
-		skip = asset.img_height / cub2d->rays[y].height;
+		skip = asset.img_height / cub2d->rays[y].height + 100;
 		while (skip < asset.img_width)
 		{
 			put_texture_ray(cub2d, asset, y, skip);
