@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:35:08 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/15 11:27:28 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/16 10:05:52 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void		put_background(t_mlx *mlx_inst, t_graph *screen);
 void		show_3d(t_cub2d *cub2d);
 bool		textures_converter(t_graph *screen, t_mlx *mlx_inst, char **textures);
 void		put_textures(t_cub2d *cub2d);
-void		put_texture_ray(t_cub2d *cub2d, t_rays ray, t_texture asset, int x);
 t_texture	get_face_asset(char face, t_graph *screen);
+int			get_end_height(t_rays ray);
+int			get_starting_height(t_rays ray);
 
 #endif

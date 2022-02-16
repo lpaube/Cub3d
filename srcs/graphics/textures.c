@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/15 11:30:40 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/16 10:15:24 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,42 +47,49 @@ int	get_asset_color(t_texture asset, int x, int y)
 	return (color);
 }
 
-void	put_texture_ray(t_cub2d *cub2d, t_rays ray, t_texture asset, int y)
+void	put_texture_ray(t_cub2d *cub2d, t_texture asset, int y, double skip)
 {
-	int	pixel_skip;
 	int		color;
-
-	pixel_skip = ray.height / asset.img_height;
-	//printf("PixelSkip:%d WIN_HEIGTH:%d\nRay Height:%d Img Height:%d\n", pixel_skip, WIN_HEIGTH, ray.height, asset.img_height);
-	while (pixel_skip < WIN_HEIGTH)
+	int		start;
+	int		end;
+	int		spray;
+	
+	start = get_starting_height(cub2d->rays[y]);
+	end = get_end_height(cub2d->rays[y]);
+	printf("Start : %d\nEnd:%d\n", start, end);
+	spray = (cub2d->rays[y].hit_pos * asset.img_width / 100);
+	while (start < end)
 	{
-		//if (pixel_skip > 0)
-		//{
-			//color = get_asset_color(asset, y, pixel_skip);
-			//my_pixel_put(&cub2d->mlx_inst, y, pixel_skip, color);
-		//}
-		pixel_skip += pixel_skip;
+		//color = get_asset_color(asset, skip, spray);
+		my_pixel_put(&cub2d->mlx_inst, y, start, 0x22FF00);
+		start++;
+		skip += skip;
 	}
-	(void)ray;
 	(void)cub2d;
 	(void)asset;
 	(void)color;
 	(void)y;
-	(void)pixel_skip;
+	(void)skip;
+	(void)spray;
 }
 
 void	put_textures(t_cub2d *cub2d)
 {
-	int			i;
-	t_texture	asset;
+	int				y;
+	double			skip;
+	t_texture		asset;
 
-	i = 0;
-	while (i <= cub2d->ray_num)
+	y = 0;
+	while (y < cub2d->ray_num)
 	{
-		asset = get_face_asset(cub2d->rays[i].face, cub2d->screen);
-		//put_texture_ray(cub2d, cub2d->rays[i], asset, i);
-		printf("Ray height:%d  ", cub2d->rays[i].height);
-		i++;
+		asset = get_face_asset(cub2d->rays[y].face, cub2d->screen);
+		skip = asset.img_height / cub2d->rays[y].height;
+		while (skip < asset.img_width)
+		{
+			put_texture_ray(cub2d, asset, y, skip);
+			y++;
+			skip += skip;
+		}
 	}
 	(void)cub2d;
 	(void)asset;
