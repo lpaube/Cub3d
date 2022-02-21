@@ -58,15 +58,16 @@ void	put_texture_ray(t_cub2d *cub2d, t_texture asset, int y)
 	
 	start = get_starting_height(cub2d->rays[y]);
 	end = get_end_height(cub2d->rays[y]);
-	spray = ((cub2d->rays[y].hit_pos * asset.img_width));
-	skip = asset.img_height / (cub2d->rays[y].height + 100);
+	spray = (((cub2d->rays[y].hit_pos) * asset.img_width));
+	printf("Hit_Pos : %f spray: %d\n", cub2d->rays[y].hit_pos * 100, spray);
+	skip = asset.img_height / (cub2d->rays[y].height);
 	total = 0;
 	while (start < end)
 	{
 		color = get_asset_color(asset, spray, total);
-		if (start > 0 && start < WIN_HEIGTH )
+		if (start < WIN_HEIGTH )
 		{
-			my_pixel_put(&cub2d->mlx_inst, y, start, total);
+			my_pixel_put(&cub2d->mlx_inst, y, start, color);
 		}
 		start++;
 		total += skip;
