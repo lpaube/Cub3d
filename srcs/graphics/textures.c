@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/21 11:54:52 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:19:31 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	put_texture_ray(t_cub2d *cub2d, t_texture asset, int y)
 	spray = ((cub2d->rays[y].hit_pos * asset.img_width) / 100);
 	skip = asset.img_height / (cub2d->rays[y].height + 100);
 	total = skip + start;
-	while (start < end)
+	while (total < end)
 	{
-		color = get_asset_color(asset, spray, skip);
+		color = get_asset_color(asset, spray, total);
 		if (start > 0 && start < WIN_HEIGTH)
 			my_pixel_put(&cub2d->mlx_inst, y, start, color);
 		start++;
@@ -80,20 +80,20 @@ void	put_texture_ray(t_cub2d *cub2d, t_texture asset, int y)
 void	put_textures(t_cub2d *cub2d)
 {
 	int				y;
-	double			skip;
+	//double			skip;
 	t_texture		asset;
 
 	y = 0;
 	while (y < cub2d->ray_num)
 	{
 		asset = get_face_asset(cub2d->rays[y].face, cub2d->screen);
-		skip = asset.img_height / cub2d->rays[y].height + 100;
-		while (skip < asset.img_width)
-		{
+		//skip = asset.img_width / cub2d->rays[y].height + 100;
+		//while (skip < asset.img_width)
+		//{
 			put_texture_ray(cub2d, asset, y);
 			y++;
-			skip += skip;
-		}
+			//skip += skip;
+		//}
 	}
 	(void)cub2d;
 	(void)asset;
