@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/02/16 10:19:06 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/21 22:41:29 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,15 @@ void	put_diagnostics(t_cub2d *cub2d)
 
 void	game_loop_2d(t_cub2d *cub2d)
 {
+	/*
 	if (cub2d->debug == 2)
 	{
 		draw_map(cub2d);
 		draw_player(&cub2d->mlx_inst, cub2d->player);
 	}
+	*/
 	ray_cast(cub2d);
+	/*
 	if (cub2d->debug == 2)
 	{
 		draw_direction(cub2d);
@@ -85,6 +88,7 @@ void	game_loop_2d(t_cub2d *cub2d)
 				cub2d->mlx_inst.img, 0, 0);
 		put_diagnostics(cub2d);
 	}
+	*/
 }
 
 void	game_context(int debug, t_map *map)
@@ -107,8 +111,9 @@ void	game_context(int debug, t_map *map)
 		return;//BESOIN DE CREE UN MSG D'ERREUR ET D'EXIT ICI
 	cub2d.screen = screen;
 	game_loop_2d(&cub2d);
-	if (debug != 2)
+	//if (debug != 2)
 		show_3d(&cub2d);
+	//game_loop_2d(&cub2d);
 	hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
 }

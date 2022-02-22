@@ -6,19 +6,19 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:32:25 by laube             #+#    #+#             */
-/*   Updated: 2022/01/09 10:04:13 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/21 23:16:44 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "raycasting.h"
 
-void	draw_seen_square(t_cub2d *cub2d)
+void	draw_seen_square(t_cub2d *cub2d, int x)
 {
 	t_rect	square;
 
-	square.x = cub2d->raycast.map_x * cub2d->tile_size + 1;
-	square.y = cub2d->raycast.map_y * cub2d->tile_size + 1;
+	square.x = cub2d->rays[x].map_x * cub2d->tile_size + 1;
+	square.y = cub2d->rays[x].map_y * cub2d->tile_size + 1;
 	square.width = cub2d->tile_size - 1;
 	square.heigth = cub2d->tile_size - 1;
 	square.color = 0xFF0000;
@@ -54,9 +54,9 @@ void	draw_rays(t_cub2d *cub2d, int x)
 	line.x1 = cub2d->player.circle.mid_x;
 	line.y1 = cub2d->player.circle.mid_y;
 	line.x2 = cub2d->player.circle.mid_x
-		+ (cub2d->rays[x].len * cub2d->raycast.ray_dir_x);
+		+ (cub2d->rays[x].len * cub2d->rays[x].ray_dir_x);
 	line.y2 = cub2d->player.circle.mid_y
-		+ (cub2d->rays[x].len * cub2d->raycast.ray_dir_y);
+		+ (cub2d->rays[x].len * cub2d->rays[x].ray_dir_y);
 	line.color = 0xFFFFFF;
 	draw_line(&cub2d->mlx_inst, line);
 }

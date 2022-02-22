@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/02/16 11:50:37 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/21 23:15:16 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,11 @@ typedef struct s_rays
 	int		draw_bottom;
     char    face;
 	double	hit_pos;
+	// For 2d debugging
+    double  ray_dir_x;
+    double  ray_dir_y;
+    int map_x;
+    int map_y;
 } t_rays;
 
 typedef struct s_cub2d

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 15:17:16 by laube             #+#    #+#             */
-/*   Updated: 2022/02/08 19:41:36 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/21 22:35:09 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ int	main(int argc, char **argv)
 		while (argv[++i])
 			argv[i] = argv[i + 1];
 		argc--;
-	}
-	else
-	{
-		
 	}
 	if (cb_parsing_main(argc, argv, map_info) == false)
 		return (1);

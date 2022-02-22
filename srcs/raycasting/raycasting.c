@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/02/08 19:33:24 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/21 23:15:57 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,10 @@ void	get_ray_side(t_cub2d *cub2d, int x)
 		else
 			cub2d->rays[x].face = 'S';
 	}
+	cub2d->rays[x].ray_dir_x = cub2d->raycast.ray_dir_x;
+	cub2d->rays[x].ray_dir_y = cub2d->raycast.ray_dir_y;
+	cub2d->rays[x].map_x = cub2d->raycast.map_x;
+	cub2d->rays[x].map_y = cub2d->raycast.map_y;
 	get_hitpos(cub2d, x);
 	cub2d->rays[x].hit_pos -= floor(cub2d->rays[x].hit_pos);
 	cub2d->rays[x].height = (int)(cub2d->mlx_inst.win_height / cub2d->rays[x].len);
@@ -177,6 +181,7 @@ void	ray_cast(t_cub2d *cub2d)
 				get_ray_side(cub2d, x);
 			}
 		}
+		/*
 		if ((x + 1) % (cub2d->mlx_inst.win_width / 10) == 0 || x == 0 || x == cub2d->mlx_inst.win_width - 1)
 		{
 			if (cub2d->debug == 2)
@@ -184,5 +189,6 @@ void	ray_cast(t_cub2d *cub2d)
 		}
 		if (cub2d->debug == 2)
 			draw_seen_square(cub2d);
+		*/
 	}
 }
