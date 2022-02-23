@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/02/21 23:22:50 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/22 12:14:19 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	get_hitpos(t_cub2d *cub2d, int x)
 	}
 	//printf("x: %d | dist: %f | tile_size: %d\n", x, distance, cub2d->tile_size);
 	cub2d->rays[x].hit_pos = distance / cub2d->tile_size * 100;
+	printf("x: %d | hitpos: %f\n", x, cub2d->rays[x].hit_pos);
 }
 
 void	get_ray_side(t_cub2d *cub2d, int x)
@@ -170,9 +171,10 @@ void	ray_cast(t_cub2d *cub2d)
 	int		x;
 
 	x = -1;
-	cub2d->ray_num = cub2d->mlx_inst.win_width;
+	//cub2d->ray_num = cub2d->mlx_inst.win_width;
+	cub2d->ray_num = 1;
 	cub2d->rays = malloc(sizeof(t_rays) * cub2d->ray_num);
-	while (++x < cub2d->mlx_inst.win_width)
+	while (++x < cub2d->ray_num)//cub2d->mlx_inst.win_width)
 	{
 		hit = 0;
 		init_raycast(cub2d, x);
