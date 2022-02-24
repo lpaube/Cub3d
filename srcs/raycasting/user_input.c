@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/02/21 23:30:11 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/23 14:51:13 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	key_press(int keycode, t_cub2d *cub2d)
 		player_mvmt(keycode, cub2d);
 		update_vectors(cub2d, &cub2d->player);
 	}
-	game_loop_2d(cub2d);
-	show_3d(cub2d);
+	game_loop(cub2d);
 	return (0);
 }
 

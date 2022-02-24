@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:22:04 by laube             #+#    #+#             */
-/*   Updated: 2022/02/21 23:17:39 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/23 15:12:46 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_player(t_mlx *mlx_inst, t_player player);
 
 void    ray_cast(t_cub2d *cub2d);
 int     hook_handler(t_cub2d *cub2d);
-void    game_loop_2d(t_cub2d *cub2d);
+void    game_loop(t_cub2d *cub2d);
 
 void	player_mvmt(int keycode, t_cub2d *cub2d);
 void	put_diagnostics(t_cub2d *cub2d);

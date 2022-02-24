@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_context.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/02/21 23:21:47 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/23 23:39:35 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,10 @@ void	put_diagnostics(t_cub2d *cub2d)
 	cub2d->prev_mouse_y = cub2d->mouse_y;
 }
 
-void	game_loop_2d(t_cub2d *cub2d)
+void	game_loop(t_cub2d *cub2d)
 {
-	/*
-	if (cub2d->debug == 2)
-	{
-		draw_map(cub2d);
-		draw_player(&cub2d->mlx_inst, cub2d->player);
-	}
-	*/
 	ray_cast(cub2d);
-	/*
-	if (cub2d->debug == 2)
-	{
-		draw_direction(cub2d);
-		mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win,
-				cub2d->mlx_inst.img, 0, 0);
-		put_diagnostics(cub2d);
-	}
-	*/
+	show_3d(cub2d);
 }
 
 void	game_context(int debug, t_map *map)
@@ -110,10 +95,7 @@ void	game_context(int debug, t_map *map)
 	if (textures_converter(screen, &mlx_inst, map->texture) == false)
 		return;//BESOIN DE CREE UN MSG D'ERREUR ET D'EXIT ICI
 	cub2d.screen = screen;
-	game_loop_2d(&cub2d);
-	//if (debug != 2)
-		show_3d(&cub2d);
-	//game_loop_2d(&cub2d);
+	game_loop(&cub2d);
 	hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
 }
