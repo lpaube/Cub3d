@@ -6,17 +6,28 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/02/23 14:51:13 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/25 15:28:34 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "raycasting.h"
 
+/*void	free_map(t_map *map_info)
+{
+	ft_free_tab(map_info->map);
+	ft_free_tab(map_info->texture);
+	free(map_info->floor);
+	free(map_info->ceilling);
+}*/
+
 int	key_press(int keycode, t_cub2d *cub2d)
 {
 	if (keycode == MAIN_ESC)
+	{
+		//free_map(&cub2d->map);
 		exit(0);
+	}
 	else if (keycode == MAIN_W || keycode == MAIN_A
 		|| keycode == MAIN_S || keycode == MAIN_D)
 	{
@@ -29,6 +40,10 @@ int	key_press(int keycode, t_cub2d *cub2d)
 
 int	click_close(void *param)
 {
+	t_cub2d	*cub2d;
+
+	cub2d = param;
+	//free_map(&cub2d->map);
 	(void)param;
 	exit(0);
 }

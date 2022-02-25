@@ -1,4 +1,14 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/25 12:02:18 by mafortin          #+#    #+#             */
+/*   Updated: 2022/02/25 15:28:27 by laube            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "parsing.h"
 #include "cub3d.h"
@@ -15,12 +25,14 @@ int	get_end_height(t_rays ray)
 	return ((WIN_HEIGTH / 2) + ((ray.height) / 2));
 }
 
-t_texture get_face_asset(char face, t_graph *screen)
+t_texture	get_face_asset(char face, t_graph *screen)
 {
 	if (face == 'N')
 		return (screen->wall_n);
 	if (face == 'E')
 		return (screen->wall_e);
+	if (face == 'W')
+		return (screen->wall_w);
 	if (face == 'S')
 		return (screen->wall_s);
 	return (screen->wall_w);

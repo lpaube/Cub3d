@@ -1,7 +1,7 @@
 C 10,20,33
 F 10,4,24
 
-NO textures/1_wall.xpm
+NO textures/5_wall.xpm
 EA textures/2_wall.xpm
 SO textures/3_wall.xpm
 WE textures/4_wall.xpm

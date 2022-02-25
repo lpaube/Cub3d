@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/02/23 23:39:35 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/25 15:28:57 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,9 @@ void	game_loop(t_cub2d *cub2d)
 void	game_context(int debug, t_map *map)
 {
 	t_cub2d	cub2d;
-	t_graph	*screen;
+	t_graph	screen;
 	t_mlx	mlx_inst;
 
-	screen = malloc(sizeof(t_graph));
 	mlx_inst = mlx_inst_init();
 	cub2d.map = *map;
 	cub2d.debug = debug;
@@ -91,10 +90,10 @@ void	game_context(int debug, t_map *map)
 	cub2d.player = init_player(&cub2d);
 	cub2d.mouse_x = 0;
 	cub2d.mouse_y = 0;
-	background_converter(map, screen);
-	if (textures_converter(screen, &mlx_inst, map->texture) == false)
+	screen = background_converter(map);
+	if (textures_converter(&screen, &mlx_inst, map->texture) == false)
 		return;//BESOIN DE CREE UN MSG D'ERREUR ET D'EXIT ICI
-	cub2d.screen = screen;
+	cub2d.screen = &screen;
 	game_loop(&cub2d);
 	hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
