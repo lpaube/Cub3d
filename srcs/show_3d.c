@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 00:12:02 by laube             #+#    #+#             */
-/*   Updated: 2022/02/25 12:42:26 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/25 13:03:36 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	show_3d(t_cub2d *cub2d)
 				cub2d->mlx_inst.img, 0, 0);
 	if (cub2d->debug == 2)
 	{
-		printf("test\n");
 		draw_map(cub2d);
 		draw_player(&cub2d->mlx_inst, cub2d->player);
 		draw_direction(cub2d);

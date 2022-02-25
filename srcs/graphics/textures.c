@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/22 12:14:06 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/25 13:00:00 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	put_texture_ray(t_cub2d *cub2d, t_texture asset, int y)
 	end = get_end_height(cub2d->rays[y]);
 	spray = (((cub2d->rays[y].hit_pos) * asset.img_width));
 	// printf("ray#: %d | Hit_Pos : %f | spray: %d\n", y, cub2d->rays[y].hit_pos * 100, spray);
-	skip = asset.img_height / (cub2d->rays[y].height);
+	skip = (double)asset.img_height / (cub2d->rays[y].height);
 	total = 0;
 	while (start < end)
 	{
