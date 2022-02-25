@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 00:12:02 by laube             #+#    #+#             */
-/*   Updated: 2022/02/16 12:13:43 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/25 12:03:09 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	show_3d(t_cub2d *cub2d)
 	put_background(&cub2d->mlx_inst, cub2d->screen);
 	put_textures(cub2d);
 	mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win,
-				cub2d->mlx_inst.img, 0, 0);
+		cub2d->mlx_inst.img, 0, 0);
 	//	printf("i: %d | height: %d | top: %d | bottom: %d | face: %c | hitpos: %f\n", i, cub2d->rays[i].height, cub2d->rays[i].draw_top, cub2d->rays[i].draw_bottom, cub2d->rays[i].face, cub2d->rays[i].hit_pos);
-
 }

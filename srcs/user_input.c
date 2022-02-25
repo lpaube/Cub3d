@@ -6,17 +6,29 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/02/16 10:35:00 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/25 12:23:45 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "raycasting.h"
 
+void	free_map(t_map *map_info)
+{
+	ft_free_tab(map_info->map);
+	ft_free_tab(map_info->texture);
+	free(map_info->floor);
+	free(map_info->ceilling);
+	free(map_info);
+}
+
 int	key_press(int keycode, t_cub2d *cub2d)
 {
 	if (keycode == MAIN_ESC)
+	{
+		free_map(&cub2d->map);
 		exit(0);
+	}
 	else if (keycode == MAIN_W || keycode == MAIN_A
 		|| keycode == MAIN_S || keycode == MAIN_D)
 	{
@@ -30,6 +42,10 @@ int	key_press(int keycode, t_cub2d *cub2d)
 
 int	click_close(void *param)
 {
+	t_cub2d	*cub2d;
+
+	cub2d = param;
+	free_map(&cub2d->map);
 	(void)param;
 	exit(0);
 }
