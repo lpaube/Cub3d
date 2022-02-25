@@ -1,7 +1,7 @@
 C 10,20,33
 F 10,4,24
 
-NO textures/1_wall.xpm
+NO textures/5_wall.xpm
 EA textures/2_wall.xpm
 SO textures/3_wall.xpm
 WE textures/4_wall.xpm
@@ -12,7 +12,7 @@ WE textures/4_wall.xpm
     10001 10000111
     100001001001
     100011001001
-    1000001N1001
+    1000001S1001
     1010001010011
     10000010100111
     1111111111111

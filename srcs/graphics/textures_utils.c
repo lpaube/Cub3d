@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 12:02:18 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/25 12:02:39 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/02/25 13:24:01 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_texture	get_face_asset(char face, t_graph *screen)
 		return (screen->wall_n);
 	if (face == 'E')
 		return (screen->wall_e);
+	if (face == 'W')
+		return (screen->wall_w);
 	if (face == 'S')
 		return (screen->wall_s);
 	return (screen->wall_w);
