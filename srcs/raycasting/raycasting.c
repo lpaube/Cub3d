@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/02/25 12:36:20 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/25 13:31:22 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ void	inc_ray_len(t_cub2d *cub2d)
 
 void	get_hitpos(t_cub2d *cub2d, int x)
 {
+	double
+	if (cub2d->raycast.side == 0)
+	{
+		printf("x: %d | ")
+	}
+
+	/*
 	double	distance;
 	int	tmp_map;
 
@@ -113,7 +120,8 @@ void	get_hitpos(t_cub2d *cub2d, int x)
 		}
 	}
 	cub2d->rays[x].hit_pos = distance / cub2d->tile_size * 100;
-	printf("x: %d | hitpos: %f\n", x, cub2d->rays[x].hit_pos);
+	// printf("x: %d | hitpos: %f\n", x, cub2d->rays[x].hit_pos);
+	*/
 }
 
 void	get_ray_side(t_cub2d *cub2d, int x)
@@ -146,7 +154,7 @@ void	get_ray_side(t_cub2d *cub2d, int x)
 	cub2d->rays[x].map_y = cub2d->raycast.map_y;
 
 	get_hitpos(cub2d, x);
-	cub2d->rays[x].hit_pos -= floor(cub2d->rays[x].hit_pos);
+	
 	cub2d->rays[x].height = (int)(cub2d->mlx_inst.win_height / cub2d->rays[x].len);
 	cub2d->rays[x].draw_top = -(cub2d->rays[x].height / 2) + (cub2d->mlx_inst.win_height / 2);
 	if (cub2d->rays[x].draw_top < 0)
@@ -162,8 +170,8 @@ void	ray_cast(t_cub2d *cub2d)
 	int		x;
 
 	x = -1;
-	cub2d->ray_num = cub2d->mlx_inst.win_width;
-	// cub2d->ray_num = 1;
+	// cub2d->ray_num = cub2d->mlx_inst.win_width;
+	cub2d->ray_num = 1;
 	cub2d->rays = malloc(sizeof(t_rays) * cub2d->ray_num);
 	while (++x < cub2d->ray_num)
 	{
