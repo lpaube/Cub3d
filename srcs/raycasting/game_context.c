@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/02/26 11:47:14 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/26 14:21:38 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	game_loop(t_cub2d *cub2d)
 {
 	ray_cast(cub2d);
 	show_3d(cub2d);
+	free(cub2d->rays);
 }
 
 void	game_context(int debug, t_map *map)
