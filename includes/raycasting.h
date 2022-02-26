@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:22:04 by laube             #+#    #+#             */
-/*   Updated: 2022/02/26 11:47:28 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/26 14:01:13 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,6 @@ void    game_loop(t_cub2d *cub2d);
 
 void	player_mvmt(int keycode, t_cub2d *cub2d);
 t_player	init_player(t_cub2d *cub2d);
+void	inc_ray_len(t_cub2d *cub2d);
+void	get_ray_side(t_cub2d *cub2d, int x);
+void	get_ray_data(t_cub2d *cub2d, int x);
