@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/02/25 15:28:34 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/26 11:44:08 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	click_close(void *param)
 	cub2d = param;
 	//free_map(&cub2d->map);
 	(void)param;
+	(void)cub2d;
 	exit(0);
 }
 

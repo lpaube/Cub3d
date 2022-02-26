@@ -16,7 +16,7 @@ PARSING =	cb_parsing.c cb_map.c cb_parsing_utils.c\
 
 GRAPHICS = background.c textures.c textures_utils.c
 
-RAYCASTING = draw_map.c draw_utils.c game_context_utils.c player_mvmt.c\
+RAYCASTING = draw_map.c draw_utils.c player_mvmt.c\
 			 user_input.c draw_raycasting.c game_context.c init_2d.c\
 			 raycasting.c
 

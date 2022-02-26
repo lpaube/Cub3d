@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:48:47 by laube             #+#    #+#             */
-/*   Updated: 2022/01/28 23:50:49 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/26 12:00:48 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@ void	draw_map_contour(t_cub2d *cub2d)
 	draw_rect(&cub2d->mlx_inst, rect);
 }
 
+t_rect	get_map_square(t_cub2d *cub2d, int i, int j)
+{
+	t_rect	rect;
+
+	rect.x = cub2d->tile_size * i;
+	rect.y = cub2d->tile_size * j;
+	rect.width = cub2d->tile_size;
+	rect.heigth = cub2d->tile_size;
+	rect.color = 0x0000FF;
+	return (rect);
+}
+
 void	draw_map_squares(t_cub2d *cub2d)
 {
 	t_rect	rect;
@@ -37,11 +49,7 @@ void	draw_map_squares(t_cub2d *cub2d)
 		i = -1;
 		while (++i < cub2d->map.map_width)
 		{
-			rect.x = cub2d->tile_size * i;
-			rect.y = cub2d->tile_size * j;
-			rect.width = cub2d->tile_size;
-			rect.heigth = cub2d->tile_size;
-			rect.color = 0x0000FF;
+			rect = get_map_square(cub2d, i, j);
 			if (cub2d->map.map[j][i] == '1')
 				draw_rect(&cub2d->mlx_inst, rect);
 			else if (cub2d->map.map[j][i] == '-')

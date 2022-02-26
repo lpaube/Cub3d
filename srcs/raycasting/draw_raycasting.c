@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:32:25 by laube             #+#    #+#             */
-/*   Updated: 2022/02/25 14:59:20 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/26 12:13:37 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void	draw_direction(t_cub2d *cub2d)
 
 	line.x1 = cub2d->player.circle.mid_x;
 	line.y1 = cub2d->player.circle.mid_y;
-	line.x2 = cub2d->player.circle.mid_x + cub2d->player.dir_x * cub2d->tile_size * 2;
-	line.y2 = cub2d->player.circle.mid_y + cub2d->player.dir_y * cub2d->tile_size * 2;
+	line.x2 = cub2d->player.circle.mid_x + cub2d->player.dir_x
+		* cub2d->tile_size * 2;
+	line.y2 = cub2d->player.circle.mid_y + cub2d->player.dir_y
+		* cub2d->tile_size * 2;
 	line.color = 0xFF00FF;
 	draw_line(&cub2d->mlx_inst, line);
 	tmp_x = line.x2;

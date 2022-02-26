@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/01/28 23:41:49 by laube            ###   ########.fr       */
+/*   Updated: 2022/02/26 12:48:10 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,19 @@ int	has_collision(t_cub2d *cub2d, int mvmt)
 
 void	player_mvmt(int keycode, t_cub2d *cub2d)
 {
-	if (keycode == MAIN_W)
-	{
-		if (!has_collision(cub2d, cub2d->player.mvmt))
-		{
-			cub2d->player.circle.mid_x += cub2d->player.mvmt * cub2d->player.dir_x;
-			cub2d->player.circle.mid_y += cub2d->player.mvmt * cub2d->player.dir_y;
-		}
-	}
+	int	factor;
+
+	factor = 1;
 	if (keycode == MAIN_S)
+		factor = -1;
+	if (keycode == MAIN_W || keycode == MAIN_S)
 	{
-		if (!has_collision(cub2d, -cub2d->player.mvmt))
+		if (!has_collision(cub2d, factor * cub2d->player.mvmt))
 		{
-			cub2d->player.circle.mid_x -= cub2d->player.mvmt * cub2d->player.dir_x;
-			cub2d->player.circle.mid_y -= cub2d->player.mvmt * cub2d->player.dir_y;
+			cub2d->player.circle.mid_x += factor * cub2d->player.mvmt
+				* cub2d->player.dir_x;
+			cub2d->player.circle.mid_y += factor * cub2d->player.mvmt
+				* cub2d->player.dir_y;
 		}
 	}
 	if (keycode == MAIN_A)
