@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 16:39:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 12:22:37 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/03 13:40:05 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,19 +104,19 @@ bool	cb_color_parsing(char **content, t_map *map_info, char type)
 	if (!line)
 		return (false);
 	numbers = ft_split(line + 1, ',');
-	if (!numbers)
-		return (false);
 	if (ft_matrice_size(numbers) != 3)
 	{
 		ft_free_tab(numbers);
+		free(line);
 		return (false);
 	}
 	color = malloc(sizeof(int) * 3);
 	if (cb_color_loop(numbers, color) == false)
-		return (false);
+		return (free_color(2, line, numbers, color));
 	if (type == 'F')
 		map_info->floor = color;
 	else
 		map_info->ceilling = color;
+	free_color(2, line, numbers, color);
 	return (true);
 }

@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_3d.c                                          :+:      :+:    :+:   */
+/*   cb_mem_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/29 00:12:02 by laube             #+#    #+#             */
-/*   Updated: 2022/03/03 13:41:40 by mafortin         ###   ########.fr       */
+/*   Created: 2022/03/03 12:58:58 by mafortin          #+#    #+#             */
+/*   Updated: 2022/03/03 13:39:18 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "graphics.h"
-#include "raycasting.h"
+#include <stdlib.h>
+#include <stdbool.h>
+#include "../includes/parsing.h"
+#include "../libft/libft.h"
 
-void	show_3d(t_cub2d *cub2d)
+bool	free_color(int code, char *line, char **numbers, int *color)
 {
-	void	*img;
-
-	put_background(&cub2d->mlx_inst, cub2d->screen);
-	put_textures(cub2d);
-	img = cub2d->mlx_inst.img;
-	mlx_put_image_to_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win,
-		img, 0, 0);
+	if (code == 1)
+		free(line);
+	if (code == 2)
+	{
+		free(line);
+		ft_free_tab(numbers);
+	}
+	else
+	{
+		free(line);
+		ft_free_tab(numbers);
+		free(color);
+	}
+	return (false);
 }
