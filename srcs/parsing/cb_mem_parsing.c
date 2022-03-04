@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/03 13:39:18 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:00:31 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ bool	free_color(int code, char *line, char **numbers, int *color)
 		ft_free_tab(numbers);
 		free(color);
 	}
+	printf("test\n");
 	return (false);
 }
+
+

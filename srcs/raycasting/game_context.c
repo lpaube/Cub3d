@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/03/02 15:26:49 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:27:31 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	game_context(int debug, t_map *map)
 
 	mlx_inst = mlx_inst_init();
 	cub2d.map = *map;
+	cub2d.map_ptr = map;
 	cub2d.debug = debug;
 	cub2d.mlx_inst = mlx_inst;
 	cub2d.tile_size = 20;

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/03/03 13:56:22 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:25:29 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_rays
 typedef struct s_cub2d
 {
 	t_map		map;
+	t_map		*map_ptr;
 	t_mlx		mlx_inst;
 	t_player	player;
 	t_raycast	raycast;

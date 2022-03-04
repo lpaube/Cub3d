@@ -6,13 +6,13 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 00:12:02 by laube             #+#    #+#             */
-/*   Updated: 2022/03/03 13:41:40 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/04 16:32:31 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "graphics.h"
-#include "raycasting.h"
+#include "../includes/cub3d.h"
+#include "../includes/graphics.h"
+#include "../includes/raycasting.h"
 
 void	show_3d(t_cub2d *cub2d)
 {
