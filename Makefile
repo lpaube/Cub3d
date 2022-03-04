@@ -18,7 +18,7 @@ RAYCASTING = draw_map.c draw_utils.c player_mvmt.c\
 			 user_input.c draw_raycasting.c game_context.c init_2d.c\
 			 raycast_main.c raycast_data.c raycast_len.c
 
-OBJS =	$(SRCS:.c=.o) $(PARSING:.c=.o) $(GRAPHICS:.c=.o)
+OBJS =	$(SRCS:.c=.o) $(PARSING:.c=.o) $(GRAPHICS:.c=.o) $(RAYCASTING:.c=.o)
 
 SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))
 PARSING_PATH = $(addprefix $(PARSING_DIR)/, $(PARSING))
@@ -32,24 +32,6 @@ INCLS = -Iincludes -Imlx_mac
 LIBS = -Lmlx_mac -lmlx -Llibft -lft -framework OpenGL -framework AppKit
 
 VPATH = $(SRCS_DIR) $(PARSING_DIR) $(GRAPHICS_DIR) $(RAYCASTING_DIR)
-
-
-all: $(NAME)
-
-clean:
-	@echo "\n\tCLEANING\n======================================="
-	@make clean --no-print-directory -C ./libft
-	@echo "- Removed libft obj files"
-	@rm -rf $(OBJS_PATH) $(OBJ_DIR)
-	@echo "- Removed Cub3d obj files"
-
-fclean: clean
-	@echo "\n\tCLEANING BINARIES\n======================================="
-	@make fclean --no-print-directory -C ./libft
-	@echo "- Removed libft lib file"
-	@rm -f $(NAME)
-	@echo "- Removed Cub3d bin file"
-	@echo "\\n\033[34;1m CUB3D HAS BEEN CLEANED \033[0m \\n"
 
 #Compiling for Linux
 ifeq ($(shell uname), Linux)
@@ -77,6 +59,23 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) $(INCLS) -c $< -o $@
+
+all: $(NAME)
+
+clean:
+	@echo "\n\tCLEANING\n======================================="
+	@make clean --no-print-directory -C ./libft
+	@echo "- Removed libft obj files"
+	@rm -rf $(OBJS_PATH) $(OBJ_DIR)
+	@echo "- Removed Cub3d obj files"
+
+fclean: clean
+	@echo "\n\tCLEANING BINARIES\n======================================="
+	@make fclean --no-print-directory -C ./libft
+	@echo "- Removed libft lib file"
+	@rm -f $(NAME)
+	@echo "- Removed Cub3d bin file"
+	@echo "\\n\033[34;1m CUB3D HAS BEEN CLEANED \033[0m \\n"
 
 re: fclean all
 
