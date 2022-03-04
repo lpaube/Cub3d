@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/02/26 12:48:10 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/04 17:36:12 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,62 @@ int	has_clipping(t_cub2d *cub2d, int newtile_x, int newtile_y)
 	return (0);
 }
 
+int	check_collision(t_cub2d *cub2d, int newpos_x, int newpos_y)
+{
+	int	newtile_x;
+	int	newtile_y;
+
+	newtile_x = newpos_x / cub2d->tile_size;
+	newtile_y = newpos_y / cub2d->tile_size;
+	printf("newtile_x: %d | newtile_y: %d | value: %c\n", newtile_x, newtile_y, cub2d->map.map[newtile_y][newtile_x]);
+	if (cub2d->map.map[newtile_y][newtile_x] == '1')
+		return (1);
+	if (has_clipping(cub2d, newtile_x, newtile_y))
+		return (1);
+	return (0);
+}
+
 int	has_collision(t_cub2d *cub2d, int mvmt)
 {
 	int	newpos_x;
 	int	newpos_y;
-	int	newtile_x;
-	int	newtile_y;
+	int collision_margin;
+	// int	newtile_x;
+	// int	newtile_y;
 
+	collision_margin = 5;
 	newpos_x = cub2d->player.circle.mid_x + mvmt * cub2d->player.dir_x;
 	newpos_y = cub2d->player.circle.mid_y + mvmt * cub2d->player.dir_y;
-	newtile_x = newpos_x / cub2d->tile_size;
-	newtile_y = newpos_y / cub2d->tile_size;
-	if (cub2d->map.map[newtile_y][newtile_x] == '1')
+	ft_print_matrice(cub2d->map.map);
+	printf("has_collision1\n");
+	if (check_collision(cub2d, newpos_x, newpos_y) == 1)
 		return (1);
-	if (has_clipping(cub2d, newtile_x, newtile_y))
-	{
+	// newtile_x = newpos_x / cub2d->tile_size;
+	// newtile_y = newpos_y / cub2d->tile_size;
+	// if (cub2d->map.map[newtile_y][newtile_x] == '1')
+	// 	return (1);
+	// if (has_clipping(cub2d, newtile_x, newtile_y))
+	// 	return (1);
+	newpos_x = cub2d->player.circle.mid_x + collision_margin + mvmt * cub2d->player.dir_x;
+	newpos_y = cub2d->player.circle.mid_y + mvmt * cub2d->player.dir_y;
+	// printf("has_collision2\n");
+	if (check_collision(cub2d, newpos_x, newpos_y) == 1)
 		return (1);
-	}
+	newpos_x = cub2d->player.circle.mid_x + mvmt * cub2d->player.dir_x;
+	newpos_y = cub2d->player.circle.mid_y + collision_margin + mvmt * cub2d->player.dir_y;
+	// printf("has_collision3\n");
+	if (check_collision(cub2d, newpos_x, newpos_y) == 1)
+		return (1);
+	newpos_x = cub2d->player.circle.mid_x - collision_margin + mvmt * cub2d->player.dir_x;
+	newpos_y = cub2d->player.circle.mid_y + mvmt * cub2d->player.dir_y;
+	// printf("has_collision4\n");
+	if (check_collision(cub2d, newpos_x, newpos_y) == 1)
+		return (1);
+	newpos_x = cub2d->player.circle.mid_x + mvmt * cub2d->player.dir_x;
+	newpos_y = cub2d->player.circle.mid_y - collision_margin + mvmt * cub2d->player.dir_y;
+	// printf("has_collision4\n");
+	if (check_collision(cub2d, newpos_x, newpos_y) == 1)
+		return (1);
 	return (0);
 }
 
@@ -64,7 +103,7 @@ void	player_mvmt(int keycode, t_cub2d *cub2d)
 		}
 	}
 	if (keycode == MAIN_A)
-		cub2d->player.angle += 2;
+		cub2d->player.angle += 5;
 	if (keycode == MAIN_D)
 		cub2d->player.angle -= 2;
 	if (cub2d->player.angle >= 360)
