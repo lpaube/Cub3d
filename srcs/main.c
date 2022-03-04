@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 15:17:16 by laube             #+#    #+#             */
-/*   Updated: 2022/03/03 13:41:01 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/04 16:30:22 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int	main(int argc, char **argv)
 {
 	int		debug;
 	int		i;
-	t_map	map_info;
+	t_map	*map_info;
 
 	debug = 0;
+	map_info = malloc(sizeof(t_map));
 	if (ft_strcmp(argv[1], "-2d") == 0)
 	{
 		debug = 2;
@@ -30,7 +31,7 @@ int	main(int argc, char **argv)
 		argc--;
 	}
 	if (cb_parsing_main(argc, argv, &map_info) == false)
-		return (1);
-	game_context(debug, &map_info);
+		return (1);//free
+	game_context(debug, map_info);
 	return (0);
 }
