@@ -98,6 +98,7 @@ void	player_mvmt(int keycode, t_cub2d *cub2d)
 		cub2d->player.vel_l = 1;
 	else if (keycode == MAIN_E)
 		cub2d->player.vel_r = 1;
+	/*
 	if (keycode == MAIN_W || keycode == MAIN_S)
 	{
 		if (!has_collision(cub2d, factor * cub2d->player.mvmt))
@@ -108,6 +109,7 @@ void	player_mvmt(int keycode, t_cub2d *cub2d)
 				* cub2d->player.dir_y;
 		}
 	}
+	*/
 	if (keycode == MAIN_A)
 		cub2d->player.angle += 5;
 	if (keycode == MAIN_D)
