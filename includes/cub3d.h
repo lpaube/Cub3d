@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/03/04 17:25:29 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/07 11:43:07 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,7 @@ typedef struct s_rect
 void	game_context(int debug, t_map *map);
 void	handle_2d(void);
 void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color);
+void	destroy_mlx(t_cub2d *cub2d);
+void	free_map(t_map *map_info);
 
 #endif

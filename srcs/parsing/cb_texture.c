@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 14:10:51 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/04 16:44:54 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:31:04 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,12 @@ bool	cb_check_texture(char **texture)
 
 bool	cb_texture_parsing(char **content, t_map *map_info)
 {
-	bool	ret;
-
-	(void)ret;
-	ret = true;
 	map_info->texture = ft_calloc(sizeof(char *), 5);
 	(void)content;
-	if (cb_find_texture(content, "NO", map_info->texture, 0) == false)
-		return (ft_false("Error\nMissing texture\n", 1));
-	if (cb_find_texture(content, "EA", map_info->texture, 1) == false)
-		return (ft_false("Error\nMissing texture\n", 1));
-	if (cb_find_texture(content, "SO", map_info->texture, 2) == false)
-		return (ft_false("Error\nMissing texture\n", 1));
-	if (cb_find_texture(content, "WE", map_info->texture, 3) == false)
+	if (cb_find_texture(content, "NO", map_info->texture, 0) == false ||
+			cb_find_texture(content, "EA", map_info->texture, 1) == false ||
+				cb_find_texture(content, "SO", map_info->texture, 2) == false ||
+					cb_find_texture(content, "WE", map_info->texture, 3) == false)
 		return (ft_false("Error\nMissing texture\n", 1));
 	if (cb_check_texture(map_info->texture) == false)
 		return (ft_false("Error\nTexture file error\n", 1));

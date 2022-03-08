@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 15:13:11 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/02 18:46:02 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:44:21 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,8 @@ int	cb_nbline_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd <= 0)
-	{
-		ft_putstr_fd("Error\nMap file\n", 2);
 		return (-1);
-	}
 	nb_line = ft_nbline_file(fd);
-	if (nb_line == -1)
-		ft_putstr_fd("Error\nMap formating\n", 2);
 	return (nb_line);
 }
 

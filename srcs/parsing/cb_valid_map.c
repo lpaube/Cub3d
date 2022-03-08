@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 18:44:57 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 12:12:58 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:28:18 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,7 @@ bool	cb_closedmap(t_map *map_info, int i, int j)
 			{
 				if (cb_wall_vert(map_info, i, i, j) == false
 					|| cb_wall_hor(map_info, i, j, j) == false)
-				{
-					ft_free_tab(map_info->map);
 					return (ft_false("Error\nMap: Not closed by walls\n", 1));
-				}
 			}
 			j++;
 		}

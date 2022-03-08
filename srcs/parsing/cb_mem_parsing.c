@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/04 17:00:31 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/07 13:25:13 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,9 @@
 #include "../includes/parsing.h"
 #include "../libft/libft.h"
 
-bool	free_color(int code, char *line, char **numbers, int *color)
+
+bool	free_color(char **numbers)
 {
-	if (code == 1)
-		free(line);
-	if (code == 2)
-	{
-		free(line);
-		ft_free_tab(numbers);
-	}
-	else
-	{
-		free(line);
-		ft_free_tab(numbers);
-		free(color);
-	}
-	printf("test\n");
+	ft_free_tab(numbers);
 	return (false);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:50:40 by mafortin          #+#    #+#             */
-/*   Updated: 2022/01/28 17:26:20 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:25:01 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,16 @@ int	ft_nbline_file(int fd)
 
 	ret = 1;
 	count = 0;
+	if (read(fd, &buf, 0) == -1)
+	{
+		close (fd);
+		return (-1);
+	}
 	while (ret > 0)
 	{
 		ret = read(fd, &buf, 1);
+		if (ret == 0)
+			break ;
 		if (ret < 0)
 		{
 			close(fd);

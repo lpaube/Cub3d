@@ -6,36 +6,19 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/03/04 17:28:53 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/07 11:43:30 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "raycasting.h"
 
-void	free_map(t_map *map_info, t_cub2d *cub2d)
-{
-	t_graph	*screen;
-
-	screen = cub2d->screen;
-	ft_free_tab(map_info->map);
-	ft_free_tab(map_info->texture);
-	free(map_info->floor);
-	free(map_info->ceilling);
-	free(map_info);
-	mlx_destroy_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win);
-	mlx_destroy_image(cub2d->mlx_inst.mlx, cub2d->mlx_inst.img);
-	mlx_destroy_image(cub2d->mlx_inst.mlx, screen->wall_n.img);
-	mlx_destroy_image(cub2d->mlx_inst.mlx, screen->wall_e.img);
-	mlx_destroy_image(cub2d->mlx_inst.mlx, screen->wall_s.img);
-	mlx_destroy_image(cub2d->mlx_inst.mlx, screen->wall_w.img);
-}
-
 int	key_press(int keycode, t_cub2d *cub2d)
 {
 	if (keycode == MAIN_ESC)
 	{
-		free_map(cub2d->map_ptr, cub2d);
+		free_map(cub2d->map_ptr);
+		destroy_mlx(cub2d);
 		exit(0);
 	}
 	else if (keycode == MAIN_W || keycode == MAIN_A
@@ -53,9 +36,8 @@ int	click_close(void *param)
 	t_cub2d	*cub2d;
 
 	cub2d = param;
-	free_map(cub2d->map_ptr, cub2d);
-	(void)param;
-	(void)cub2d;
+	free_map(cub2d->map_ptr);
+	destroy_mlx(cub2d);
 	exit(0);
 }
 

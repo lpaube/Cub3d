@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 13:08:44 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/04 17:04:34 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:43:30 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "parsing.h"
+#include "cub3d.h"
 #include "../libft/libft.h"
 
 //check if the file has .cub type
@@ -65,17 +66,16 @@ char	**cb_get_content(char *file, int fd, char **line)
 }
 
 //Parsing map file with argv[1]
-bool	cb_parsing_main(int argc, char **argv, t_map *map_info)
+bool	cb_parsing_main(char **argv, t_map *map_info)
 {
 	char	**content;
 
-	if (argc != 2)
-		return (ft_false("Error\nInvalid # of argument\n", 1));
-	if (cb_cubfile(argv[1]) == false)
-		return (ft_false("Error\nInvalid file type\n", 1));
 	content = cb_get_content(argv[1], 0, NULL);
 	if (!content)
+	{
+		free(map_info);
 		return (ft_false("Error\nWhile reading map file\n", 1));
+	}
 	if (cb_valid_content(content) == false
 		|| cb_map_parsing(content, map_info) == false
 		|| cb_texture_parsing(content, map_info) == false
@@ -83,6 +83,7 @@ bool	cb_parsing_main(int argc, char **argv, t_map *map_info)
 		|| cb_color_parsing(content, map_info, 'C') == false)
 	{
 		ft_free_tab(content);
+		free_map(map_info);
 		return (false);
 	}
 	ft_free_tab(content);

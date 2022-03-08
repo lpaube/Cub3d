@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:36:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/04 17:04:42 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:41:15 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_map
 	int		time;
 }	t_map;
 
-bool	cb_parsing_main(int argc, char **argv, t_map *map_info);
+bool	cb_parsing_main(char **argv, t_map *map_info);
 int		cb_nbline_file(char *file);
 bool	cb_map_parsing(char **content, t_map *map_info);
 int		cb_line_type(char *string);
@@ -57,6 +57,7 @@ bool	cb_texture_parsing(char **content, t_map *map_info);
 bool	cb_color_parsing(char **content, t_map *map_info, char type);
 bool	cb_closedmap(t_map *map_info, int i, int j);
 int		cb_valid_mapline(char *string, int i, int start);
-bool	free_color(int code, char *line, char **numbers, int *color);
+bool	free_color(char **numbers);
+bool	cb_cubfile(char *file);
 
 #endif
