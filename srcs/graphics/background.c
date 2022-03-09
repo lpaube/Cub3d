@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:37:58 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/25 12:13:06 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:22:16 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	put_background(t_mlx *mlx_inst, t_graph *screen)
 	int	j;
 
 	i = 0;
-	while (i <= WIN_HEIGTH)
+	while (i < WIN_HEIGHT)
 	{
 		j = 0;
-		while (j <= WIN_WIDTH)
+		while (j < WIN_WIDTH)
 		{
-			if (i <= (WIN_HEIGTH / 2))
+			if (i <= (WIN_HEIGHT / 2))
 				my_pixel_put(mlx_inst, j, i, screen->rgb_ceilling);
 			else
 				my_pixel_put(mlx_inst, j, i, screen->rgb_floor);

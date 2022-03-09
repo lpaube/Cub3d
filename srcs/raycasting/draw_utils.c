@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:31:20 by laube             #+#    #+#             */
-/*   Updated: 2022/02/07 16:46:59 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:38:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ void	my_pixel_put(t_mlx *mlx_inst, int x, int y, int color)
 {
 	char	*pxl;
 
+	// printf("y: %d\n", y);
 	if (x >= mlx_inst->win_width || x < 0 || y >= mlx_inst->win_height || y < 0)
+	{
 		return ;
+	}
 	pxl = mlx_inst->addr + (y * mlx_inst->line_len)
-		+ (x * (mlx_inst->bits_per_pixel / 8));
+		+ x * (mlx_inst->bits_per_pixel / 8);
 	*(unsigned int *)pxl = color;
 }
 

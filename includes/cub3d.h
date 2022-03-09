@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/03/08 23:24:59 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/09 13:14:06 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #define TILE_SIZE 20
 #define WIN_WIDTH 1280
-#define WIN_HEIGTH 720
+#define WIN_HEIGHT 720
 
 #include <math.h>
 #include <stdio.h>

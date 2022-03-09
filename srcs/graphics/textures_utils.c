@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 12:02:18 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/25 15:28:27 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/09 13:12:47 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@
 //Give the vertical pixel where the line of a ray/texture should start.
 int	get_starting_height(t_rays ray)
 {
-	return ((WIN_HEIGTH / 2) - ((ray.height) / 2));
+	// if ((WIN_HEIGTH / 2) - ((ray.height) / 2) < 0)
+	// {
+	// 	printf("start < 0 | ray.height: %d\n", ray.height);
+	// }
+	return ((WIN_HEIGHT / 2) - ((ray.height) / 2));
 }
 
 int	get_end_height(t_rays ray)
 {
-	return ((WIN_HEIGTH / 2) + ((ray.height) / 2));
+	return ((WIN_HEIGHT / 2) + ((ray.height) / 2));
 }
 
 t_texture	get_face_asset(char face, t_graph *screen)

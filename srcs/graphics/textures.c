@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/25 15:29:12 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/09 13:29:11 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,15 @@ void	put_texture_ray(t_cub2d *cub2d, t_texture asset, int y, double skip)
 	end = get_end_height(cub2d->rays[y]);
 	spray = (((cub2d->rays[y].hit_pos) * asset.img_width));
 	total = 0;
+	if (start < 0)
+	{
+		total += skip * abs(start);
+		start = 0;
+	}
 	while (start < end)
 	{
 		color = get_asset_color(asset, spray, total);
-		if (start < WIN_HEIGTH)
+		if (start < WIN_HEIGHT)
 		{
 			my_pixel_put(&cub2d->mlx_inst, y, start, color);
 		}
@@ -76,6 +81,7 @@ void	put_textures(t_cub2d *cub2d)
 	int				y;
 	double			skip;
 	t_texture		asset;
+	(void)skip;
 
 	y = 0;
 	while (y < cub2d->ray_num)
@@ -83,6 +89,7 @@ void	put_textures(t_cub2d *cub2d)
 		asset = get_face_asset(cub2d->rays[y].face, cub2d->screen);
 		skip = (double)asset.img_height / (cub2d->rays[y].height);
 		put_texture_ray(cub2d, asset, y, skip);
+		// printf("y: %d\n", y);
 		y++;
 	}
 	(void)cub2d;

@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/02/26 14:21:38 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/09 12:10:14 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	game_context(int debug, t_map *map)
 	if (textures_converter(&screen, &mlx_inst, map->texture) == false)
 		return;//BESOIN DE CREE UN MSG D'ERREUR ET D'EXIT ICI
 	cub2d.screen = &screen;
-	game_loop(&cub2d);
+	// game_loop(&cub2d);
 	hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
 }

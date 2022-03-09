@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/02/26 13:57:05 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/09 13:52:01 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ void	init_raycast(t_cub2d *cub2d, int x)
 	cub2d->raycast.delta_y = fabs(1 / cub2d->raycast.ray_dir_y);
 }
 
+void	out_of_bounds(t_cub2d *cub2d)
+{
+	
+}
+
 void	ray_cast(t_cub2d *cub2d)
 {
 	int		hit;
@@ -89,6 +94,14 @@ void	ray_cast(t_cub2d *cub2d)
 		while (hit == 0)
 		{
 			inc_ray_len(cub2d);
+			// printf("map_x: %d | map_y: %d\n", cub2d->raycast.map_x, cub2d->raycast.map_y);
+			if (cub2d->raycast.map_x < 0 || cub2d->raycast.map_y < 0
+				|| cub2d->raycast.map_x >= cub2d->map.map_width
+				|| cub2d->raycast.map_y >= cub2d->map.map_height)
+			{
+				out_of_bounds(cub2d);
+				break ;
+			}
 			if (cub2d->map.map[cub2d->raycast.map_y]
 				[cub2d->raycast.map_x] == '1')
 			{

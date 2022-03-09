@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/03/08 23:54:02 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/09 12:02:34 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,9 @@ int	mouse_mvmt(int x, int y, t_cub2d *cub2d)
 int	main_loop(t_cub2d *cub2d)
 {
 	(void)cub2d;
-	// int	newpos_x;
-	// int	newpos_y;
-
-	//newpos_x = (cub2d->player.circle.mid_x + cub2d->player.vel_u
 
 	player_mvmt(cub2d);
 	update_vectors(cub2d, &cub2d->player);
-
 	game_loop(cub2d);
 	return (0);
 }

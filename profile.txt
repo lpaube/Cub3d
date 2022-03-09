@@ -1,0 +1,574 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 43.30      1.58     1.58 611014008     0.00     0.00  my_pixel_put
+ 27.41      2.58     1.00   267520     0.00     0.01  put_texture_ray
+ 16.17      3.17     0.59 437281944     0.00     0.00  get_asset_color
+  6.30      3.40     0.23      209     1.10     3.49  put_background
+  2.47      3.49     0.09   296989     0.00     0.00  draw_rect
+  1.10      3.53     0.04   273372     0.00     0.00  draw_line
+  1.10      3.57     0.04      209     0.19     0.19  draw_player
+  1.10      3.61     0.04        1    40.01    40.01  textures_converter
+  0.27      3.62     0.01   267520     0.00     0.00  draw_seen_square
+  0.27      3.63     0.01   267520     0.00     0.00  get_ray_side
+  0.27      3.64     0.01      209     0.05    11.23  put_textures
+  0.27      3.65     0.01                             mlx_int_str_str
+  0.00      3.65     0.00   688095     0.00     0.00  inc_ray_len
+  0.00      3.65     0.00   267520     0.00     0.00  dist_offset
+  0.00      3.65     0.00   267520     0.00     0.00  draw_rays
+  0.00      3.65     0.00   267520     0.00     0.00  get_end_height
+  0.00      3.65     0.00   267520     0.00     0.00  get_face_asset
+  0.00      3.65     0.00   267520     0.00     0.00  get_hitpos
+  0.00      3.65     0.00   267520     0.00     0.00  get_ray_data
+  0.00      3.65     0.00   267520     0.00     0.00  get_starting_height
+  0.00      3.65     0.00   267520     0.00     0.00  init_raycast
+  0.00      3.65     0.00   267520     0.00     0.00  offset_x
+  0.00      3.65     0.00   267520     0.00     0.00  offset_y
+  0.00      3.65     0.00   152712     0.00     0.00  hitpos_side_x
+  0.00      3.65     0.00   114808     0.00     0.00  hitpos_side_y
+  0.00      3.65     0.00    29260     0.00     0.00  get_map_square
+  0.00      3.65     0.00     1678     0.00     0.00  deg_to_rad
+  0.00      3.65     0.00      210     0.00     0.00  update_vectors
+  0.00      3.65     0.00      209     0.00     0.00  draw_circle
+  0.00      3.65     0.00      209     0.00     0.00  draw_direction
+  0.00      3.65     0.00      209     0.00     0.20  draw_map
+  0.00      3.65     0.00      209     0.00     0.00  draw_map_contour
+  0.00      3.65     0.00      209     0.00     0.01  draw_map_grids
+  0.00      3.65     0.00      209     0.00     0.19  draw_map_squares
+  0.00      3.65     0.00      209     0.00    17.23  game_loop
+  0.00      3.65     0.00      209     0.00    17.23  main_loop
+  0.00      3.65     0.00      209     0.00     0.00  player_mvmt
+  0.00      3.65     0.00      209     0.00     0.05  ray_cast
+  0.00      3.65     0.00      209     0.00    17.18  show_3d
+  0.00      3.65     0.00       78     0.00     0.00  key_press
+  0.00      3.65     0.00       78     0.00     0.00  key_release
+  0.00      3.65     0.00       63     0.00     0.00  cb_hor_loop
+  0.00      3.65     0.00       63     0.00     0.00  cb_vert_loop
+  0.00      3.65     0.00       63     0.00     0.00  cb_wall_hor
+  0.00      3.65     0.00       63     0.00     0.00  cb_wall_vert
+  0.00      3.65     0.00       28     0.00     0.00  cb_line_type
+  0.00      3.65     0.00       11     0.00     0.00  cb_valid_tile
+  0.00      3.65     0.00       10     0.00     0.00  cb_line_dup
+  0.00      3.65     0.00       10     0.00     0.00  cb_valid_mapline
+  0.00      3.65     0.00        6     0.00     0.00  cb_valid_colorline
+  0.00      3.65     0.00        4     0.00     0.00  cb_find_texture
+  0.00      3.65     0.00        4     0.00     0.00  cb_xpmfile_check
+  0.00      3.65     0.00        4     0.00     0.00  get_asset
+  0.00      3.65     0.00        2     0.00     0.00  cb_color_loop
+  0.00      3.65     0.00        2     0.00     0.00  cb_color_parsing
+  0.00      3.65     0.00        2     0.00     0.00  cb_colorloop
+  0.00      3.65     0.00        2     0.00     0.00  cb_find_color
+  0.00      3.65     0.00        2     0.00     0.00  rgb_converter
+  0.00      3.65     0.00        1     0.00     0.00  background_converter
+  0.00      3.65     0.00        1     0.00     0.00  cb_check_texture
+  0.00      3.65     0.00        1     0.00     0.00  cb_closedmap
+  0.00      3.65     0.00        1     0.00     0.00  cb_cubfile
+  0.00      3.65     0.00        1     0.00     0.00  cb_get_content
+  0.00      3.65     0.00        1     0.00     0.00  cb_map_end
+  0.00      3.65     0.00        1     0.00     0.00  cb_map_order
+  0.00      3.65     0.00        1     0.00     0.00  cb_map_parsing
+  0.00      3.65     0.00        1     0.00     0.00  cb_map_parsing_loop
+  0.00      3.65     0.00        1     0.00     0.00  cb_nbline_file
+  0.00      3.65     0.00        1     0.00     0.00  cb_parsing_main
+  0.00      3.65     0.00        1     0.00     0.00  cb_playerpos
+  0.00      3.65     0.00        1     0.00     0.00  cb_texture_parsing
+  0.00      3.65     0.00        1     0.00     0.00  cb_valid_content
+  0.00      3.65     0.00        1     0.00    40.01  game_context
+  0.00      3.65     0.00        1     0.00     0.00  hook_handler
+  0.00      3.65     0.00        1     0.00     0.00  init_player
+  0.00      3.65     0.00        1     0.00     0.00  init_vectors
+  0.00      3.65     0.00        1     0.00     0.00  mlx_inst_init
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2021 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 0.27% of 3.65 seconds
+
+index % time    self  children    called     name
+                0.00    3.60     209/209         main_loop [2]
+[1]     98.6    0.00    3.60     209         game_loop [1]
+                0.00    3.59     209/209         show_3d [4]
+                0.00    0.01     209/209         ray_cast [21]
+-----------------------------------------------
+                0.00    3.60     209/209         mlx_loop [3]
+[2]     98.6    0.00    3.60     209         main_loop [2]
+                0.00    3.60     209/209         game_loop [1]
+                0.00    0.00     209/209         player_mvmt [42]
+                0.00    0.00     209/210         update_vectors [41]
+-----------------------------------------------
+                                                 <spontaneous>
+[3]     98.6    0.00    3.60                 mlx_loop [3]
+                0.00    3.60     209/209         main_loop [2]
+                0.00    0.00      78/78          key_press [43]
+                0.00    0.00      78/78          key_release [44]
+-----------------------------------------------
+                0.00    3.59     209/209         game_loop [1]
+[4]     98.4    0.00    3.59     209         show_3d [4]
+                0.01    2.34     209/209         put_textures [5]
+                0.23    0.50     209/209         put_background [8]
+                0.01    0.36  267520/267520      draw_seen_square [11]
+                0.00    0.06  267520/267520      draw_rays [13]
+                0.00    0.04     209/209         draw_map [14]
+                0.04    0.00     209/209         draw_player [15]
+                0.00    0.00     209/209         draw_direction [25]
+-----------------------------------------------
+                0.01    2.34     209/209         show_3d [4]
+[5]     64.3    0.01    2.34     209         put_textures [5]
+                1.00    1.34  267520/267520      put_texture_ray [6]
+                0.00    0.00  267520/267520      get_face_asset [30]
+-----------------------------------------------
+                1.00    1.34  267520/267520      put_textures [5]
+[6]     64.0    1.00    1.34  267520         put_texture_ray [6]
+                0.75    0.00 288371626/611014008     my_pixel_put [7]
+                0.59    0.00 437281944/437281944     get_asset_color [9]
+                0.00    0.00  267520/267520      get_starting_height [33]
+                0.00    0.00  267520/267520      get_end_height [29]
+-----------------------------------------------
+                0.00    0.00   18810/611014008     draw_circle [26]
+                0.02    0.00 9608243/611014008     draw_line [12]
+                0.31    0.00 119982720/611014008     draw_rect [10]
+                0.50    0.00 193032609/611014008     put_background [8]
+                0.75    0.00 288371626/611014008     put_texture_ray [6]
+[7]     43.3    1.58    0.00 611014008         my_pixel_put [7]
+-----------------------------------------------
+                0.23    0.50     209/209         show_3d [4]
+[8]     20.0    0.23    0.50     209         put_background [8]
+                0.50    0.00 193032609/611014008     my_pixel_put [7]
+-----------------------------------------------
+                0.59    0.00 437281944/437281944     put_texture_ray [6]
+[9]     16.2    0.59    0.00 437281944         get_asset_color [9]
+-----------------------------------------------
+                0.00    0.00     209/296989      draw_map_contour [24]
+                0.01    0.03   29260/296989      draw_map_squares [19]
+                0.08    0.28  267520/296989      draw_seen_square [11]
+[10]    11.0    0.09    0.31  296989         draw_rect [10]
+                0.31    0.00 119982720/611014008     my_pixel_put [7]
+-----------------------------------------------
+                0.01    0.36  267520/267520      show_3d [4]
+[11]    10.2    0.01    0.36  267520         draw_seen_square [11]
+                0.08    0.28  267520/296989      draw_rect [10]
+-----------------------------------------------
+                0.00    0.00     418/273372      draw_direction [25]
+                0.00    0.00    5434/273372      draw_map_grids [23]
+                0.04    0.02  267520/273372      draw_rays [13]
+[12]     1.8    0.04    0.02  273372         draw_line [12]
+                0.02    0.00 9608243/611014008     my_pixel_put [7]
+-----------------------------------------------
+                0.00    0.06  267520/267520      show_3d [4]
+[13]     1.7    0.00    0.06  267520         draw_rays [13]
+                0.04    0.02  267520/273372      draw_line [12]
+-----------------------------------------------
+                0.00    0.04     209/209         show_3d [4]
+[14]     1.1    0.00    0.04     209         draw_map [14]
+                0.00    0.04     209/209         draw_map_squares [19]
+                0.00    0.00     209/209         draw_map_grids [23]
+                0.00    0.00     209/209         draw_map_contour [24]
+-----------------------------------------------
+                0.04    0.00     209/209         show_3d [4]
+[15]     1.1    0.04    0.00     209         draw_player [15]
+                0.00    0.00     209/209         draw_circle [26]
+-----------------------------------------------
+                0.00    0.04       1/1           main [18]
+[16]     1.1    0.00    0.04       1         game_context [16]
+                0.04    0.00       1/1           textures_converter [17]
+                0.00    0.00       1/1           mlx_inst_init [79]
+                0.00    0.00       1/1           init_player [77]
+                0.00    0.00       1/1           background_converter [62]
+                0.00    0.00       1/1           hook_handler [76]
+-----------------------------------------------
+                0.04    0.00       1/1           game_context [16]
+[17]     1.1    0.04    0.00       1         textures_converter [17]
+                0.00    0.00       4/4           get_asset [56]
+-----------------------------------------------
+                                                 <spontaneous>
+[18]     1.1    0.00    0.04                 main [18]
+                0.00    0.04       1/1           game_context [16]
+                0.00    0.00       1/1           cb_parsing_main [72]
+-----------------------------------------------
+                0.00    0.04     209/209         draw_map [14]
+[19]     1.1    0.00    0.04     209         draw_map_squares [19]
+                0.01    0.03   29260/296989      draw_rect [10]
+                0.00    0.00   29260/29260       get_map_square [39]
+-----------------------------------------------
+                0.01    0.00  267520/267520      ray_cast [21]
+[20]     0.3    0.01    0.00  267520         get_ray_side [20]
+-----------------------------------------------
+                0.00    0.01     209/209         game_loop [1]
+[21]     0.3    0.00    0.01     209         ray_cast [21]
+                0.01    0.00  267520/267520      get_ray_side [20]
+                0.00    0.00  688095/688095      inc_ray_len [27]
+                0.00    0.00  267520/267520      init_raycast [34]
+                0.00    0.00  267520/267520      dist_offset [28]
+                0.00    0.00  267520/267520      get_ray_data [32]
+-----------------------------------------------
+                                                 <spontaneous>
+[22]     0.3    0.01    0.00                 mlx_int_str_str [22]
+-----------------------------------------------
+                0.00    0.00     209/209         draw_map [14]
+[23]     0.0    0.00    0.00     209         draw_map_grids [23]
+                0.00    0.00    5434/273372      draw_line [12]
+-----------------------------------------------
+                0.00    0.00     209/209         draw_map [14]
+[24]     0.0    0.00    0.00     209         draw_map_contour [24]
+                0.00    0.00     209/296989      draw_rect [10]
+-----------------------------------------------
+                0.00    0.00     209/209         show_3d [4]
+[25]     0.0    0.00    0.00     209         draw_direction [25]
+                0.00    0.00     418/273372      draw_line [12]
+-----------------------------------------------
+                0.00    0.00     209/209         draw_player [15]
+[26]     0.0    0.00    0.00     209         draw_circle [26]
+                0.00    0.00   18810/611014008     my_pixel_put [7]
+-----------------------------------------------
+                0.00    0.00  688095/688095      ray_cast [21]
+[27]     0.0    0.00    0.00  688095         inc_ray_len [27]
+-----------------------------------------------
+                0.00    0.00  267520/267520      ray_cast [21]
+[28]     0.0    0.00    0.00  267520         dist_offset [28]
+                0.00    0.00  267520/267520      offset_x [35]
+                0.00    0.00  267520/267520      offset_y [36]
+-----------------------------------------------
+                0.00    0.00  267520/267520      put_texture_ray [6]
+[29]     0.0    0.00    0.00  267520         get_end_height [29]
+-----------------------------------------------
+                0.00    0.00  267520/267520      put_textures [5]
+[30]     0.0    0.00    0.00  267520         get_face_asset [30]
+-----------------------------------------------
+                0.00    0.00  267520/267520      get_ray_data [32]
+[31]     0.0    0.00    0.00  267520         get_hitpos [31]
+                0.00    0.00  152712/152712      hitpos_side_x [37]
+                0.00    0.00  114808/114808      hitpos_side_y [38]
+-----------------------------------------------
+                0.00    0.00  267520/267520      ray_cast [21]
+[32]     0.0    0.00    0.00  267520         get_ray_data [32]
+                0.00    0.00  267520/267520      get_hitpos [31]
+-----------------------------------------------
+                0.00    0.00  267520/267520      put_texture_ray [6]
+[33]     0.0    0.00    0.00  267520         get_starting_height [33]
+-----------------------------------------------
+                0.00    0.00  267520/267520      ray_cast [21]
+[34]     0.0    0.00    0.00  267520         init_raycast [34]
+-----------------------------------------------
+                0.00    0.00  267520/267520      dist_offset [28]
+[35]     0.0    0.00    0.00  267520         offset_x [35]
+-----------------------------------------------
+                0.00    0.00  267520/267520      dist_offset [28]
+[36]     0.0    0.00    0.00  267520         offset_y [36]
+-----------------------------------------------
+                0.00    0.00  152712/152712      get_hitpos [31]
+[37]     0.0    0.00    0.00  152712         hitpos_side_x [37]
+-----------------------------------------------
+                0.00    0.00  114808/114808      get_hitpos [31]
+[38]     0.0    0.00    0.00  114808         hitpos_side_y [38]
+-----------------------------------------------
+                0.00    0.00   29260/29260       draw_map_squares [19]
+[39]     0.0    0.00    0.00   29260         get_map_square [39]
+-----------------------------------------------
+                0.00    0.00     418/1678        player_mvmt [42]
+                0.00    0.00    1260/1678        update_vectors [41]
+[40]     0.0    0.00    0.00    1678         deg_to_rad [40]
+-----------------------------------------------
+                0.00    0.00       1/210         init_vectors [78]
+                0.00    0.00     209/210         main_loop [2]
+[41]     0.0    0.00    0.00     210         update_vectors [41]
+                0.00    0.00    1260/1678        deg_to_rad [40]
+-----------------------------------------------
+                0.00    0.00     209/209         main_loop [2]
+[42]     0.0    0.00    0.00     209         player_mvmt [42]
+                0.00    0.00     418/1678        deg_to_rad [40]
+-----------------------------------------------
+                0.00    0.00      78/78          mlx_loop [3]
+[43]     0.0    0.00    0.00      78         key_press [43]
+-----------------------------------------------
+                0.00    0.00      78/78          mlx_loop [3]
+[44]     0.0    0.00    0.00      78         key_release [44]
+-----------------------------------------------
+                0.00    0.00      63/63          cb_wall_hor [47]
+[45]     0.0    0.00    0.00      63         cb_hor_loop [45]
+-----------------------------------------------
+                0.00    0.00      63/63          cb_wall_vert [48]
+[46]     0.0    0.00    0.00      63         cb_vert_loop [46]
+-----------------------------------------------
+                0.00    0.00      63/63          cb_closedmap [64]
+[47]     0.0    0.00    0.00      63         cb_wall_hor [47]
+                0.00    0.00      63/63          cb_hor_loop [45]
+-----------------------------------------------
+                0.00    0.00      63/63          cb_closedmap [64]
+[48]     0.0    0.00    0.00      63         cb_wall_vert [48]
+                0.00    0.00      63/63          cb_vert_loop [46]
+-----------------------------------------------
+                0.00    0.00       9/28          cb_map_parsing [69]
+                0.00    0.00      19/28          cb_valid_content [75]
+[49]     0.0    0.00    0.00      28         cb_line_type [49]
+-----------------------------------------------
+                0.00    0.00      11/11          cb_map_end [67]
+[50]     0.0    0.00    0.00      11         cb_valid_tile [50]
+-----------------------------------------------
+                0.00    0.00      10/10          cb_map_parsing_loop [70]
+[51]     0.0    0.00    0.00      10         cb_line_dup [51]
+-----------------------------------------------
+                0.00    0.00      10/10          cb_map_parsing_loop [70]
+[52]     0.0    0.00    0.00      10         cb_valid_mapline [52]
+-----------------------------------------------
+                0.00    0.00       6/6           cb_color_loop [57]
+[53]     0.0    0.00    0.00       6         cb_valid_colorline [53]
+-----------------------------------------------
+                0.00    0.00       4/4           cb_texture_parsing [74]
+[54]     0.0    0.00    0.00       4         cb_find_texture [54]
+-----------------------------------------------
+                0.00    0.00       4/4           cb_check_texture [63]
+[55]     0.0    0.00    0.00       4         cb_xpmfile_check [55]
+-----------------------------------------------
+                0.00    0.00       4/4           textures_converter [17]
+[56]     0.0    0.00    0.00       4         get_asset [56]
+-----------------------------------------------
+                0.00    0.00       2/2           cb_color_parsing [58]
+[57]     0.0    0.00    0.00       2         cb_color_loop [57]
+                0.00    0.00       6/6           cb_valid_colorline [53]
+-----------------------------------------------
+                0.00    0.00       2/2           cb_parsing_main [72]
+[58]     0.0    0.00    0.00       2         cb_color_parsing [58]
+                0.00    0.00       2/2           cb_find_color [60]
+                0.00    0.00       2/2           cb_color_loop [57]
+-----------------------------------------------
+                0.00    0.00       2/2           cb_find_color [60]
+[59]     0.0    0.00    0.00       2         cb_colorloop [59]
+-----------------------------------------------
+                0.00    0.00       2/2           cb_color_parsing [58]
+[60]     0.0    0.00    0.00       2         cb_find_color [60]
+                0.00    0.00       2/2           cb_colorloop [59]
+-----------------------------------------------
+                0.00    0.00       2/2           background_converter [62]
+[61]     0.0    0.00    0.00       2         rgb_converter [61]
+-----------------------------------------------
+                0.00    0.00       1/1           game_context [16]
+[62]     0.0    0.00    0.00       1         background_converter [62]
+                0.00    0.00       2/2           rgb_converter [61]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_texture_parsing [74]
+[63]     0.0    0.00    0.00       1         cb_check_texture [63]
+                0.00    0.00       4/4           cb_xpmfile_check [55]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_map_parsing_loop [70]
+[64]     0.0    0.00    0.00       1         cb_closedmap [64]
+                0.00    0.00      63/63          cb_wall_vert [48]
+                0.00    0.00      63/63          cb_wall_hor [47]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_parsing_main [72]
+[65]     0.0    0.00    0.00       1         cb_cubfile [65]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_parsing_main [72]
+[66]     0.0    0.00    0.00       1         cb_get_content [66]
+                0.00    0.00       1/1           cb_nbline_file [71]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_map_parsing [69]
+[67]     0.0    0.00    0.00       1         cb_map_end [67]
+                0.00    0.00      11/11          cb_valid_tile [50]
+                0.00    0.00       1/1           cb_map_order [68]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_map_end [67]
+[68]     0.0    0.00    0.00       1         cb_map_order [68]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_parsing_main [72]
+[69]     0.0    0.00    0.00       1         cb_map_parsing [69]
+                0.00    0.00       9/28          cb_line_type [49]
+                0.00    0.00       1/1           cb_map_end [67]
+                0.00    0.00       1/1           cb_map_parsing_loop [70]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_map_parsing [69]
+[70]     0.0    0.00    0.00       1         cb_map_parsing_loop [70]
+                0.00    0.00      10/10          cb_valid_mapline [52]
+                0.00    0.00      10/10          cb_line_dup [51]
+                0.00    0.00       1/1           cb_playerpos [73]
+                0.00    0.00       1/1           cb_closedmap [64]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_get_content [66]
+[71]     0.0    0.00    0.00       1         cb_nbline_file [71]
+-----------------------------------------------
+                0.00    0.00       1/1           main [18]
+[72]     0.0    0.00    0.00       1         cb_parsing_main [72]
+                0.00    0.00       2/2           cb_color_parsing [58]
+                0.00    0.00       1/1           cb_cubfile [65]
+                0.00    0.00       1/1           cb_get_content [66]
+                0.00    0.00       1/1           cb_valid_content [75]
+                0.00    0.00       1/1           cb_map_parsing [69]
+                0.00    0.00       1/1           cb_texture_parsing [74]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_map_parsing_loop [70]
+[73]     0.0    0.00    0.00       1         cb_playerpos [73]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_parsing_main [72]
+[74]     0.0    0.00    0.00       1         cb_texture_parsing [74]
+                0.00    0.00       4/4           cb_find_texture [54]
+                0.00    0.00       1/1           cb_check_texture [63]
+-----------------------------------------------
+                0.00    0.00       1/1           cb_parsing_main [72]
+[75]     0.0    0.00    0.00       1         cb_valid_content [75]
+                0.00    0.00      19/28          cb_line_type [49]
+-----------------------------------------------
+                0.00    0.00       1/1           game_context [16]
+[76]     0.0    0.00    0.00       1         hook_handler [76]
+-----------------------------------------------
+                0.00    0.00       1/1           game_context [16]
+[77]     0.0    0.00    0.00       1         init_player [77]
+                0.00    0.00       1/1           init_vectors [78]
+-----------------------------------------------
+                0.00    0.00       1/1           init_player [77]
+[78]     0.0    0.00    0.00       1         init_vectors [78]
+                0.00    0.00       1/210         update_vectors [41]
+-----------------------------------------------
+                0.00    0.00       1/1           game_context [16]
+[79]     0.0    0.00    0.00       1         mlx_inst_init [79]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2021 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+  [62] background_converter   [47] cb_wall_hor            [33] get_starting_height
+  [63] cb_check_texture       [48] cb_wall_vert           [37] hitpos_side_x
+  [64] cb_closedmap           [55] cb_xpmfile_check       [38] hitpos_side_y
+  [57] cb_color_loop          [40] deg_to_rad             [76] hook_handler
+  [58] cb_color_parsing       [28] dist_offset            [27] inc_ray_len
+  [59] cb_colorloop           [26] draw_circle            [77] init_player
+  [65] cb_cubfile             [25] draw_direction         [34] init_raycast
+  [60] cb_find_color          [12] draw_line              [78] init_vectors
+  [54] cb_find_texture        [14] draw_map               [43] key_press
+  [66] cb_get_content         [24] draw_map_contour       [44] key_release
+  [45] cb_hor_loop            [23] draw_map_grids          [2] main_loop
+  [51] cb_line_dup            [19] draw_map_squares       [79] mlx_inst_init
+  [49] cb_line_type           [15] draw_player            [22] mlx_int_str_str
+  [67] cb_map_end             [13] draw_rays               [7] my_pixel_put
+  [68] cb_map_order           [10] draw_rect              [35] offset_x
+  [69] cb_map_parsing         [11] draw_seen_square       [36] offset_y
+  [70] cb_map_parsing_loop    [16] game_context           [42] player_mvmt
+  [71] cb_nbline_file          [1] game_loop               [8] put_background
+  [72] cb_parsing_main        [56] get_asset               [6] put_texture_ray
+  [73] cb_playerpos            [9] get_asset_color         [5] put_textures
+  [74] cb_texture_parsing     [29] get_end_height         [21] ray_cast
+  [53] cb_valid_colorline     [30] get_face_asset         [61] rgb_converter
+  [75] cb_valid_content       [31] get_hitpos              [4] show_3d
+  [52] cb_valid_mapline       [39] get_map_square         [17] textures_converter
+  [50] cb_valid_tile          [32] get_ray_data           [41] update_vectors
+  [46] cb_vert_loop           [20] get_ray_side

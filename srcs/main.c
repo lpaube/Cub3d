@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 15:17:16 by laube             #+#    #+#             */
-/*   Updated: 2022/02/26 14:17:35 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/09 13:33:07 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 	}
 	if (cb_parsing_main(argc, argv, map_info) == false)
 		return (1);
+	ft_print_matrice(map_info->map);
 	game_context(debug, map_info);
 	free(map_info);
 	return (0);
