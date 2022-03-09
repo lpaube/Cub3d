@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:49:30 by laube             #+#    #+#             */
-/*   Updated: 2022/03/08 23:39:25 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/08 23:54:02 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ int	key_release(int keycode, t_cub2d *cub2d)
 {
 	if (keycode == MAIN_W)
 		cub2d->player.vel_u = 0;
-	else if (keycode == MAIN_S)
+	if (keycode == MAIN_S)
 		cub2d->player.vel_d = 0;
-	else if (keycode == MAIN_A)
+	if (keycode == MAIN_A)
 		cub2d->player.vel_l = 0;
-	else if (keycode == MAIN_D)
-		cub2d->player.vel_d = 0;
-	else if (keycode == ARROW_LEFT)
+	if (keycode == MAIN_D)
+		cub2d->player.vel_r = 0;
+	if (keycode == ARROW_LEFT)
 		cub2d->player.rot_l = 0;
-	else if (keycode == ARROW_RIGHT)
+	if (keycode == ARROW_RIGHT)
 		cub2d->player.rot_r = 0;
 	return (0);
 }
