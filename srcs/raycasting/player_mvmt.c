@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/03/09 00:04:59 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/09 11:51:00 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,10 @@ void	player_mvmt(t_cub2d *cub2d)
 	cub2d->player.circle.mid_y += (cub2d->player.vel_u - cub2d->player.vel_d)
 		* cub2d->player.dir_y;
 	cub2d->player.circle.mid_x += (cub2d->player.vel_r - cub2d->player.vel_l)
-		* (1 - fabs(cub2d->player.dir_x));
-	// cub2d->player.circle.mid_y += (cub2d->player.vel_r - cub2d->player.vel_l)
-	// 	* (cub2d->player.dir_y - 1);
+		* (1 * cos(deg_to_rad(cub2d->player.angle - 90)));
+	cub2d->player.circle.mid_y += (cub2d->player.vel_r - cub2d->player.vel_l)
+		* (-1 * sin(deg_to_rad(cub2d->player.angle - 90)));
+	printf("player.angle: %d\n", cub2d->player.angle);
 	if (cub2d->player.rot_l == 1)
 		cub2d->player.angle += 2;
 	if (cub2d->player.rot_r == 1)
