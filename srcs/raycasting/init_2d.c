@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:13:24 by laube             #+#    #+#             */
-/*   Updated: 2022/02/26 12:43:36 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/08 23:24:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ t_player	init_player(t_cub2d *cub2d)
 	player.orien = cub2d->map.orientation;
 	player.mvmt = cub2d->tile_size / 10;
 	player.fov = 66;
+	player.vel_u = 0;
+	player.vel_d = 0;
+	player.vel_l = 0;
+	player.vel_r = 0;
+	player.rot_l = 0;
+	player.rot_r = 0;
 	init_vectors(cub2d, &player);
 	return (player);
 }

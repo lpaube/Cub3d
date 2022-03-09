@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/03/04 17:36:12 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/08 23:39:12 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,12 @@ int	has_collision(t_cub2d *cub2d, int mvmt)
 	return (0);
 }
 
-void	player_mvmt(int keycode, t_cub2d *cub2d)
+void	player_mvmt(t_cub2d *cub2d)
 {
+	/*
 	int	factor;
 
 	factor = 1;
-	if (keycode == MAIN_N)
-		cub2d->player.vel_u = 1;
-	else if (keycode == MAIN_S)
-		cub2d->player.vel_d = 1;
-	else if (keycode == MAIN_W)
-		cub2d->player.vel_l = 1;
-	else if (keycode == MAIN_E)
-		cub2d->player.vel_r = 1;
-	/*
 	if (keycode == MAIN_W || keycode == MAIN_S)
 	{
 		if (!has_collision(cub2d, factor * cub2d->player.mvmt))
@@ -110,10 +102,14 @@ void	player_mvmt(int keycode, t_cub2d *cub2d)
 		}
 	}
 	*/
-	if (keycode == MAIN_A)
-		cub2d->player.angle += 5;
-	if (keycode == MAIN_D)
+	if (cub2d->player.rot_l == 1)
+	{
+		cub2d->player.angle += 2;
+	}
+	if (cub2d->player.rot_r == 1)
+	{
 		cub2d->player.angle -= 2;
+	}
 	if (cub2d->player.angle >= 360)
 		cub2d->player.angle = 0;
 	if (cub2d->player.angle < 0)

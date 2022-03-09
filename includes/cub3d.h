@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/02/25 15:28:10 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/08 23:24:59 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ typedef struct	s_circle
 typedef struct s_player
 {
 	t_circle circle;
+        int vel_u;
+        int vel_d;
+        int vel_l;
+        int vel_r;
+        int rot_l;
+        int rot_r;
         char    orien;
         //Tile position
         int tile_x;
