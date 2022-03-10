@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 15:17:16 by laube             #+#    #+#             */
-/*   Updated: 2022/03/10 10:47:41 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/10 12:57:29 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_map(t_map *map_info)
 
 void	destroy_mlx(t_cub2d *cub2d)
 {
-	t_graph *screen;
+	t_graph	*screen;
 
 	screen = cub2d->screen;
 	mlx_destroy_window(cub2d->mlx_inst.mlx, cub2d->mlx_inst.win);
@@ -50,8 +50,8 @@ void	destroy_mlx(t_cub2d *cub2d)
 
 int	main(int argc, char **argv)
 {
-	t_map *map_info;
-	
+	t_map	*map_info;
+
 	if (argc != 2)
 	{
 		printf("Error\nInvalid # of argument\n");

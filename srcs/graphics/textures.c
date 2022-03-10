@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:34:02 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/09 13:29:11 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/10 12:54:31 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	put_textures(t_cub2d *cub2d)
 	int				y;
 	double			skip;
 	t_texture		asset;
-	(void)skip;
 
 	y = 0;
 	while (y < cub2d->ray_num)
@@ -89,9 +88,6 @@ void	put_textures(t_cub2d *cub2d)
 		asset = get_face_asset(cub2d->rays[y].face, cub2d->screen);
 		skip = (double)asset.img_height / (cub2d->rays[y].height);
 		put_texture_ray(cub2d, asset, y, skip);
-		// printf("y: %d\n", y);
 		y++;
 	}
-	(void)cub2d;
-	(void)asset;
 }

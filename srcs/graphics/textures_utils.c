@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 12:02:18 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/09 13:12:47 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/10 12:55:14 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 //Give the vertical pixel where the line of a ray/texture should start.
 int	get_starting_height(t_rays ray)
 {
-	// if ((WIN_HEIGTH / 2) - ((ray.height) / 2) < 0)
-	// {
-	// 	printf("start < 0 | ray.height: %d\n", ray.height);
-	// }
 	return ((WIN_HEIGHT / 2) - ((ray.height) / 2));
 }
 
