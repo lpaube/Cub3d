@@ -26,14 +26,8 @@ int	has_clipping(t_cub2d *cub2d, int newtile_x, int newtile_y)
 	return (0);
 }
 
-int	check_collision(t_cub2d *cub2d, int newpos_x, int newpos_y)
+int	check_all_collision(t_cub2d *cub2d, int newtile_x, int newtile_y)
 {
-	int	newtile_x;
-	int	newtile_y;
-
-	newtile_x = newpos_x / cub2d->tile_size;
-	newtile_y = newpos_y / cub2d->tile_size;
-	printf("newtile_x: %d | newtile_y: %d | value: %c\n", newtile_x, newtile_y, cub2d->map.map[newtile_y][newtile_x]);
 	if (cub2d->map.map[newtile_y][newtile_x] == '1')
 		return (1);
 	if (has_clipping(cub2d, newtile_x, newtile_y))
@@ -41,6 +35,33 @@ int	check_collision(t_cub2d *cub2d, int newpos_x, int newpos_y)
 	return (0);
 }
 
+int	check_collision(t_cub2d *cub2d, int newpos_x, int newpos_y)
+{
+	int	margin;
+
+	//printf("newtile_x: %d | newtile_y: %d | value: %c\n", newtile_x, newtile_y, cub2d->map.map[newtile_y][newtile_x]);
+	margin = 3;
+	//newtile_x = newpos_x + margin / cub2d->tile_size;
+	//newtile_y = newpos_y / cub2d->tile_size;
+	if (check_all_collision(cub2d, (newpos_x + margin) / cub2d->tile_size,
+		newpos_y / cub2d->tile_size))
+		return (1);
+	if (check_all_collision(cub2d, (newpos_x - margin) / cub2d->tile_size,
+		newpos_y / cub2d->tile_size))
+		return (1);
+	if (check_all_collision(cub2d, newpos_x / cub2d->tile_size,
+		(newpos_y + margin) / cub2d->tile_size))
+		return (1);
+	if (check_all_collision(cub2d, newpos_x / cub2d->tile_size,
+		(newpos_y - margin) / cub2d->tile_size))
+		return (1);
+	if (check_all_collision(cub2d, newpos_x / cub2d->tile_size,
+		newpos_y / cub2d->tile_size))
+		return (1);
+	return (0);
+}
+
+/*
 int	has_collision(t_cub2d *cub2d, int mvmt)
 {
 	int	newpos_x;
@@ -84,33 +105,49 @@ int	has_collision(t_cub2d *cub2d, int mvmt)
 		return (1);
 	return (0);
 }
+*/
+
+int has_collision(t_cub2d *cub2d)
+{
+	double	newpos_x;
+	double	newpos_y;
+
+	newpos_x = cub2d->player.circle.mid_x + (cub2d->player.vel_u - cub2d->player.vel_d)
+		* cub2d->player.dir_x;
+	newpos_x += (cub2d->player.vel_r - cub2d->player.vel_l)
+				* (1 * cos(deg_to_rad(cub2d->player.angle - 90)));
+	newpos_y = cub2d->player.circle.mid_y + (cub2d->player.vel_u - cub2d->player.vel_d)
+				* cub2d->player.dir_y;
+	newpos_y += (cub2d->player.vel_r - cub2d->player.vel_l)
+				* (-1 * sin(deg_to_rad(cub2d->player.angle - 90)));
+	if (check_collision(cub2d, newpos_x, newpos_y) == 0)
+		return (0);
+	if (check_collision(cub2d, cub2d->player.circle.mid_x, newpos_y) == 0)
+		return (1);
+	if (check_collision(cub2d, newpos_x, cub2d->player.circle.mid_y) == 0)
+		return (2);
+	return (3);
+}
 
 void	player_mvmt(t_cub2d *cub2d)
 {
-	/*
-	int	factor;
+    int move_possible;
 
-	factor = 1;
-	if (keycode == MAIN_W || keycode == MAIN_S)
+    move_possible = has_collision(cub2d);
+	if (move_possible % 2 == 0)
 	{
-		if (!has_collision(cub2d, factor * cub2d->player.mvmt))
-		{
-			cub2d->player.circle.mid_x += factor * cub2d->player.mvmt
-				* cub2d->player.dir_x;
-			cub2d->player.circle.mid_y += factor * cub2d->player.mvmt
-				* cub2d->player.dir_y;
-		}
+		cub2d->player.circle.mid_x += (cub2d->player.vel_u - cub2d->player.vel_d)
+			* cub2d->player.dir_x;
+		cub2d->player.circle.mid_x += (cub2d->player.vel_r - cub2d->player.vel_l)
+			* (1 * cos(deg_to_rad(cub2d->player.angle - 90)));
 	}
-	*/
-
-	cub2d->player.circle.mid_x += (cub2d->player.vel_u - cub2d->player.vel_d)
-		* cub2d->player.dir_x;
-	cub2d->player.circle.mid_y += (cub2d->player.vel_u - cub2d->player.vel_d)
-		* cub2d->player.dir_y;
-	cub2d->player.circle.mid_x += (cub2d->player.vel_r - cub2d->player.vel_l)
-		* (1 * cos(deg_to_rad(cub2d->player.angle - 90)));
-	cub2d->player.circle.mid_y += (cub2d->player.vel_r - cub2d->player.vel_l)
-		* (-1 * sin(deg_to_rad(cub2d->player.angle - 90)));
+	if (move_possible < 2)
+	{
+		cub2d->player.circle.mid_y += (cub2d->player.vel_u - cub2d->player.vel_d)
+			* cub2d->player.dir_y;
+		cub2d->player.circle.mid_y += (cub2d->player.vel_r - cub2d->player.vel_l)
+			* (-1 * sin(deg_to_rad(cub2d->player.angle - 90)));
+	}
 	if (cub2d->player.rot_l == 1)
 		cub2d->player.angle += 2;
 	if (cub2d->player.rot_r == 1)

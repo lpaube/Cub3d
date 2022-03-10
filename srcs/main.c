@@ -32,7 +32,6 @@ int	main(int argc, char **argv)
 	}
 	if (cb_parsing_main(argc, argv, map_info) == false)
 		return (1);
-	ft_print_matrice(map_info->map);
 	game_context(debug, map_info);
 	free(map_info);
 	return (0);

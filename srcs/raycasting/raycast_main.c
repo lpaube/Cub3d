@@ -75,7 +75,20 @@ void	init_raycast(t_cub2d *cub2d, int x)
 
 void	out_of_bounds(t_cub2d *cub2d)
 {
-	
+    int i;
+    int j;
+
+    i = 0;
+    while (i < WIN_WIDTH)
+    {
+        j = 0;
+        while (j < WIN_HEIGHT)
+        {
+            my_pixel_put(&cub2d->mlx_inst, i, j, 0x009999);
+            j++;
+        }
+        i++;
+    }
 }
 
 void	ray_cast(t_cub2d *cub2d)
@@ -94,14 +107,10 @@ void	ray_cast(t_cub2d *cub2d)
 		while (hit == 0)
 		{
 			inc_ray_len(cub2d);
-			// printf("map_x: %d | map_y: %d\n", cub2d->raycast.map_x, cub2d->raycast.map_y);
 			if (cub2d->raycast.map_x < 0 || cub2d->raycast.map_y < 0
 				|| cub2d->raycast.map_x >= cub2d->map.map_width
 				|| cub2d->raycast.map_y >= cub2d->map.map_height)
-			{
-				out_of_bounds(cub2d);
-				break ;
-			}
+			    break ;
 			if (cub2d->map.map[cub2d->raycast.map_y]
 				[cub2d->raycast.map_x] == '1')
 			{
