@@ -26,7 +26,7 @@ int	has_clipping(t_cub2d *cub2d, int newtile_x, int newtile_y)
 	return (0);
 }
 
-int	check_all_collision(t_cub2d *cub2d, int newtile_x, int newtile_y)
+int	check_collision(t_cub2d *cub2d, int newtile_x, int newtile_y)
 {
 	if (cub2d->map.map[newtile_y][newtile_x] == '1')
 		return (1);
@@ -35,29 +35,43 @@ int	check_all_collision(t_cub2d *cub2d, int newtile_x, int newtile_y)
 	return (0);
 }
 
-int	check_collision(t_cub2d *cub2d, int newpos_x, int newpos_y)
+int	check_all_collision(t_cub2d *cub2d, int newpos_x, int newpos_y)
 {
 	int	margin;
+	int	angle;
+	int	tmp_pos_x;
+	int	tmp_pos_y;
 
 	//printf("newtile_x: %d | newtile_y: %d | value: %c\n", newtile_x, newtile_y, cub2d->map.map[newtile_y][newtile_x]);
+	angle = 0;
 	margin = 3;
+	while (angle < 360)
+	{
+		tmp_pos_x = newpos_x + margin * (cos(deg_to_rad(angle)));
+		tmp_pos_y = newpos_y + margin * (sin(deg_to_rad(angle)));
+		if (check_collision(cub2d, tmp_pos_x / cub2d->tile_size, tmp_pos_y / cub2d->tile_size))
+			return (1);
+		angle++;
+	}
 	//newtile_x = newpos_x + margin / cub2d->tile_size;
 	//newtile_y = newpos_y / cub2d->tile_size;
-	if (check_all_collision(cub2d, (newpos_x + margin) / cub2d->tile_size,
+	/*
+	if (check_collision(cub2d, (newpos_x + margin) / cub2d->tile_size,
 		newpos_y / cub2d->tile_size))
 		return (1);
-	if (check_all_collision(cub2d, (newpos_x - margin) / cub2d->tile_size,
+	if (check_collision(cub2d, (newpos_x - margin) / cub2d->tile_size,
 		newpos_y / cub2d->tile_size))
 		return (1);
-	if (check_all_collision(cub2d, newpos_x / cub2d->tile_size,
+	if (check_collision(cub2d, newpos_x / cub2d->tile_size,
 		(newpos_y + margin) / cub2d->tile_size))
 		return (1);
-	if (check_all_collision(cub2d, newpos_x / cub2d->tile_size,
+	if (check_collision(cub2d, newpos_x / cub2d->tile_size,
 		(newpos_y - margin) / cub2d->tile_size))
 		return (1);
-	if (check_all_collision(cub2d, newpos_x / cub2d->tile_size,
+	if (check_collision(cub2d, newpos_x / cub2d->tile_size,
 		newpos_y / cub2d->tile_size))
 		return (1);
+	*/
 	return (0);
 }
 
@@ -120,11 +134,11 @@ int has_collision(t_cub2d *cub2d)
 				* cub2d->player.dir_y;
 	newpos_y += (cub2d->player.vel_r - cub2d->player.vel_l)
 				* (-1 * sin(deg_to_rad(cub2d->player.angle - 90)));
-	if (check_collision(cub2d, newpos_x, newpos_y) == 0)
+	if (check_all_collision(cub2d, newpos_x, newpos_y) == 0)
 		return (0);
-	if (check_collision(cub2d, cub2d->player.circle.mid_x, newpos_y) == 0)
+	if (check_all_collision(cub2d, cub2d->player.circle.mid_x, newpos_y) == 0)
 		return (1);
-	if (check_collision(cub2d, newpos_x, cub2d->player.circle.mid_y) == 0)
+	if (check_all_collision(cub2d, newpos_x, cub2d->player.circle.mid_y) == 0)
 		return (2);
 	return (3);
 }
