@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 16:39:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 12:22:37 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/07 13:38:52 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,10 @@ bool	cb_color_loop(char **numbers, int *color)
 	while (numbers[i])
 	{
 		if (cb_valid_colorline(numbers[i]) == false)
-		{
-			ft_free_tab(numbers);
 			return (ft_false("Error\nInvalid char in colors\n", 1));
-		}
 		color[i] = ft_atoi(numbers[i]);
 		if (color[i] < 0 || color[i] > 255)
-		{
-			ft_free_tab(numbers);
 			return (ft_false("Error\nInvalid ceilling or floor color\n", 1));
-		}
 		i++;
 	}
 	return (true);
@@ -104,19 +98,21 @@ bool	cb_color_parsing(char **content, t_map *map_info, char type)
 	if (!line)
 		return (false);
 	numbers = ft_split(line + 1, ',');
-	if (!numbers)
-		return (false);
 	if (ft_matrice_size(numbers) != 3)
 	{
-		ft_free_tab(numbers);
-		return (false);
+		printf("Error\n# of color\n");
+		return (free_color(numbers));
 	}
 	color = malloc(sizeof(int) * 3);
 	if (cb_color_loop(numbers, color) == false)
-		return (false);
+	{
+		free(color);
+		return (free_color(numbers));
+	}
 	if (type == 'F')
 		map_info->floor = color;
 	else
 		map_info->ceilling = color;
+	ft_free_tab(numbers);
 	return (true);
 }

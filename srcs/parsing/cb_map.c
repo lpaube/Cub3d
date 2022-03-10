@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2022/02/07 12:11:56 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:33:27 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,7 @@ bool	cb_map_parsing_loop(char **content, t_map *map_info, int i)
 	while (index < map_info->map_height)
 	{
 		if (cb_valid_mapline(content[index + i], 0, 0) == -1)
-		{
-			if (index == 0)
-				ft_free_tab(map_info->map);
 			return (ft_false("Error\nMap: Invalid char\n", 1));
-		}
 		map_info->map[index] = cb_line_dup(content[i + index],
 				map_info->map_width);
 		index++;

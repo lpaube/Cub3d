@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_context.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/03/09 12:10:14 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/10 10:47:27 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,20 @@ void	game_context(int debug, t_map *map)
 
 	mlx_inst = mlx_inst_init();
 	cub2d.map = *map;
+	cub2d.map_ptr = map;
 	cub2d.debug = debug;
 	cub2d.mlx_inst = mlx_inst;
 	cub2d.tile_size = 20;
 	cub2d.player = init_player(&cub2d);
 	cub2d.mouse_x = 0;
 	cub2d.mouse_y = 0;
+	cub2d.count = 0;
 	screen = background_converter(map);
 	if (textures_converter(&screen, &mlx_inst, map->texture) == false)
-		return;//BESOIN DE CREE UN MSG D'ERREUR ET D'EXIT ICI
+	{
+		printf("Error\nTexture file error\n");
+		exit (0);
+	}
 	cub2d.screen = &screen;
 	// game_loop(&cub2d);
 	hook_handler(&cub2d);

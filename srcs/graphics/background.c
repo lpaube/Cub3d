@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:37:58 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/09 13:22:16 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/10 10:47:08 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	rgb_converter(int t, int r, int g, int b)
 //convert RGB (Int[3]) to Hexadecimal color code
 t_graph	background_converter(t_map *map_info)
 {
-	t_graph screen;
+	t_graph	screen;
 
 	screen.rgb_floor = rgb_converter(0, map_info->floor[0],
 			map_info->floor[1], map_info->floor[2]);

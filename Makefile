@@ -10,7 +10,8 @@ OBJ_DIR =		objs
 SRCS =	main.c show_3d.c
 
 PARSING =	cb_parsing.c cb_map.c cb_parsing_utils.c\
-			cb_map_utils.c cb_texture.c cb_color.c  cb_valid_map.c
+			cb_map_utils.c cb_texture.c cb_color.c  cb_valid_map.c\
+			cb_mem_parsing.c
 
 GRAPHICS = background.c textures.c textures_utils.c
 
