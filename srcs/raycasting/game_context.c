@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_context.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:15:44 by laube             #+#    #+#             */
-/*   Updated: 2022/03/10 10:47:27 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:43:07 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	game_context(int debug, t_map *map)
 		exit (0);
 	}
 	cub2d.screen = &screen;
-	// game_loop(&cub2d);
 	hook_handler(&cub2d);
 	mlx_loop(cub2d.mlx_inst.mlx);
 }
