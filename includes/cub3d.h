@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/03/10 10:48:29 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/11 01:40:45 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 #  include "key_codes_mac.h"
 # endif
 
-#define TILE_SIZE 20
-#define WIN_WIDTH 1280
-#define WIN_HEIGHT 720
+# define TILE_SIZE	20
+# define WIN_WIDTH	1280
+# define WIN_HEIGHT	720
 
 # include <math.h>
 # include <stdio.h>
@@ -42,27 +42,24 @@ typedef struct s_circle
 
 typedef struct s_player
 {
-	t_circle circle;
-        int vel_u;
-        int vel_d;
-        int vel_l;
-        int vel_r;
-        int rot_l;
-        int rot_r;
-        char    orien;
-        //Tile position
-        int tile_x;
-        int tile_y;
-        //Direction vector
-        int angle;
-        double dir_x;
-        double dir_y;
-        //Camera plane vectors
-        double  plane_x;
-        double  plane_y;
-		double	mvmt;
-        double  fov;
-} t_player;
+	t_circle	circle;
+	int			vel_u;
+	int			vel_d;
+	int			vel_l;
+	int			vel_r;
+	int			rot_l;
+	int			rot_r;
+	char		orien;
+	int			tile_y;
+	int			tile_x;
+	int			angle;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		mvmt;
+	double		fov;
+}	t_player;
 
 typedef struct s_mlx
 {
@@ -129,15 +126,6 @@ typedef struct s_cub2d
 	int			debug;
 	int			count;
 }	t_cub2d;
-
-// These are the attributes that I need for the 2d part
-typedef struct s_map_placeholder
-{
-	char	**map;
-	int		map_width;
-	int		map_height;
-	char	orientation;
-}	t_map_placeholder;
 
 typedef struct s_line
 {

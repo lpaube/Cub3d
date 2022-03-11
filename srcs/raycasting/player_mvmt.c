@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/03/10 20:46:58 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/11 00:21:55 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_all_collision(t_cub2d *cub2d, int newpos_x, int newpos_y)
 		tmp_pos_x = newpos_x + margin * (cos(deg_to_rad(angle)));
 		tmp_pos_y = newpos_y + margin * (sin(deg_to_rad(angle)));
 		if (check_collision(cub2d, tmp_pos_x / cub2d->tile_size,
-			 tmp_pos_y / cub2d->tile_size))
+				tmp_pos_y / cub2d->tile_size))
 			return (1);
 		angle++;
 	}
@@ -64,11 +64,11 @@ int	has_collision(t_cub2d *cub2d)
 	newpos_x = cub2d->player.circle.mid_x
 		+ (cub2d->player.vel_u - cub2d->player.vel_d) * cub2d->player.dir_x;
 	newpos_x += (cub2d->player.vel_r - cub2d->player.vel_l)
-				* (1 * cos(deg_to_rad(cub2d->player.angle - 90)));
+		* (1 * cos(deg_to_rad(cub2d->player.angle - 90)));
 	newpos_y = cub2d->player.circle.mid_y
 		+ (cub2d->player.vel_u - cub2d->player.vel_d) * cub2d->player.dir_y;
 	newpos_y += (cub2d->player.vel_r - cub2d->player.vel_l)
-				* (-1 * sin(deg_to_rad(cub2d->player.angle - 90)));
+		* (-1 * sin(deg_to_rad(cub2d->player.angle - 90)));
 	if (check_all_collision(cub2d, newpos_x, newpos_y) == 0)
 		return (0);
 	if (check_all_collision(cub2d, cub2d->player.circle.mid_x, newpos_y) == 0)
@@ -80,29 +80,29 @@ int	has_collision(t_cub2d *cub2d)
 
 void	player_mvmt(t_cub2d *cub2d)
 {
-    int move_possible;
+	int			move_possible;
+	t_player	*plyr;
 
-    move_possible = has_collision(cub2d);
+	plyr = &cub2d->player;
+	move_possible = has_collision(cub2d);
 	if (move_possible % 2 == 0)
 	{
-		cub2d->player.circle.mid_x += (cub2d->player.vel_u - cub2d->player.vel_d)
-			* cub2d->player.dir_x;
-		cub2d->player.circle.mid_x += (cub2d->player.vel_r - cub2d->player.vel_l)
-			* (1 * cos(deg_to_rad(cub2d->player.angle - 90)));
+		plyr->circle.mid_x += (plyr->vel_u - plyr->vel_d) * plyr->dir_x;
+		plyr->circle.mid_x += (plyr->vel_r - plyr->vel_l)
+			* (1 * cos(deg_to_rad(plyr->angle - 90)));
 	}
 	if (move_possible < 2)
 	{
-		cub2d->player.circle.mid_y += (cub2d->player.vel_u - cub2d->player.vel_d)
-			* cub2d->player.dir_y;
-		cub2d->player.circle.mid_y += (cub2d->player.vel_r - cub2d->player.vel_l)
-			* (-1 * sin(deg_to_rad(cub2d->player.angle - 90)));
+		plyr->circle.mid_y += (plyr->vel_u - plyr->vel_d) * plyr->dir_y;
+		plyr->circle.mid_y += (plyr->vel_r - plyr->vel_l)
+			* (-1 * sin(deg_to_rad(plyr->angle - 90)));
 	}
-	if (cub2d->player.rot_l == 1)
-		cub2d->player.angle += 2;
-	if (cub2d->player.rot_r == 1)
-		cub2d->player.angle -= 2;
-	if (cub2d->player.angle >= 360)
-		cub2d->player.angle = 0;
-	if (cub2d->player.angle < 0)
-		cub2d->player.angle = 359;
+	if (plyr->rot_l == 1)
+		plyr->angle += 2;
+	if (plyr->rot_r == 1)
+		plyr->angle -= 2;
+	if (plyr->angle >= 360)
+		plyr->angle = 0;
+	if (plyr->angle < 0)
+		plyr->angle = 359;
 }

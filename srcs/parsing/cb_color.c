@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cb_color.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 16:39:21 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/07 13:38:52 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/11 01:46:19 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 char	*cb_colorloop(char **content, int i, int j, char *save)
 {
 	while (content[i][j + 1] == ' ')
-				j++;
+		j++;
 	if (save == NULL)
 		save = content[i] + j;
 	else

@@ -17,7 +17,8 @@ GRAPHICS = background.c textures.c textures_utils.c
 
 RAYCASTING = draw_map.c draw_utils.c player_mvmt.c\
 			 user_input.c draw_raycasting.c game_context.c init_2d.c\
-			 raycast_main.c raycast_data.c raycast_len.c
+			 raycast_main.c raycast_data.c raycast_len.c raycast_offset.c\
+			 keys_input.c
 
 OBJS =	$(SRCS:.c=.o) $(PARSING:.c=.o) $(GRAPHICS:.c=.o) $(RAYCASTING:.c=.o)
 
