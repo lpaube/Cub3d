@@ -31,24 +31,31 @@ OBJS_PATH =	$(addprefix $(OBJ_DIR)/, $(OBJS))
 CC =	gcc
 CFLAGS =	-Wall -Wextra -Werror -g
 INCLS = -Iincludes -Imlx_mac
+INCLS_LINUX = -Iincludes -Imlx_linux
 LIBS = -Lmlx_mac -lmlx -Llibft -lft -framework OpenGL -framework AppKit
+LIBS_LINUX = -Lmlx_linux -lmlx -Llibft -lft -lX11 -lm -lz -lXext
 
 VPATH = $(SRCS_DIR) $(PARSING_DIR) $(GRAPHICS_DIR) $(RAYCASTING_DIR)
 
 #Compiling for Linux
 ifeq ($(shell uname), Linux)
+$(OBJ_DIR)/%.o: %.c
+	@$(CC) $(CFLAGS) -D _LINUX=yes $(INCLS_LINUX) -c $< -o $@
+
 $(NAME): $(OBJ_DIR) $(OBJS_PATH)
 	@echo "\n\tCOMPILING FOR LINUX\n======================================="
 	@make re --no-print-directory -C ./libft
 	@echo "- Compiled libft"
 	@make re --no-print-directory -C ./mlx_linux
 	@echo "- Compiled mlx_linux"
-	@$(CC) $(CFLAGS) -D _LINUX=yes srcs/*.c srcs/parsing/*.c srcs/graphics/* srcs/raycasting/* -Imlx_linux -Iincludes -Lmlx_linux -Llibft -lft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
-	@echo "- Compiled Cub3d obj files"
+	@$(CC) $(LIBS_LINUX) $(OBJS_PATH) -o $(NAME)
 	@echo "\\n\033[32;1m CUB3D HAS BEEN GENERATED \033[0m \\n"
 
 #Compiling for MacOS
 else
+$(OBJ_DIR)/%.o: %.c
+	@$(CC) $(CFLAGS) $(INCLS) -c $< -o $@
+
 $(NAME): $(OBJ_DIR) $(OBJS_PATH)
 	@echo "\n\tCOMPILING FOR MAC_OS\n======================================="
 	@make re --no-print-directory -C ./libft
@@ -58,9 +65,6 @@ endif
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
-
-$(OBJ_DIR)/%.o: %.c
-	@$(CC) $(CFLAGS) $(INCLS) -c $< -o $@
 
 all: $(NAME)
 
@@ -81,7 +85,6 @@ fclean: clean
 
 re: fclean all
 
-#######################################
-
-
 .PHONY: all clean fclean re compiled
+
+# @$(CC) $(CFLAGS) -D _LINUX=yes srcs/*.c srcs/parsing/*.c srcs/graphics/* srcs/raycasting/* -Imlx_linux -Iincludes -Lmlx_linux -Llibft -lft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
