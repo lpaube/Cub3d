@@ -29,7 +29,7 @@ RAYCASTING_PATH = $(addprefix $(RAYCASTING_DIR)/, $(RAYCASTING))
 OBJS_PATH =	$(addprefix $(OBJ_DIR)/, $(OBJS))
 
 CC =	gcc
-CFLAGS =	-Wall -Wextra -Werror -g
+CFLAGS =	-Wall -Wextra -Werror -O3
 INCLS = -Iincludes -Imlx_mac
 LIBS = -Lmlx_mac -lmlx -Llibft -lft -framework OpenGL -framework AppKit
 
