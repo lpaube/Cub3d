@@ -1,6 +1,6 @@
 
-C 25,100,33
-F 10,4,24
+C 25,100,200
+F 10,122,24
 
 NO textures/5_wall.xpm
 EA textures/2_wall.xpm
