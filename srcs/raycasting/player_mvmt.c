@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/03/14 16:42:16 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/15 13:10:49 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ int	has_collision(t_cub2d *cub2d)
 	double	newpos_x;
 	double	newpos_y;
 
-	newpos_x = cub2d->player.circle.mid_x
-		+ ((cub2d->player.vel_u - cub2d->player.vel_d) * 0.5) * cub2d->player.dir_x;
+	newpos_x = cub2d->player.circle.mid_x + ((cub2d->player.vel_u
+				- cub2d->player.vel_d) * 0.5) * cub2d->player.dir_x;
 	newpos_x += ((cub2d->player.vel_r - cub2d->player.vel_l) * 0.5)
 		* (1 * cos(deg_to_rad(cub2d->player.angle - 90)));
-	newpos_y = cub2d->player.circle.mid_y
-		+ ((cub2d->player.vel_u - cub2d->player.vel_d) * 0.5) * cub2d->player.dir_y;
+	newpos_y = cub2d->player.circle.mid_y + ((cub2d->player.vel_u
+				- cub2d->player.vel_d) * 0.5) * cub2d->player.dir_y;
 	newpos_y += ((cub2d->player.vel_r - cub2d->player.vel_l) * 0.5)
 		* (-1 * sin(deg_to_rad(cub2d->player.angle - 90)));
 	if (check_all_collision(cub2d, newpos_x, newpos_y) == 0)
