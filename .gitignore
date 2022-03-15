@@ -4,3 +4,5 @@ cub3d
 *.swo
 .vscode
 .DS_Store
+cub3d.dSYM/Contents
+profile.txt
