@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:54:22 by laube             #+#    #+#             */
-/*   Updated: 2022/03/14 16:32:29 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/16 14:07:59 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ typedef struct s_circle
 typedef struct s_player
 {
 	t_circle	circle;
-	double			vel_u;
-	double			vel_d;
-	double			vel_l;
-	double			vel_r;
+	double		vel_u;
+	double		vel_d;
+	double		vel_l;
+	double		vel_r;
 	int			rot_l;
 	int			rot_r;
 	char		orien;
