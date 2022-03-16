@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 14:10:51 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/15 13:01:32 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/16 17:29:31 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	cb_find_texture(char **content, char *ori, char **texture, int x)
 		if (ft_strncmp(content[i] + j, ori, 2) == 0)
 		{
 			if (texture[x] == NULL)
-				texture[x] = ft_trim_string(content[i] + j + 2, ' ');
+				texture[x] = ft_strtrim(content[i] + j + 2, " ");
 			else
 				return (false);
 		}

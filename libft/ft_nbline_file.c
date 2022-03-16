@@ -6,11 +6,23 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:50:40 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/08 16:25:01 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/16 17:32:23 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	ft_check_file(int fd)
+{
+	char	buf;
+
+	if (read(fd, &buf, 0) == -1)
+	{
+		close(fd);
+		return (1);
+	}
+	return (0);
+}
 
 int	ft_nbline_file(int fd)
 {
@@ -20,11 +32,8 @@ int	ft_nbline_file(int fd)
 
 	ret = 1;
 	count = 0;
-	if (read(fd, &buf, 0) == -1)
-	{
-		close (fd);
+	if (ft_check_file(fd) == 1)
 		return (-1);
-	}
 	while (ret > 0)
 	{
 		ret = read(fd, &buf, 1);
