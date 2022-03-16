@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:37:12 by mafortin          #+#    #+#             */
-/*   Updated: 2022/03/08 16:33:27 by mafortin         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:56:03 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	cb_map_order(char **content, int start)
 		j = 0;
 		while (content[start][j])
 		{
-			if (content[start][j] != ' ')
+			if (content[start][j] != ' ' && content[start][j] != '\n')
 				return (-1);
 			j++;
 		}
