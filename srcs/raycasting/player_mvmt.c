@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/03/15 13:10:49 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:14:27 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ int	has_clipping(t_cub2d *cub2d, int newtile_x, int newtile_y)
 
 int	check_collision(t_cub2d *cub2d, int newtile_x, int newtile_y)
 {
+	if (newtile_x >= cub2d->map.map_width || newtile_x < 0
+		|| newtile_y >= cub2d->map.map_height || newtile_y < 0)
+		return (1);
 	if (cub2d->map.map[newtile_y][newtile_x] == '1')
-		return (1);
+		return (2);
 	if (has_clipping(cub2d, newtile_x, newtile_y))
-		return (1);
+		return (2);
 	return (0);
 }
 
@@ -49,7 +52,7 @@ int	check_all_collision(t_cub2d *cub2d, int newpos_x, int newpos_y)
 		tmp_pos_x = newpos_x + margin * (cos(deg_to_rad(angle)));
 		tmp_pos_y = newpos_y + margin * (sin(deg_to_rad(angle)));
 		if (check_collision(cub2d, tmp_pos_x / cub2d->tile_size,
-				tmp_pos_y / cub2d->tile_size))
+				tmp_pos_y / cub2d->tile_size) == 1)
 			return (1);
 		angle++;
 	}

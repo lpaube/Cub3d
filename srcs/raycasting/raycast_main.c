@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:39:46 by laube             #+#    #+#             */
-/*   Updated: 2022/03/11 01:25:23 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/16 17:29:42 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ void	ray_cast_hit(t_cub2d *cub2d, int *hit, int x)
 	if (cub2d->raycast.map_x < 0 || cub2d->raycast.map_y < 0
 		|| cub2d->raycast.map_x >= cub2d->map.map_width
 		|| cub2d->raycast.map_y >= cub2d->map.map_height)
+	{
+		*hit = 1;
+		cub2d->rays[x].height = 0;
 		return ;
+	}
 	if (cub2d->map.map[cub2d->raycast.map_y]
 		[cub2d->raycast.map_x] == '1')
 	{
