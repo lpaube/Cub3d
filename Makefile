@@ -36,25 +36,25 @@ LIBS = -Lmlx_mac -lmlx -Llibft -lft -framework OpenGL -framework AppKit
 VPATH = $(SRCS_DIR) $(PARSING_DIR) $(GRAPHICS_DIR) $(RAYCASTING_DIR)
 
 #Compiling for Linux
-ifeq ($(shell uname), Linux)
-$(NAME): $(OBJ_DIR) $(OBJS_PATH)
-	@echo "\n\tCOMPILING FOR LINUX\n======================================="
-	@make re --no-print-directory -C ./libft
-	@echo "- Compiled libft"
-	@make re --no-print-directory -C ./mlx_linux
-	@echo "- Compiled mlx_linux"
-	@$(CC) $(CFLAGS) -D _LINUX=yes srcs/*.c srcs/parsing/*.c srcs/graphics/* srcs/raycasting/* -Imlx_linux -Iincludes -Lmlx_linux -Llibft -lft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
-	@echo "- Compiled Cub3d obj files"
-	@echo "\\n\033[32;1m CUB3D HAS BEEN GENERATED \033[0m \\n"
+#ifeq ($(shell uname), Linux)
+#$(NAME): $(OBJ_DIR) $(OBJS_PATH)
+#	@echo "\n\tCOMPILING FOR LINUX\n======================================="
+#	@make re --no-print-directory -C ./libft
+#	@echo "- Compiled libft"
+#	@make re --no-print-directory -C ./mlx_linux
+#	@echo "- Compiled mlx_linux"
+#	@$(CC) $(CFLAGS) -D _LINUX=yes srcs/*.c srcs/parsing/*.c srcs/graphics/* srcs/raycasting/* -Imlx_linux -Iincludes -Lmlx_linux -Llibft -lft -lmlx -lX11 -lm -lz -lXext -o $(NAME)
+#	@echo "- Compiled Cub3d obj files"
+#	@echo "\\n\033[32;1m CUB3D HAS BEEN GENERATED \033[0m \\n"
 
 #Compiling for MacOS
-else
+#else
 $(NAME): $(OBJ_DIR) $(OBJS_PATH)
 	@echo "\n\tCOMPILING FOR MAC_OS\n======================================="
 	@make re --no-print-directory -C ./libft
 	@$(CC) $(LIBS) $(OBJS_PATH) -o $(NAME)
 	@echo "\\n\033[32;1m CUB3D HAS BEEN GENERATED \033[0m \\n"
-endif
+#endif
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
