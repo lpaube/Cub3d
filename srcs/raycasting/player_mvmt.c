@@ -6,7 +6,7 @@
 /*   By: laube <louis-philippe.aube@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:04:13 by laube             #+#    #+#             */
-/*   Updated: 2022/03/16 18:14:27 by laube            ###   ########.fr       */
+/*   Updated: 2022/03/21 14:07:56 by laube            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_all_collision(t_cub2d *cub2d, int newpos_x, int newpos_y)
 		tmp_pos_x = newpos_x + margin * (cos(deg_to_rad(angle)));
 		tmp_pos_y = newpos_y + margin * (sin(deg_to_rad(angle)));
 		if (check_collision(cub2d, tmp_pos_x / cub2d->tile_size,
-				tmp_pos_y / cub2d->tile_size) == 1)
+				tmp_pos_y / cub2d->tile_size) > 0)
 			return (1);
 		angle++;
 	}
